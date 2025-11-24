@@ -3,7 +3,16 @@ import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Boxes, Building2, ArrowRight } from "lucide-react";
+import {
+  Ship,
+  Truck,
+  Boxes,
+  Plane,
+  FileText,
+  Package,
+  ClipboardList,
+  ArrowRight,
+} from "lucide-react";
 import { getCurrentCountryFromPath } from "@/services/countryDetection";
 
 const BRAND_RED = "#BC0018";
@@ -61,7 +70,7 @@ const Services: React.FC = () => {
           </div>
         </section>
 
-        {/* ===== ALL SERVICES SECTION (ONLY THIS PART CHANGED) ===== */}
+        {/* ===== ALL SERVICES (8 CARDS, HAIXUN STYLE) ===== */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2
@@ -72,20 +81,20 @@ const Services: React.FC = () => {
             </h2>
 
             <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-              {/* LCL */}
+              {/* 1. LCL Services */}
               <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
                 <div>
                   <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
-                    <Boxes className="w-8 h-8" style={{ color: BRAND_RED }} />
+                    <Ship className="w-8 h-8" style={{ color: BRAND_RED }} />
                   </div>
                   <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                    LCL
+                    LCL Services
                   </h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Amass Freight, Dubai is one of the leading logistics providers in the
-                    region providing Less-Than Container Load (LCL) for the ultimate
-                    convenience of our customers to help in transporting their products to
-                    any location required.
+                    HAIXUN operate own consolidation service on many trade routes.
+                    HAIXUN provide complete LCL solutions for your cargo, ensuring
+                    reliable and cost-effective movement of smaller shipments across
+                    global destinations.
                   </p>
                 </div>
                 <Link
@@ -104,24 +113,210 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* CFS */}
+              {/* 2. FCL Services */}
               <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
                 <div>
                   <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
-                    <Building2 className="w-8 h-8" style={{ color: BRAND_RED }} />
+                    <Ship className="w-8 h-8" style={{ color: BRAND_RED }} />
                   </div>
                   <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                    CFS
+                    FCL Services
                   </h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    Take full advantage of our state-of-the-art CFS, which is equipped
-                    with the latest equipment, technology and staffed by experienced
-                    professionals at every level. Our warehouses are designed to handle
-                    your cargo efficiently across all regions.
+                    HAIXUN has own fleet of containers including special equipment to
+                    accommodate special cargo requirements, giving customers flexible
+                    Full Container Load (FCL) options on key routes.
                   </p>
                 </div>
                 <Link
-                  to={getNavLink("/services/cfs")}
+                  to={getNavLink("/services/fcl")}
+                  className="mt-6 inline-flex items-center"
+                >
+                  <span
+                    className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-slate-100 inline-flex items-center gap-2"
+                    style={{ color: BRAND_RED }}
+                  >
+                    READ MORE
+                    <span className="w-5 h-5 rounded-full bg-white flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3" style={{ color: BRAND_RED }} />
+                    </span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* 3. Warehouse Management */}
+              <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
+                    <Boxes className="w-8 h-8" style={{ color: BRAND_RED }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    Warehouse Management
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    HAIXUN is well equipped to handle warehousing of various
+                    commodities including cold and specialized storage. Our
+                    infrastructure is designed for safe and efficient inventory
+                    management.
+                  </p>
+                </div>
+                <Link
+                  to={getNavLink("/services/warehouse-management")}
+                  className="mt-6 inline-flex items-center"
+                >
+                  <span
+                    className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-slate-100 inline-flex items-center gap-2"
+                    style={{ color: BRAND_RED }}
+                  >
+                    READ MORE
+                    <span className="w-5 h-5 rounded-full bg-white flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3" style={{ color: BRAND_RED }} />
+                    </span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* 4. Project Logistics */}
+              <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
+                    <Truck className="w-8 h-8" style={{ color: BRAND_RED }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    Project Logistics
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    With a dedicated project division and experts in the field, HAIXUN
+                    manages complex project logistics end-to-end, from planning to
+                    execution, across challenging geographies.
+                  </p>
+                </div>
+                <Link
+                  to={getNavLink("/services/project-logistics")}
+                  className="mt-6 inline-flex items-center"
+                >
+                  <span
+                    className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-slate-100 inline-flex items-center gap-2"
+                    style={{ color: BRAND_RED }}
+                  >
+                    READ MORE
+                    <span className="w-5 h-5 rounded-full bg-white flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3" style={{ color: BRAND_RED }} />
+                    </span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* 5. Air Shipments */}
+              <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
+                    <Plane className="w-8 h-8" style={{ color: BRAND_RED }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    Air Shipments
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    HAIXUN can provide customized sea–air and air–sea options to meet
+                    customer deadlines and manage time-critical shipments with
+                    competitive transit times and routing.
+                  </p>
+                </div>
+                <Link
+                  to={getNavLink("/services/air-shipments")}
+                  className="mt-6 inline-flex items-center"
+                >
+                  <span
+                    className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-slate-100 inline-flex items-center gap-2"
+                    style={{ color: BRAND_RED }}
+                  >
+                    READ MORE
+                    <span className="w-5 h-5 rounded-full bg-white flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3" style={{ color: BRAND_RED }} />
+                    </span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* 6. Customs Declaration & Ins. */}
+              <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
+                    <FileText className="w-8 h-8" style={{ color: BRAND_RED }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    Customs Declaration & Ins.
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    We ensure that all clearance formalities and documentation are
+                    completed in a smooth and compliant manner so your cargo moves
+                    without unnecessary delay.
+                  </p>
+                </div>
+                <Link
+                  to={getNavLink("/services/customs-declaration")}
+                  className="mt-6 inline-flex items-center"
+                >
+                  <span
+                    className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-slate-100 inline-flex items-center gap-2"
+                    style={{ color: BRAND_RED }}
+                  >
+                    READ MORE
+                    <span className="w-5 h-5 rounded-full bg-white flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3" style={{ color: BRAND_RED }} />
+                    </span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* 7. OOG Shipments */}
+              <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
+                    <Package className="w-8 h-8" style={{ color: BRAND_RED }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    OOG Shipments
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Services offered include cargo loading, lashing, surveyor
+                    coordination, and inter-island movement to main ports for
+                    Out-Of-Gauge (OOG) and heavy-lift cargo.
+                  </p>
+                </div>
+                <Link
+                  to={getNavLink("/services/oog-shipments")}
+                  className="mt-6 inline-flex items-center"
+                >
+                  <span
+                    className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-slate-100 inline-flex items-center gap-2"
+                    style={{ color: BRAND_RED }}
+                  >
+                    READ MORE
+                    <span className="w-5 h-5 rounded-full bg-white flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3" style={{ color: BRAND_RED }} />
+                    </span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* 8. LCL Consolidation */}
+              <div className="rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6">
+                    <ClipboardList className="w-8 h-8" style={{ color: BRAND_RED }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    LCL Consolidation
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    We manage LCL consolidation efficiently so that smaller shipments
+                    from multiple shippers are combined and moved as a single
+                    container, optimizing cost and transit times.
+                  </p>
+                </div>
+                <Link
+                  to={getNavLink("/services/lcl-consolidation")}
                   className="mt-6 inline-flex items-center"
                 >
                   <span
