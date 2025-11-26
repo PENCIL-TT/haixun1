@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -19,7 +19,7 @@ import { getCurrentCountryFromPath } from "@/services/countryDetection";
 
 const RUBY_RED = "#BC0018";
 
-const ScrollToTop = () => {
+const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,7 +27,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-const AboutUs = () => {
+const AboutUs: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
 
