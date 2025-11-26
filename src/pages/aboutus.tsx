@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -33,9 +33,10 @@ const AboutUs = () => {
       <ScrollToTop />
       <Navigation />
       <main className="flex-grow pt-20">
-        {/* Hero / About Section */}
+        {/* ABOUT / HERO SECTION */}
         <section className="py-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-slate-50" />
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             {/* Heading */}
             <motion.div
@@ -53,9 +54,9 @@ const AboutUs = () => {
               </p>
             </motion.div>
 
-            {/* Two-column text: left + right */}
+            {/* Left text / Right image */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-              {/* LEFT SIDE CONTENT */}
+              {/* LEFT: TEXT CONTENT */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -71,63 +72,76 @@ const AboutUs = () => {
                   Haixun Global stands on a powerful legacy of over three decades
                   in the logistics and supply chain industry. With deep expertise
                   in sea freight, land transportation, air cargo, customs
-                  clearance, warehousing, and distribution, we deliver complete
+                  clearance, warehousing, and distribution, we deliver
                   end-to-end logistics solutions for businesses of all sizes.
                 </p>
 
                 <p className="text-lg leading-relaxed text-gray-700">
                   Our growth across China, India, Malaysia, the UAE, and other
-                  major trade hubs highlights our commitment to operational
+                  major regions reflects our commitment to operational
                   excellence, responsive service, and seamless cross-border
                   movement. Every shipment is handled with precision,
                   transparency, and a strong customer-first approach.
                 </p>
 
-                <Link to="/contact" className="inline-block pt-2">
+                <p className="text-lg leading-relaxed text-gray-700">
+                  Haixun Global Shenzhen—established in 2019—represents the
+                  Group’s strong and rapidly expanding presence in China.
+                  Although young as a branch, it draws strength from the Group’s
+                  30+ years of logistics expertise, global network, and trusted
+                  partnerships.
+                </p>
+
+                <p className="text-lg leading-relaxed text-gray-700">
+                  Operating with integrity, reliability, and punctuality, Haixun
+                  Global Shenzhen is dedicated to delivering customer-focused
+                  logistics solutions. Our team specialises in designing tailored
+                  transport plans based on cargo requirements, route complexities,
+                  and delivery timelines. Whether Flat Rack, Open Top, Breakbulk,
+                  or traditional container shipping, we ensure every movement is
+                  safe, compliant, and cost-efficient.
+                </p>
+
+                <p className="text-lg leading-relaxed text-gray-700">
+                  With a strong commitment to safety, on-time delivery, and
+                  transparent communication, Haixun Global continues to be a
+                  trusted logistics partner for businesses operating in the global
+                  marketplace.
+                </p>
+
+                <Link to="/contact" className="inline-block pt-4">
                   <Button className="bg-red-600 hover:bg-red-700 text-white">
                     {t("nav.contact")}
                   </Button>
                 </Link>
               </motion.div>
 
-              {/* RIGHT SIDE CONTENT */}
+              {/* RIGHT: IMAGE BLOCK (PUSHED DOWN) */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="space-y-6"
+                className="relative w-full flex justify-center mt-12"
               >
-                <h2 className="text-3xl font-bold text-gray-900">Who We Are</h2>
+                <div className="relative w-full max-w-lg aspect-[4/3] overflow-hidden rounded-2xl shadow-xl border border-slate-200 bg-slate-100">
+                  <img
+                    src="/Dubai.jpg"
+                    alt="Haixun Global operations"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-                <p className="text-lg leading-relaxed text-gray-700">
-                  Established in 2019, Haixun Global Shenzhen represents the
-                  Group’s strong and rapidly expanding presence in China.
-                  Although young as a branch, it draws power from the Group’s
-                  30+ years of logistics expertise, global network, and trusted
-                  partnerships.
-                </p>
-
-                <p className="text-lg leading-relaxed text-gray-700">
-                  We specialise in creating personalised transport solutions
-                  based on cargo requirements, trade lane specifics, and
-                  delivery timelines. Whether Flat Rack, Open Top, Breakbulk,
-                  OOG, or standard container shipping — we ensure every movement
-                  is compliant, safe, and cost-efficient.
-                </p>
-
-                <p className="text-lg leading-relaxed text-gray-700">
-                  Backed by a strong commitment to punctuality, safety, and
-                  transparent communication, Haixun Global continues to be a
-                  preferred logistics partner for companies seeking reliability
-                  in global operations.
-                </p>
+                {/* Decorative badge */}
+                <div className="absolute -bottom-6 -right-6 p-4 rounded-xl shadow-lg bg-kargon-red">
+                  <Ship className="w-8 h-8 text-white" />
+                </div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Core Services Section */}
+        {/* CORE SERVICES SECTION */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -208,7 +222,7 @@ const AboutUs = () => {
           </div>
         </section>
 
-        {/* Stats / Trust Section */}
+        {/* STATS / TRUST SECTION */}
         <section className="py-20 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-10">
