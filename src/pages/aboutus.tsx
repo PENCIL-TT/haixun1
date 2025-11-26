@@ -147,7 +147,7 @@ const AboutUs: React.FC = () => {
         {/* SERVICES SECTION – 2 ROWS × 4 COLUMNS, BACKGROUND IMAGE */}
         <section
           className="py-20 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/lovable-uploads/service-bg.jpg')" }}
+          style={{ backgroundImage: "url('/service-bg.jpg')" }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
