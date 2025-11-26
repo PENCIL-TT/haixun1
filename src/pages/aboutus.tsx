@@ -38,10 +38,12 @@ const AboutUs: React.FC = () => {
       <Navigation />
 
       <main className="flex-grow pt-20">
+
         {/* ======================= ABOUT SECTION ======================= */}
-        <section className="py-20 bg-slate-50">
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              
               {/* LEFT IMAGE – STYLED LIKE REFERENCE */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
@@ -51,6 +53,7 @@ const AboutUs: React.FC = () => {
                 className="w-full flex justify-center lg:justify-start"
               >
                 <div className="relative w-full max-w-xl">
+                  
                   {/* Glow shadow behind card */}
                   <div
                     className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-rose-100/80 via-white to-transparent blur-2xl -z-10"
@@ -77,12 +80,8 @@ const AboutUs: React.FC = () => {
                       className="px-6 py-3 rounded-2xl text-white shadow-xl flex flex-col justify-center"
                       style={{ backgroundColor: RUBY_RED }}
                     >
-                      <span className="text-2xl font-bold leading-none">
-                        9+
-                      </span>
-                      <span className="text-xs mt-1 opacity-90">
-                        Years of Growth
-                      </span>
+                      <span className="text-2xl font-bold leading-none">9+</span>
+                      <span className="text-xs mt-1 opacity-90">Years of Growth</span>
                     </div>
                   </div>
 
@@ -124,27 +123,23 @@ const AboutUs: React.FC = () => {
                 </h2>
 
                 <p className="text-lg leading-relaxed text-gray-700">
-                  Haixun Global Logistics (Shenzhen) Co., Ltd., headquartered in Shenzhen,
-                  China, provides global freight forwarding services for LCL, FCL, general
-                  cargo, and bulk cargo via sea, land, and air. Our integrated solutions
-                  cover inquiry, booking, customs clearance and inspection, warehousing
-                  and distribution, door-to-door delivery, as well as logistics solution
-                  planning and consulting.
+                  Haixun Global Logistics (Shenzhen) Co., Ltd., headquartered in Shenzhen, China,
+                  provides global freight forwarding services for LCL, FCL, general cargo, and bulk
+                  cargo via sea, land, and air. Our solutions include booking, customs clearance,
+                  inspection, warehousing, distribution, door-to-door delivery, and logistics
+                  planning.
                 </p>
 
                 <p className="text-lg leading-relaxed text-gray-700">
-                  Guided by the business philosophy of integrity, honesty, service, and
-                  speed, we uphold the corporate spirit of pragmatism, hard work, and
-                  responsibility. We create a positive business environment built on an
-                  operating mindset of integrity, win-win cooperation, and innovation.
+                  Guided by integrity, honesty, service, and speed, we follow a corporate spirit of
+                  pragmatism, hard work, and responsibility. Our business model is built on
+                  innovation, win-win cooperation, and a strong commitment to customer satisfaction.
                 </p>
 
                 <p className="text-lg leading-relaxed text-gray-700">
-                  With a modern management model, advanced technology, and attentive
-                  customer service as our foundation, we consistently adhere to the
-                  principle of putting customers first. Our team is committed to serving
-                  clients wholeheartedly and striving to impress them with reliable,
-                  efficient, and professional logistics solutions.
+                  With a modern management approach, advanced technology, and attentive customer
+                  care, we consistently adhere to the principle of putting customers first. We aim
+                  to impress clients with reliable, efficient, and seamless logistics solutions.
                 </p>
 
                 <div className="pt-4">
