@@ -31,7 +31,7 @@ export default function AdvantagesSection() {
     <section
       className="py-20 relative overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/counter-bg.webp')",
+        backgroundImage: "url('/shape-02.webp')",
       }}
     >
       <div className="container mx-auto px-4 relative z-10">
