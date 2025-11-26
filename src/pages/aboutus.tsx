@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { getCurrentCountryFromPath } from "@/services/countryDetection";
-import AdvantagesSection from "@/components/home/AdvantagesSection"; // ← ADDED
 
 const RUBY_RED = "#BC0018";
 
@@ -79,26 +78,21 @@ const AboutUs: React.FC = () => {
 
                 <p className="text-lg leading-relaxed text-gray-700">
                   Haixun Global stands on a powerful legacy of over three
-                  decades in the logistics and supply chain industry. With deep
-                  expertise in sea freight, land transportation, air cargo,
-                  customs clearance, warehousing, and distribution, we deliver
-                  end-to-end logistics solutions for businesses of all sizes.
+                  decades in the logistics and supply chain industry, offering
+                  sea freight, land transportation, air cargo, customs 
+                  clearance, warehousing, and distribution.
                 </p>
 
                 <p className="text-lg leading-relaxed text-gray-700">
                   Our growth across China, India, Malaysia, the UAE, and other
-                  key regions reflects our commitment to operational excellence,
-                  responsive service, and seamless cross-border movement. Every
-                  shipment is handled with precision, transparency, and a strong
-                  customer-first approach.
+                  regions reflects our commitment to operational excellence,
+                  responsive service, and seamless cross-border movement.
                 </p>
 
                 <p className="text-lg leading-relaxed text-gray-700">
                   Haixun Global Shenzhen—established in 2019—represents the
-                  Group’s strong and rapidly expanding presence in China.
-                  Although young as a branch, it draws strength from the Group’s
-                  30+ years of logistics expertise, global network, and trusted
-                  partnerships.
+                  Group’s rapidly expanding presence in China while backed by
+                  30+ years of industry expertise.
                 </p>
 
                 <div className="grid gap-4 sm:grid-cols-2 text-sm text-gray-700">
@@ -108,7 +102,7 @@ const AboutUs: React.FC = () => {
                     </h3>
                     <p>
                       Solutions built around cargo type, route complexity, and
-                      delivery timelines to optimise cost and reliability.
+                      delivery timelines.
                     </p>
                   </div>
 
@@ -118,7 +112,7 @@ const AboutUs: React.FC = () => {
                     </h3>
                     <p>
                       Safe, compliant handling for Flat Rack, Open Top,
-                      Breakbulk and traditional container shipping.
+                      Breakbulk, and containerised shipping.
                     </p>
                   </div>
                 </div>
@@ -137,9 +131,6 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
         </section>
-
-        {/* ADDED ADVANTAGES SECTION */}
-        <AdvantagesSection />
       </main>
 
       <Footer />
