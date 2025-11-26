@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Truck, Settings, Users } from "lucide-react";
+import { Truck, Ship, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import ScrollAnimation from "./ScrollAnimation";
 
@@ -31,11 +31,10 @@ export default function AdvantagesSection() {
     <section
       className="py-20 relative overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/about-bg.webp')",
+        backgroundImage: "url('/counter-bg.webp')",
       }}
     >
       <div className="container mx-auto px-4 relative z-10">
-
         {/* SECTION TITLE */}
         <ScrollAnimation className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold text-[#9B111E] mb-3">
@@ -48,7 +47,6 @@ export default function AdvantagesSection() {
 
         {/* CARDS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-
           {advantages.map((advantage, index) => {
             const Icon = advantage.icon;
 
@@ -83,7 +81,7 @@ export default function AdvantagesSection() {
                     </button>
                   </div>
 
-                  {/* BOTTOM RIGHT ICON BOX — PERFECTLY ALIGNED */}
+                  {/* BOTTOM RIGHT ICON BOX */}
                   <div
                     className="absolute bottom-0 right-0 
                                w-20 h-20 bg-[#003F48] 
@@ -96,7 +94,6 @@ export default function AdvantagesSection() {
               </ScrollAnimation>
             );
           })}
-
         </div>
       </div>
     </section>
