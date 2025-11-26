@@ -33,40 +33,42 @@ const AboutUs = () => {
       <ScrollToTop />
       <Navigation />
       <main className="flex-grow pt-20">
-        {/* ABOUT / HERO SECTION */}
-        <section className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-slate-50" />
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            {/* Heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
-                About Haixun Global
-              </h1>
-              <p className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-700">
-                30+ Years of Logistics Excellence
-              </p>
-            </motion.div>
-
-            {/* Left text / Right image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-              {/* LEFT: TEXT CONTENT */}
+        {/* ABOUT SECTION – LIKE MOLTECH: IMAGE LEFT, TEXT RIGHT */}
+        <section className="py-20 bg-slate-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* LEFT: IMAGE */}
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
+                className="w-full flex justify-center"
+              >
+                <div className="w-full max-w-xl rounded-3xl overflow-hidden shadow-[0_24px_60px_rgba(15,23,42,0.18)] bg-slate-100">
+                  <img
+                    src="/Dubai.jpg"
+                    alt="Haixun Global operations"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              {/* RIGHT: TEXT */}
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true }}
                 className="space-y-6"
               >
-                <h2 className="text-3xl font-bold text-gray-900">
+                <p className="text-sm font-semibold tracking-[0.22em] text-kargon-blue uppercase">
+                  About Company
+                </p>
+
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
                   About Haixun Global
-                </h2>
+                </h1>
 
                 <p className="text-lg leading-relaxed text-gray-700">
                   Haixun Global stands on a powerful legacy of over three decades
@@ -78,10 +80,10 @@ const AboutUs = () => {
 
                 <p className="text-lg leading-relaxed text-gray-700">
                   Our growth across China, India, Malaysia, the UAE, and other
-                  major regions reflects our commitment to operational
-                  excellence, responsive service, and seamless cross-border
-                  movement. Every shipment is handled with precision,
-                  transparency, and a strong customer-first approach.
+                  key regions reflects our commitment to operational excellence,
+                  responsive service, and seamless cross-border movement. Every
+                  shipment is handled with precision, transparency, and a strong
+                  customer-first approach.
                 </p>
 
                 <p className="text-lg leading-relaxed text-gray-700">
@@ -92,49 +94,33 @@ const AboutUs = () => {
                   partnerships.
                 </p>
 
-                <p className="text-lg leading-relaxed text-gray-700">
-                  Operating with integrity, reliability, and punctuality, Haixun
-                  Global Shenzhen is dedicated to delivering customer-focused
-                  logistics solutions. Our team specialises in designing tailored
-                  transport plans based on cargo requirements, route complexities,
-                  and delivery timelines. Whether Flat Rack, Open Top, Breakbulk,
-                  or traditional container shipping, we ensure every movement is
-                  safe, compliant, and cost-efficient.
-                </p>
-
-                <p className="text-lg leading-relaxed text-gray-700">
-                  With a strong commitment to safety, on-time delivery, and
-                  transparent communication, Haixun Global continues to be a
-                  trusted logistics partner for businesses operating in the global
-                  marketplace.
-                </p>
-
-                <Link to="/contact" className="inline-block pt-4">
-                  <Button className="bg-red-600 hover:bg-red-700 text-white">
-                    {t("nav.contact")}
-                  </Button>
-                </Link>
-              </motion.div>
-
-              {/* RIGHT: IMAGE BLOCK (PUSHED DOWN) */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="relative w-full flex justify-center mt-12"
-              >
-                <div className="relative w-full max-w-lg aspect-[4/3] overflow-hidden rounded-2xl shadow-xl border border-slate-200 bg-slate-100">
-                  <img
-                    src="/Dubai.jpg"
-                    alt="Haixun Global operations"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="grid gap-4 sm:grid-cols-2 text-sm text-gray-700">
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Tailored Transport Plans
+                    </h3>
+                    <p>
+                      Solutions built around cargo type, route complexity, and
+                      delivery timelines to optimise cost and reliability.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Certified & Compliant
+                    </h3>
+                    <p>
+                      Safe, compliant handling for Flat Rack, Open Top,
+                      Breakbulk and traditional container shipping.
+                    </p>
+                  </div>
                 </div>
 
-                {/* Decorative badge */}
-                <div className="absolute -bottom-6 -right-6 p-4 rounded-xl shadow-lg bg-kargon-red">
-                  <Ship className="w-8 h-8 text-white" />
+                <div className="pt-2">
+                  <Link to="/contact">
+                    <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8">
+                      {t("nav.contact")}
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             </div>
