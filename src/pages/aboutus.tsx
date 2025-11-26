@@ -1,5 +1,3 @@
-// src/pages/AboutUs.tsx (or wherever this file lives)
-
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,18 +5,8 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import {
-  Ship,
-  Truck,
-  Boxes,
-  Plane,
-  FileText,
-  Package,
-  ClipboardList,
-  ArrowRight,
-} from "lucide-react";
 import { getCurrentCountryFromPath } from "@/services/countryDetection";
-import AdvantagesSection from "@/components/home/AdvantagesSection"; // <-- added
+import AdvantagesSection from "@/components/home/AdvantagesSection"; // ← ADDED
 
 const RUBY_RED = "#BC0018";
 
@@ -46,11 +34,13 @@ const AboutUs: React.FC = () => {
     <div className="bg-white text-gray-900 min-h-screen flex flex-col">
       <ScrollToTop />
       <Navigation />
+
       <main className="flex-grow pt-20">
         {/* ABOUT SECTION */}
         <section className="py-20 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              
               {/* LEFT IMAGE */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
@@ -148,7 +138,7 @@ const AboutUs: React.FC = () => {
           </div>
         </section>
 
-        {/* REPLACED SERVICES SECTION WITH ADVANTAGES */}
+        {/* ADDED ADVANTAGES SECTION */}
         <AdvantagesSection />
       </main>
 
