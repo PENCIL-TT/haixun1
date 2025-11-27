@@ -3,10 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Ship, CheckCircle, DollarSign, Globe } from "lucide-react";
+import { FileText, File } from "lucide-react";
 import { getCurrentCountryFromPath } from "@/services/countryDetection";
 
-// shadcn breadcrumb
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -35,27 +34,6 @@ const LCL = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
-  const features = [
-    {
-      icon: CheckCircle,
-      title: "Extremely Reliable & Prompt",
-      description:
-        "All your LCL cargo is reliably transported through our seamlessly connected network across the globe, and you are assured that your cargo will arrive on time.",
-    },
-    {
-      icon: DollarSign,
-      title: "Flexible and Economical",
-      description:
-        "LCL services enable customers to ship small orders at a lower cost and in lower volumes compared to air freight.",
-    },
-    {
-      icon: Globe,
-      title: "Global Network",
-      description:
-        "Our LCL network offers unmatched connectivity and cadence across major shipping routes.",
-    },
-  ];
-
   const servicesNav = [
     { label: "See All Services", path: "/services" },
     { label: "LCL Services", path: "/services/lcl" },
@@ -76,194 +54,186 @@ const LCL = () => {
       <Navigation />
 
       <main className="flex-grow pt-20">
-        {/* ===== BREADCRUMB HERO (like About Us screenshot) ===== */}
-        <section className="relative bg-[#020817]">
+
+        {/* ========== BIG BREADCRUMB HERO ========== */}
+        <section className="relative bg-[#020817] h-60 md:h-72 flex items-center justify-center">
           <div className="absolute inset-0">
-            {/* replace with your header image */}
             <img
               src="/service-bg.jpg"
-              alt="LCL Header"
+              alt="Services Header"
               className="w-full h-full object-cover opacity-40"
             />
             <div className="absolute inset-0 bg-black/60" />
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col items-center justify-center">
-            <Breadcrumb>
-              <BreadcrumbList>
+          {/* BIG BREADCRUMB */}
+          <div className="relative text-center">
+            <Breadcrumb className="scale-125 md:scale-[1.40]">
+              <BreadcrumbList className="flex items-center justify-center gap-3">
                 <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
+                  <BreadcrumbLink
+                    asChild
+                    className="text-gray-200 text-lg md:text-xl hover:text-white"
+                  >
                     <Link to={getNavLink("/")}>Home</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />
+
+                <BreadcrumbSeparator>
+                  <span className="text-2xl md:text-3xl text-gray-300">›</span>
+                </BreadcrumbSeparator>
+
                 <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
+                  <BreadcrumbLink
+                    asChild
+                    className="text-gray-200 text-lg md:text-xl hover:text-white"
+                  >
                     <Link to={getNavLink("/services")}>Services</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />
+
+                <BreadcrumbSeparator>
+                  <span className="text-2xl md:text-3xl text-gray-300">›</span>
+                </BreadcrumbSeparator>
+
                 <BreadcrumbItem>
-                  <BreadcrumbPage>LCL Services</BreadcrumbPage>
+                  <BreadcrumbPage className="text-white font-bold text-3xl md:text-5xl">
+                    LCL Services
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </section>
 
-        {/* ===== MAIN CONTENT WITH LEFT SERVICES MENU ===== */}
-        <section className="py-20 bg-white">
+        {/* ========== MAIN CONTENT ========== */}
+        <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT: SERVICES LIST */}
-              <aside>
-                <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-800 mb-2">
-                  OUR SERVICES
-                </h2>
-                <div className="w-10 h-[2px] bg-[#BC0018] mb-5" />
 
-                <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
-                  {servicesNav.map((item) => {
-                    const to = getNavLink(item.path);
-                    const isActive =
-                      pathname === to ||
-                      (item.path !== "/services" && pathname.startsWith(to));
+              {/* LEFT COLUMN: SERVICES LIST + BROCHURES */}
+              <aside className="space-y-10">
 
-                    return (
-                      <Link
-                        key={item.path}
-                        to={to}
-                        className={[
-                          "block px-6 py-3 text-sm font-medium transition-colors",
-                          isActive
-                            ? "bg-[#BC0018] text-white"
-                            : "text-slate-600 hover:bg-slate-100",
-                        ].join(" ")}
-                      >
-                        {item.label}
-                      </Link>
-                    );
-                  })}
+                {/* OUR SERVICES */}
+                <div>
+                  <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
+                    OUR SERVICES
+                  </h2>
+                  <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
+
+                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
+                    {servicesNav.map((item) => {
+                      const to = getNavLink(item.path);
+                      const isActive =
+                        pathname === to ||
+                        (item.path !== "/services" && pathname.startsWith(to));
+
+                      return (
+                        <Link
+                          key={item.path}
+                          to={to}
+                          className={`block px-6 py-3 text-sm font-medium transition-colors ${
+                            isActive
+                              ? "bg-[#BC0018] text-white"
+                              : "text-slate-600 hover:bg-slate-100"
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* OUR BROCHURES */}
+                <div>
+                  <h3 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
+                    OUR BROCHURES
+                  </h3>
+                  <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
+
+                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50 divide-y">
+                    <a
+                      href="/brochures/service-brochure.pdf"
+                      className="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100"
+                    >
+                      <FileText className="w-4 h-4 text-slate-500" />
+                      <span>Service Brochure.pdf</span>
+                    </a>
+                    <a
+                      href="/brochures/about-company.doc"
+                      className="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100"
+                    >
+                      <File className="w-4 h-4 text-slate-500" />
+                      <span>About Company.doc</span>
+                    </a>
+                  </div>
                 </div>
               </aside>
 
-              {/* RIGHT: LCL CONTENT */}
+              {/* RIGHT COLUMN */}
               <div className="space-y-12">
-                {/* Intro text (title is already in breadcrumb hero) */}
+
+                {/* TOP LARGE IMAGE */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
+                  className="rounded-md overflow-hidden shadow-lg"
                 >
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#BC0018] mb-4">
-                    Efficient LCL Solutions
-                  </h2>
-                  <p className="text-lg leading-relaxed text-gray-700">
-                    Amass Freight, Dubai is one of the leading logistics providers in the
-                    region providing Less-Than Container load (LCL) for the ultimate
-                    convenience of our customers to help in transporting their products to
-                    any location required.
-                  </p>
-                  <p className="text-lg leading-relaxed text-gray-700 mt-4">
-                    LCL is an ocean freight transportation service that is often preferred by
-                    businesses that don't have enough cargo to fill an entire shipping
-                    container. Instead of paying for an entire container with unused space,
-                    shippers can consolidate goods with other consignees to fully utilize the
-                    available space and thereby reduce overall costs.
-                  </p>
-                  <p className="text-lg leading-relaxed text-gray-700 mt-4">
-                    It is our assurance to our customers that there is no need to worry about
-                    deadlines when using our ocean freight services, as we are committed to
-                    getting your cargo to its desired destination on time, safely.
-                  </p>
+                  <img
+                    src="/lcl1.JPG"
+                    alt="LCL Road & Ocean Freight"
+                    className="w-full h-[340px] md:h-[380px] object-cover"
+                    loading="lazy"
+                  />
                 </motion.div>
 
-                {/* Image */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                  <div className="order-2 md:order-1" />
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="relative order-1 md:order-2"
-                  >
-                    <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                      <img
-                        alt="LCL Shipping"
-                        loading="lazy"
-                        className="w-full h-80 md:h-96 object-cover"
-                        src="/lcl1.JPG"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    </div>
-                    <div className="absolute -bottom-6 -right-6 p-4 rounded-xl shadow-lg bg-[#BC0018]">
-                      <Ship className="w-8 h-8 text-white" />
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Features */}
-                <section className="pt-4">
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="text-left mb-8"
-                  >
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#BC0018] mb-3">
-                      Why Choose Our LCL Services
-                    </h3>
-                    <p className="text-lg text-gray-600 max-w-2xl">
-                      Our LCL network offers unmatched connectivity and cadence across major
-                      shipping routes.
-                    </p>
-                  </motion.div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {features.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="rounded-2xl p-6 text-center bg-slate-100"
-                      >
-                        <div className="w-16 h-16 bg-[#BC0018]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <feature.icon className="w-8 h-8 text-[#BC0018]" />
-                        </div>
-                        <h4 className="text-lg font-bold text-[#BC0018] mb-2">
-                          {feature.title}
-                        </h4>
-                        <p className="text-gray-600 text-sm">{feature.description}</p>
-                      </motion.div>
-                    ))}
+                {/* DESCRIPTION BLOCK */}
+                <section>
+                  <div className="mb-6">
+                    <h2 className="text-xl md:text-2xl font-extrabold tracking-wide text-gray-900 uppercase">
+                      Description
+                    </h2>
+                    <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
                   </div>
-                </section>
 
-                {/* CTA */}
-                <section className="mt-6">
-                  <div className="rounded-2xl bg-[#BC0018] text-white px-8 py-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div>
-                      <h2 className="text-2xl md:text-3xl font-bold mb-2">
-                        Ready to Ship with LCL?
-                      </h2>
-                      <p className="text-base md:text-lg text-white/90 max-w-xl">
-                        Contact us today for competitive rates and reliable LCL shipping
-                        solutions.
+                  <div className="grid gap-10 md:grid-cols-2 items-start">
+                    {/* TEXT CONTENT */}
+                    <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
+                      <p>
+                        Amass Freight, Dubai provides Less-Than-Container Load (LCL)
+                        services designed for customers who do not have enough cargo to
+                        fill a full container but require reliable shipping.
+                      </p>
+                      <p>
+                        Our extensive global consolidation network helps customers move
+                        small shipments more economically, combining multiple consignments
+                        into a single container to reduce freight cost.
+                      </p>
+                      <p>
+                        Our operations team manages receiving, stuffing, documentation, and
+                        end delivery, ensuring safety and reliability at every step.
+                      </p>
+                      <p>
+                        Frequent departures, predictable transit schedules, and transparent
+                        pricing give your business the flexibility it needs.
                       </p>
                     </div>
-                    <Link
-                      to={getNavLink("/contact")}
-                      className="inline-flex items-center bg-white text-[#BC0018] px-8 py-4 rounded-xl font-semibold text-base md:text-lg hover:bg-gray-100 transition-colors duration-300"
-                    >
-                      Get Quote Now
-                    </Link>
+
+                    {/* SHIP IMAGE */}
+                    <div className="flex justify-center md:justify-end">
+                      <img
+                        src="/lcl-ship.png"
+                        alt="LCL Ocean Freight"
+                        className="max-w-xs md:max-w-sm object-contain"
+                        loading="lazy"
+                      />
+                    </div>
                   </div>
                 </section>
+
               </div>
             </div>
           </div>
