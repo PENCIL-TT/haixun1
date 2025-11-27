@@ -1,136 +1,287 @@
 import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
-import { UserCheck, FileText, Shield, Globe, CheckCircle } from "lucide-react";
-const CustomsClearance = () => {
+import { getCurrentCountryFromPath } from "@/services/countryDetection";
+import { UserCheck, FileText, Shield, Globe } from "lucide-react";
+
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  const features = ["Import/Export documentation", "Duty & tax calculation", "Compliance management", "Certificate handling", "Government liaison", "Fast clearance processing"];
-  return <div className="bg-white text-black min-h-screen">
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+  return null;
+};
+
+const CustomsClearance = () => {
+  const location = useLocation();
+
+  const detected = getCurrentCountryFromPath(location.pathname);
+  const currentCountry = detected ?? { code: "SG", name: "Singapore" };
+
+  const getNavLink = (basePath: string) => {
+    if (currentCountry.code === "SG") return basePath;
+    return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
+  };
+
+  const servicesNav = [
+    { label: "See All Services", path: "/services" },
+    { label: "LCL Services", path: "/services/lcl" },
+    { label: "CFS Services", path: "/services/cfs" },
+    { label: "Sea Freight", path: "/services/sea-freight" },
+    { label: "Air Freight", path: "/services/air-freight" },
+    { label: "Warehousing", path: "/services/warehousing" },
+    { label: "Project Cargo", path: "/services/project-cargo" },
+    { label: "Customs Clearance", path: "/services/customs-clearance" },
+    { label: "Consolidation", path: "/services/consolidation" },
+    { label: "Liquid Cargo", path: "/services/liquid-cargo" },
+    { label: "Third Party Logistics", path: "/services/third-party-logistics" },
+    { label: "Liner Agency", path: "/services/liner-agency" },
+  ];
+
+  const pathname = location.pathname;
+
+  return (
+    <div className="bg-white text-gray-900 min-h-screen flex flex-col">
+      <ScrollToTop />
       <Navigation />
-      
-      <section className="pt-28 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent"></div>
-        <div className="container mx-auto px-4 relative">
-          <motion.div initial={{
-          opacity: 0,
-          y: 30
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8
-        }} className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 bg-red-600/20 px-6 py-3 rounded-full mb-6">
-              <UserCheck className="w-6 h-6 text-red-500" />
-              <span className="text-red-500 font-semibold">Customs Clearance</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Customs <span className="text-red-500">Clearance</span>
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Expert customs brokerage services ensuring smooth and compliant cargo clearance
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{
-            opacity: 0,
-            x: -50
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.2
-          }} className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img src="/customclearance.png" alt="Customs Clearance Services" className="w-full h-96 object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              </div>
-            </motion.div>
+      <main className="flex-grow pt-20">
+        {/* BREADCRUMB HERO – MATCH AIR FREIGHT STYLE */}
+        <section
+          className="relative h-56 md:h-64 flex items-center justify-center overflow-hidden border-b border-slate-200"
+          style={{
+            backgroundImage: "url('/counter-bg.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px] z-0" />
 
-            <motion.div initial={{
-            opacity: 0,
-            x: 50
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.4
-          }} className="space-y-6">
-              <h2 className="text-3xl font-bold text-red-500">Customs Clearance</h2>
-              <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                As one of the leading custom clearing agents, we ensure that all clearance formalities are done in a smooth and easy manner so that all our customers receive their goods on time. Our customs brokers help ease import and export regulations and all paperwork related to trade compliances and procedures to ensure that your consignments via sea and air leave on time.
-              </p>
-              
-              <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                OECL takes pride in being in business for more than a decade and have cleared all types of shipments of any sizes and for a plethora of goods from across the world taking care of each transportation with precision. It is our well-experienced team that makes us the best and leading customs clearing agents as our professionals carry out a complete study of all the local rules and regulations to help our clients overcome the complex matters of trade compliances.
-              </p>
-              
-              <p className="text-gray-700 text-lg leading-relaxed">
-                It is our ability in identifying demand and changing challenges in business that makes us the best to help you take care of all your paper works thereby ensuring the smooth flow of your business operations. With all the required documents in place, our professionals also ensure end-to-end solutions for both Import and Export Customs Clearance.
-              </p>
-            </motion.div>
+          <div className="relative text-center scale-[1.1] md:scale-[1.25] z-10">
+            <Breadcrumb>
+              <BreadcrumbList className="flex items-center justify-center gap-2 md:gap-3">
+                <BreadcrumbItem>
+                  <BreadcrumbLink
+                    asChild
+                    className="text-[#BC0018] text-lg md:text-xl font-semibold hover:text-black"
+                  >
+                    <Link to={getNavLink("/")}>Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbSeparator>
+                  <span className="text-xl md:text-2xl text-slate-600">›</span>
+                </BreadcrumbSeparator>
+
+                <BreadcrumbItem>
+                  <BreadcrumbLink
+                    asChild
+                    className="text-[#BC0018] text-lg md:text-xl font-semibold hover:text-black"
+                  >
+                    <Link to={getNavLink("/services")}>Services</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbSeparator>
+                  <span className="text-xl md:text-2xl text-slate-600">›</span>
+                </BreadcrumbSeparator>
+
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="text-black font-extrabold text-3xl md:text-4xl">
+                    Customs Clearance
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div initial={{
-          opacity: 0,
-          y: 30
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8
-        }} viewport={{
-          once: true
-        }} className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">Why Choose Our Customs Service</h2>
-          </motion.div>
+        {/* MAIN CONTENT */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
+              {/* LEFT SIDEBAR */}
+              <aside className="space-y-10">
+                <div>
+                  <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
+                    OUR SERVICES
+                  </h2>
+                  <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[{
-            icon: FileText,
-            title: "Expert Documentation",
-            description: "Comprehensive handling of all import/export documentation requirements"
-          }, {
-            icon: Shield,
-            title: "Compliance Assurance",
-            description: "Ensuring full regulatory compliance across all jurisdictions"
-          }, {
-            icon: Globe,
-            title: "Global Experience",
-            description: "Extensive knowledge of international customs procedures and regulations"
-          }].map((benefit, index) => <motion.div key={index} initial={{
-            opacity: 0,
-            y: 30
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.6,
-            delay: 0.2 * index
-          }} viewport={{
-            once: true
-          }} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                <div className="bg-red-600/20 p-4 rounded-xl mb-6 w-fit">
-                  <benefit.icon className="w-8 h-8 text-red-500" />
+                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
+                    {servicesNav.map((item) => {
+                      const to = getNavLink(item.path);
+                      const isActive =
+                        pathname === to ||
+                        (item.path !== "/services" && pathname.startsWith(to));
+
+                      return (
+                        <Link
+                          key={item.path}
+                          to={to}
+                          className={`block px-6 py-3 text-sm font-medium transition-colors ${
+                            isActive
+                              ? "bg-[#BC0018] text-white"
+                              : "text-slate-600 hover:bg-slate-100"
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-4">{benefit.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
-              </motion.div>)}
+              </aside>
+
+              {/* RIGHT CONTENT */}
+              <div className="space-y-12">
+                {/* TOP IMAGE */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="rounded-md overflow-hidden shadow-lg relative"
+                >
+                  <img
+                    src="/customclearance.png"
+                    alt="Customs Clearance Services"
+                    className="w-full h-[340px] md:h-[380px] object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </motion.div>
+
+                {/* CUSTOMS CLEARANCE DESCRIPTION */}
+                <section>
+                  <div className="mb-6 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#BC0018]/10">
+                      <UserCheck className="w-5 h-5 text-[#BC0018]" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl md:text-2xl font-extrabold tracking-wide text-gray-900 uppercase">
+                        Customs Clearance
+                      </h2>
+                      <div className="mt-1 w-16 h-[2px] bg-[#BC0018]" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
+                    <p>
+                      As one of the leading custom clearing agents, we ensure that all clearance
+                      formalities are completed in a smooth and efficient manner so that our
+                      customers receive their goods on time. Our customs brokers help ease import
+                      and export regulations and all paperwork related to trade compliances and
+                      procedures to ensure that your consignments via sea and air move without
+                      delay.
+                    </p>
+
+                    <p>
+                      OECL takes pride in having been in business for more than a decade, clearing
+                      all types of shipments of any size and for a wide variety of cargo from
+                      across the world, managing each movement with precision. Our highly
+                      experienced team conducts a thorough study of local rules and regulations to
+                      help clients overcome complex trade compliance challenges.
+                    </p>
+
+                    <p>
+                      Our strength lies in identifying changing business demands and challenges,
+                      enabling us to manage all documentation and compliance so your business
+                      operations remain smooth and uninterrupted. With all required documents in
+                      place, our team provides end-to-end solutions for both import and export
+                      customs clearance.
+                    </p>
+                  </div>
+                </section>
+
+                {/* WHY CHOOSE SECTION */}
+                <section>
+                  <div className="mb-6">
+                    <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
+                      Why Choose Our Customs Service
+                    </h2>
+                    <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[
+                      {
+                        icon: FileText,
+                        title: "Expert Documentation",
+                        description:
+                          "Comprehensive handling of all import and export documentation requirements.",
+                      },
+                      {
+                        icon: Shield,
+                        title: "Compliance Assurance",
+                        description:
+                          "Ensuring full regulatory compliance across ports and jurisdictions.",
+                      },
+                      {
+                        icon: Globe,
+                        title: "Global Experience",
+                        description:
+                          "Extensive knowledge of international customs procedures and regulations.",
+                      },
+                    ].map((benefit, index) => (
+                      <motion.div
+                        key={benefit.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.15 * index }}
+                        viewport={{ once: true }}
+                        className="bg-white p-6 rounded-xl shadow-md border border-gray-200"
+                      >
+                        <div className="bg-[#BC0018]/10 p-3 rounded-lg mb-4 w-fit">
+                          <benefit.icon className="w-6 h-6 text-[#BC0018]" />
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">
+                          {benefit.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {benefit.description}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* CTA – CONSISTENT WITH OTHER SERVICE PAGES */}
+                <section className="py-12 bg-white text-center">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#BC0018] mb-4">
+                    Need Support With Customs Clearance?
+                  </h2>
+                  <p className="text-lg md:text-xl text-[#BC0018] mb-10">
+                    Contact us today for fast, compliant, and reliable customs solutions.
+                  </p>
+
+                  <Link
+                    to={getNavLink("/contact")}
+                    className="inline-block bg-[#BC0018] hover:bg-[#a30014] text-white font-semibold text-lg px-10 py-4 rounded-lg transition-all"
+                  >
+                    Contact Us
+                  </Link>
+                </section>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default CustomsClearance;
