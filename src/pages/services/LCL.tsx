@@ -1,10 +1,20 @@
-import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Ship, CheckCircle, DollarSign, Globe } from "lucide-react";
 import { getCurrentCountryFromPath } from "@/services/countryDetection";
+
+// shadcn breadcrumb
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -66,6 +76,42 @@ const LCL = () => {
       <Navigation />
 
       <main className="flex-grow pt-20">
+        {/* ===== BREADCRUMB HERO (like About Us screenshot) ===== */}
+        <section className="relative bg-[#020817]">
+          <div className="absolute inset-0">
+            {/* replace with your header image */}
+            <img
+              src="/service-bg.jpg"
+              alt="LCL Header"
+              className="w-full h-full object-cover opacity-40"
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col items-center justify-center">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to={getNavLink("/")}>Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to={getNavLink("/services")}>Services</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>LCL Services</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </section>
+
+        {/* ===== MAIN CONTENT WITH LEFT SERVICES MENU ===== */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
@@ -103,61 +149,45 @@ const LCL = () => {
 
               {/* RIGHT: LCL CONTENT */}
               <div className="space-y-12">
-                {/* Hero / Intro */}
+                {/* Intro text (title is already in breadcrumb hero) */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
                 >
-                  <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-                    <span className="text-kargon-red">LCL</span> Services
-                  </h1>
-                  <p className="text-lg md:text-xl max-w-3xl leading-relaxed text-gray-700">
-                    Less Container Load shipping solutions for optimal convenience and cost
-                    efficiency.
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#BC0018] mb-4">
+                    Efficient LCL Solutions
+                  </h2>
+                  <p className="text-lg leading-relaxed text-gray-700">
+                    Amass Freight, Dubai is one of the leading logistics providers in the
+                    region providing Less-Than Container load (LCL) for the ultimate
+                    convenience of our customers to help in transporting their products to
+                    any location required.
+                  </p>
+                  <p className="text-lg leading-relaxed text-gray-700 mt-4">
+                    LCL is an ocean freight transportation service that is often preferred by
+                    businesses that don't have enough cargo to fill an entire shipping
+                    container. Instead of paying for an entire container with unused space,
+                    shippers can consolidate goods with other consignees to fully utilize the
+                    available space and thereby reduce overall costs.
+                  </p>
+                  <p className="text-lg leading-relaxed text-gray-700 mt-4">
+                    It is our assurance to our customers that there is no need to worry about
+                    deadlines when using our ocean freight services, as we are committed to
+                    getting your cargo to its desired destination on time, safely.
                   </p>
                 </motion.div>
 
-                {/* Text + Image */}
+                {/* Image */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                  <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                    viewport={{ once: true }}
-                    className="space-y-5"
-                  >
-                    <h2 className="text-2xl md:text-3xl font-bold text-kargon-red">
-                      Efficient LCL Solutions
-                    </h2>
-                    <p className="text-lg leading-relaxed text-gray-700">
-                      Amass Freight, Dubai is one of the leading logistics providers in the
-                      region providing Less-Than Container load (LCL) for the ultimate
-                      convenience of our customers to help in transporting their products to
-                      any location required.
-                    </p>
-                    <p className="text-lg leading-relaxed text-gray-700">
-                      LCL is an ocean freight transportation service that is often preferred
-                      by businesses that don't have enough cargo to fill an entire shipping
-                      container. Instead of paying for an entire container with unused space,
-                      shippers can consolidate goods with other consignees to fully utilize
-                      the available space and thereby reduce overall costs.
-                    </p>
-                    <p className="text-lg leading-relaxed text-gray-700">
-                      It is our assurance to our customers that there is no need to worry
-                      about deadlines when using our ocean freight services, as we are
-                      committed to getting your cargo to its desired destination on time,
-                      safely.
-                    </p>
-                  </motion.div>
-
+                  <div className="order-2 md:order-1" />
                   <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="relative"
+                    className="relative order-1 md:order-2"
                   >
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                       <img
@@ -168,7 +198,7 @@ const LCL = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     </div>
-                    <div className="absolute -bottom-6 -right-6 p-4 rounded-xl shadow-lg bg-kargon-red">
+                    <div className="absolute -bottom-6 -right-6 p-4 rounded-xl shadow-lg bg-[#BC0018]">
                       <Ship className="w-8 h-8 text-white" />
                     </div>
                   </motion.div>
@@ -183,9 +213,9 @@ const LCL = () => {
                     viewport={{ once: true }}
                     className="text-left mb-8"
                   >
-                    <h2 className="text-2xl md:text-3xl font-bold text-kargon-red mb-3">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#BC0018] mb-3">
                       Why Choose Our LCL Services
-                    </h2>
+                    </h3>
                     <p className="text-lg text-gray-600 max-w-2xl">
                       Our LCL network offers unmatched connectivity and cadence across major
                       shipping routes.
@@ -202,12 +232,12 @@ const LCL = () => {
                         viewport={{ once: true }}
                         className="rounded-2xl p-6 text-center bg-slate-100"
                       >
-                        <div className="w-16 h-16 bg-kargon-red/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <feature.icon className="w-8 h-8 text-kargon-red" />
+                        <div className="w-16 h-16 bg-[#BC0018]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <feature.icon className="w-8 h-8 text-[#BC0018]" />
                         </div>
-                        <h3 className="text-lg font-bold text-kargon-red mb-2">
+                        <h4 className="text-lg font-bold text-[#BC0018] mb-2">
                           {feature.title}
-                        </h3>
+                        </h4>
                         <p className="text-gray-600 text-sm">{feature.description}</p>
                       </motion.div>
                     ))}
@@ -216,7 +246,7 @@ const LCL = () => {
 
                 {/* CTA */}
                 <section className="mt-6">
-                  <div className="rounded-2xl bg-kargon-red text-white px-8 py-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div className="rounded-2xl bg-[#BC0018] text-white px-8 py-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-bold mb-2">
                         Ready to Ship with LCL?
@@ -228,7 +258,7 @@ const LCL = () => {
                     </div>
                     <Link
                       to={getNavLink("/contact")}
-                      className="inline-flex items-center bg-white text-kargon-red px-8 py-4 rounded-xl font-semibold text-base md:text-lg hover:bg-gray-100 transition-colors duration-300"
+                      className="inline-flex items-center bg-white text-[#BC0018] px-8 py-4 rounded-xl font-semibold text-base md:text-lg hover:bg-gray-100 transition-colors duration-300"
                     >
                       Get Quote Now
                     </Link>
