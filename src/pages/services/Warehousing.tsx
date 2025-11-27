@@ -108,7 +108,6 @@ const Warehousing = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-
               {/* LEFT COLUMN: SERVICES NAV */}
               <aside className="space-y-10">
                 <div>
@@ -117,7 +116,7 @@ const Warehousing = () => {
                   </h2>
                   <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
 
-                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
+                  <div className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
                     {servicesNav.map((item) => {
                       const to = getNavLink(item.path);
                       const isActive =
@@ -128,14 +127,12 @@ const Warehousing = () => {
                         <Link
                           key={item.path}
                           to={to}
-                          className={`
-                            block px-6 py-3 text-sm font-medium transition-all duration-200
+                          className={`block px-6 py-3 text-sm font-medium transition-colors duration-200
                             ${
                               isActive
                                 ? "bg-[#BC0018] text-white"
-                                : "text-slate-600 hover:text-[#BC0018] hover:bg-[#ffe6e8]"
-                            }
-                          `}
+                                : "text-slate-700 hover:bg-slate-100"
+                            }`}
                         >
                           {item.label}
                         </Link>
@@ -174,20 +171,22 @@ const Warehousing = () => {
 
                   <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
                     <p>
-                      Haixun is fully equipped and can handle the warehousing of various commodities,
-                      including cold storage.
+                      Haixun is fully equipped and can handle the warehousing of various
+                      commodities, including cold storage.
                     </p>
                     <p>
-                      Warehouse management is a crucial component of the supply chain. Its primary
-                      purpose is to control the movement and storage of materials within a region and
-                      to process related transactions, including transportation, receiving, storage,
-                      and picking. By understanding the processes within the supply chain, your
-                      warehouse can become an accelerator—not a roadblock—to improve profitability and
-                      customer satisfaction.
+                      Warehouse management is a crucial component of the supply chain. Its
+                      primary purpose is to control the movement and storage of materials
+                      within a region and to process related transactions, including
+                      transportation, receiving, storage, and picking. By understanding the
+                      processes within the supply chain, your warehouse can become an
+                      accelerator—not a roadblock—for improving profitability and customer
+                      satisfaction.
                     </p>
                     <p>
-                      Warehouse Management (WM) handles inventory receipts, supply movement, container
-                      storage, and demand management as part of the overall supply chain workflow.
+                      Warehouse Management (WM) handles inventory receipts, supply movement,
+                      container storage, and demand management as part of the overall supply
+                      chain workflow.
                     </p>
                   </div>
                 </section>
@@ -204,22 +203,22 @@ const Warehousing = () => {
                   <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 md:p-8">
                     <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
                       <p>
-                        Efficient warehouse management provides a cutting-edge solution for retail
-                        chain distribution.
+                        Efficient warehouse management provides a cutting-edge solution for
+                        retail chain distribution.
                       </p>
                       <p>
-                        We identify customer needs and assist in fulfilling them in the best way
-                        possible.
+                        We identify customer needs and assist in fulfilling them in the best
+                        way possible.
                       </p>
                       <p>
-                        Haixun has expertise in packing and unpacking, consolidating goods, and
-                        arranging delivery to all respective parties—ensuring complete customer
-                        satisfaction.
+                        Haixun has expertise in packing and unpacking, consolidating goods,
+                        and arranging delivery to all respective parties—ensuring complete
+                        customer satisfaction.
                       </p>
                       <p>
                         With strong domestic and global networks, Haixun identifies the right
-                        warehouse type based on cost-effectiveness, storage requirements, product
-                        specificity, and proximity.
+                        warehouse type based on cost-effectiveness, storage requirements,
+                        product specificity, and proximity.
                       </p>
                     </div>
                   </div>
