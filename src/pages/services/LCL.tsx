@@ -53,18 +53,8 @@ const LCL = () => {
       <Navigation />
 
       <main className="flex-grow pt-20">
-        {/* ========== BIG BREADCRUMB HERO WITH SHAPE ========== */}
-        <section className="relative bg-[#020817] h-60 md:h-72 flex items-center justify-center overflow-hidden">
-          {/* Background */}
-          <div className="absolute inset-0">
-            <img
-              src="/service-bg.jpg"
-              alt="Services Header"
-              className="w-full h-full object-cover opacity-40"
-            />
-            <div className="absolute inset-0 bg-black/60" />
-          </div>
-
+        {/* ========== WHITE BREADCRUMB HERO WITH SHAPE ========== */}
+        <section className="relative bg-white h-40 md:h-48 flex items-center justify-center overflow-hidden border-b border-slate-200">
           {/* LEFT DECORATIVE SHAPE IMAGE */}
           <img
             src="/breadcrumn-shape.png"
@@ -72,38 +62,38 @@ const LCL = () => {
             className="absolute left-0 bottom-0 h-full object-contain opacity-100 pointer-events-none"
           />
 
-          {/* CENTERED BIG BREADCRUMB */}
+          {/* CENTERED BREADCRUMB */}
           <div className="relative text-center">
-            <Breadcrumb className="scale-125 md:scale-[1.40]">
+            <Breadcrumb className="scale-110 md:scale-125">
               <BreadcrumbList className="flex items-center justify-center gap-3">
                 <BreadcrumbItem>
                   <BreadcrumbLink
                     asChild
-                    className="text-gray-200 text-lg md:text-xl hover:text-white"
+                    className="text-[#BC0018] text-lg md:text-xl font-medium hover:text-black"
                   >
                     <Link to={getNavLink("/")}>Home</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
 
                 <BreadcrumbSeparator>
-                  <span className="text-2xl md:text-3xl text-gray-300">›</span>
+                  <span className="text-2xl md:text-3xl text-slate-600">›</span>
                 </BreadcrumbSeparator>
 
                 <BreadcrumbItem>
                   <BreadcrumbLink
                     asChild
-                    className="text-gray-200 text-lg md:text-xl hover:text-white"
+                    className="text-[#BC0018] text-lg md:text-xl font-medium hover:text-black"
                   >
                     <Link to={getNavLink("/services")}>Services</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
 
                 <BreadcrumbSeparator>
-                  <span className="text-2xl md:text-3xl text-gray-300">›</span>
+                  <span className="text-2xl md:text-3xl text-slate-600">›</span>
                 </BreadcrumbSeparator>
 
                 <BreadcrumbItem>
-                  <BreadcrumbPage className="text-white font-bold text-3xl md:text-5xl">
+                  <BreadcrumbPage className="text-black font-bold text-3xl md:text-5xl">
                     LCL Services
                   </BreadcrumbPage>
                 </BreadcrumbItem>
@@ -200,6 +190,23 @@ const LCL = () => {
                       for businesses of all sizes.
                     </p>
                   </div>
+                </section>
+
+                {/* CTA SECTION */}
+                <section className="py-12 bg-white text-center">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#BC0018] mb-4">
+                    Ready to Ship with LCL?
+                  </h2>
+                  <p className="text-lg md:text-xl text-[#BC0018] mb-10">
+                    Contact us today for competitive rates and dependable LCL shipping.
+                  </p>
+
+                  <Link
+                    to={getNavLink("/contact")}
+                    className="inline-block bg-[#BC0018] hover:bg-[#a30014] text-white font-semibold text-lg px-10 py-4 rounded-lg transition-all"
+                  >
+                    Contact Us
+                  </Link>
                 </section>
               </div>
             </div>
