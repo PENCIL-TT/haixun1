@@ -41,7 +41,6 @@ const Services: React.FC = () => {
       <ScrollToTop />
       <Navigation />
       <main className="flex-grow pt-20">
-
         {/* ===== HERO SECTION ===== */}
         <section className="bg-gradient-to-r from-gc-dark-blue via-gc-blue to-gc-dark-blue text-white relative overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -75,12 +74,8 @@ const Services: React.FC = () => {
         {/* ===== ALL SERVICES SECTION ===== */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
             <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-
-              {/* ===================================
-                  1. LCL Services
-              =================================== */}
+              {/* 1. LCL Services */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm 
                 transition-all duration-300 flex flex-col justify-between
@@ -113,9 +108,7 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* ===================================
-                  2. FCL Services
-              =================================== */}
+              {/* 2. FCL Services */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm 
                 transition-all duration-300 flex flex-col justify-between
@@ -148,9 +141,7 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* ===================================
-                  3. Warehouse Management
-              =================================== */}
+              {/* 3. Warehouse Management (→ warehousing route) */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm 
                 transition-all duration-300 flex flex-col justify-between
@@ -170,7 +161,7 @@ const Services: React.FC = () => {
                   </p>
                 </div>
 
-                <Link to={getNavLink("/services/warehouse-management")} className="mt-6 inline-flex items-center">
+                <Link to={getNavLink("/services/warehousing")} className="mt-6 inline-flex items-center">
                   <span
                     className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-white
                     inline-flex items-center gap-2 group-hover:bg-white group-hover:text-[#BC0018]"
@@ -183,9 +174,7 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* ===================================
-                  4. Project Logistics
-              =================================== */}
+              {/* 4. Project Logistics (→ project-cargo route) */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm 
                 transition-all duration-300 flex flex-col justify-between
@@ -205,7 +194,7 @@ const Services: React.FC = () => {
                   </p>
                 </div>
 
-                <Link to={getNavLink("/services/project-logistics")} className="mt-6 inline-flex items-center">
+                <Link to={getNavLink("/services/project-cargo")} className="mt-6 inline-flex items-center">
                   <span
                     className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-white
                     inline-flex items-center gap-2 group-hover:bg-white group-hover:text-[#BC0018]"
@@ -218,9 +207,7 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* ===================================
-                  5. Air Shipments
-              =================================== */}
+              {/* 5. Air Shipments (→ air-freight route) */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm 
                 transition-all duration-300 flex flex-col justify-between
@@ -240,7 +227,7 @@ const Services: React.FC = () => {
                   </p>
                 </div>
 
-                <Link to={getNavLink("/services/air-shipments")} className="mt-6 inline-flex items-center">
+                <Link to={getNavLink("/services/air-freight")} className="mt-6 inline-flex items-center">
                   <span
                     className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-white
                     inline-flex items-center gap-2 group-hover:bg-white group-hover:text-[#BC0018]"
@@ -253,9 +240,7 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* ===================================
-                  6. Customs Declaration
-              =================================== */}
+              {/* 6. Customs Declaration (→ customs-clearance route) */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm 
                 transition-all duration-300 flex flex-col justify-between
@@ -275,7 +260,7 @@ const Services: React.FC = () => {
                   </p>
                 </div>
 
-                <Link to={getNavLink("/services/customs-declaration")} className="mt-6 inline-flex items-center">
+                <Link to={getNavLink("/services/customs-clearance")} className="mt-6 inline-flex items-center">
                   <span
                     className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-white
                     inline-flex items-center gap-2 group-hover:bg-white group-hover:text-[#BC0018]"
@@ -288,9 +273,7 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* ===================================
-                  7. OOG Shipments
-              =================================== */}
+              {/* 7. OOG Shipments (path unchanged – if you create a new slug, update here) */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm 
                 transition-all duration-300 flex flex-col justify-between
@@ -323,9 +306,7 @@ const Services: React.FC = () => {
                 </Link>
               </div>
 
-              {/* ===================================
-                  8. LCL Consolidation
-              =================================== */}
+              {/* 8. LCL Consolidation (→ consolidation route) */}
               <div
                 className="group rounded-3xl border border-slate-200 bg-white px-8 py-10 shadow-sm
                 transition-all duration-300 flex flex-col justify-between
@@ -345,7 +326,7 @@ const Services: React.FC = () => {
                   </p>
                 </div>
 
-                <Link to={getNavLink("/services/lcl-consolidation")} className="mt-6 inline-flex items-center">
+                <Link to={getNavLink("/services/consolidation")} className="mt-6 inline-flex items-center">
                   <span
                     className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-white
                     inline-flex items-center gap-2 group-hover:bg-white group-hover:text-[#BC0018]"
@@ -357,7 +338,6 @@ const Services: React.FC = () => {
                   </span>
                 </Link>
               </div>
-
             </div>
           </div>
         </section>
