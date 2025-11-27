@@ -33,17 +33,20 @@ const CFS = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
+  // UPDATED: same structure and paths as LCL page / Navigation component
   const servicesNav = [
     { label: "See All Services", path: "/services" },
     { label: "LCL Services", path: "/services/lcl" },
-    { label: "FCL Services", path: "/services/fcl" },
-    { label: "Warehouse Management", path: "/services/warehouse-management" },
-    { label: "Project Logistics", path: "/services/project-logistics" },
-    { label: "Air Shipments", path: "/services/air-shipments" },
-    { label: "Customs Declaration & Insurance", path: "/services/customs-declaration" },
-    { label: "OOG Shipments", path: "/services/oog-shipments" },
-    { label: "LCL Consolidation", path: "/services/lcl-consolidation" },
     { label: "CFS Services", path: "/services/cfs" },
+    { label: "Sea Freight", path: "/services/sea-freight" },
+    { label: "Air Freight", path: "/services/air-freight" },
+    { label: "Warehousing", path: "/services/warehousing" },
+    { label: "Project Cargo", path: "/services/project-cargo" },
+    { label: "Customs Clearance", path: "/services/customs-clearance" },
+    { label: "Consolidation", path: "/services/consolidation" },
+    { label: "Liquid Cargo", path: "/services/liquid-cargo" },
+    { label: "Third Party Logistics", path: "/services/third-party-logistics" },
+    { label: "Liner Agency", path: "/services/liner-agency" },
   ];
 
   const pathname = location.pathname;
@@ -62,7 +65,7 @@ const CFS = () => {
       <Navigation />
 
       <main className="flex-grow pt-20">
-        {/* BREADCRUMB HERO */}
+        {/* BREADCRUMB HERO (same style as LCL) */}
         <section
           className="relative h-56 md:h-64 flex items-center justify-center overflow-hidden border-b border-slate-200"
           style={{
