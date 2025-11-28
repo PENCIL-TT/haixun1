@@ -12,7 +12,7 @@ const AboutSection: React.FC = () => {
     >
       {/* BOTTOM-RIGHT DECOR SHAPE (Moved left next to content) */}
       <img
-        src="/about-shshape-2.png"
+        src="/about-shape-2.png"
         alt="Decor Shape"
         className="
           absolute 
