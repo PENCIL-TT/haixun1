@@ -8,13 +8,19 @@ const AboutSection: React.FC = () => {
 
   return (
     <section
-      className="relative py-16 md:py-20 bg-cover bg-center bg-no-repeat"
-      style={{}}
+      className="relative py-16 md:py-20 bg-cover bg-center bg-no-repeat overflow-hidden"
     >
+      {/* BOTTOM-RIGHT DECOR SHAPE */}
+      <img
+        src="/about-shape-2.png"
+        alt="Decor Shape"
+        className="absolute bottom-0 right-0 w-32 md:w-40 opacity-90 pointer-events-none select-none animate-float-slow"
+      />
+
       <div className="container mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* LEFT — Image Composition */}
         <div className="relative flex justify-center lg:justify-start">
-          {/* Red L-frame block (behind images) */}
+          {/* Red L-frame block */}
           <div
             className="absolute -top-8 -left-8 rounded-lg -z-10"
             style={{
@@ -42,12 +48,10 @@ const AboutSection: React.FC = () => {
               className="rounded-xl shadow-xl object-cover w-full h-[320px] md:h-[380px] lg:h-[420px] mt-8 -ml-2"
             />
 
-            {/* Centered round logo */}
+            {/* Center Logo */}
             <div
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-28 h-28 md:w-32 md:h-32 rounded-full bg-white shadow-2xl border-4"
-              style={{
-                borderColor: ACCENT,
-              }}
+              style={{ borderColor: ACCENT }}
             >
               <img
                 src="/haixun-logo.svg"
@@ -58,7 +62,7 @@ const AboutSection: React.FC = () => {
           </div>
         </div>
 
-        {/* RIGHT — Text & Features */}
+        {/* RIGHT — Text */}
         <div>
           <p
             className="uppercase tracking-wide font-extrabold text-3xl"
@@ -77,12 +81,12 @@ const AboutSection: React.FC = () => {
 
           <p className="mt-5 text-gray-700 max-w-xl">
             Established in <strong>2019</strong>, Haixun Global Shenzhen upholds
-            the Group’s commitment to integrity, customer satisfaction, and
-            rapid response, ensuring a reliable and customer-focused service
-            experience in China.
+            the Group’s commitment to integrity, customer satisfaction, and rapid
+            response, ensuring a reliable and customer-focused service experience
+            in China.
           </p>
 
-          {/* Feature list */}
+          {/* Features */}
           <div className="mt-8 space-y-7">
             <div className="flex items-start gap-4">
               <div className="shrink-0">
