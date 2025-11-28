@@ -73,7 +73,7 @@ const Contact: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-white relative">
       <Navigation />
 
-      {/* Success notification */}
+      {/* SUCCESS NOTIFICATION */}
       <AnimatePresence>
         {showNotification && (
           <motion.div
@@ -96,14 +96,15 @@ const Contact: React.FC = () => {
       </AnimatePresence>
 
       <main className="flex-grow">
-        {/* TOP MAP – like reference design */}
-        <section className="relative h-[280px] md:h-[340px] w-full overflow-hidden">
+
+        {/* ⭐ BIG FULL-WIDTH MAP */}
+        <section className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden">
           <iframe
             title="Haixun Global Map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423286.2745098892!2d-118.6919248803841!3d34.02016130606366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c0b6c1b4a1f1%3A0x582f3b3d2ea2981b!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="h-full w-full border-0"
+            className="absolute inset-0 h-full w-full border-0"
           />
         </section>
 
@@ -111,10 +112,11 @@ const Contact: React.FC = () => {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="relative grid gap-10 rounded-2xl bg-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] lg:grid-cols-[1.5fr,1fr] overflow-hidden">
-              {/* subtle world-map background */}
+
+              {/* WORLD MAP BG */}
               <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[url('/world-map-light.png')] bg-cover bg-center" />
 
-              {/* LEFT: FORM */}
+              {/* LEFT - FORM */}
               <div className="relative border-r border-slate-100 p-8 md:p-10">
                 <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 flex items-center gap-2">
                   <span
@@ -138,17 +140,12 @@ const Contact: React.FC = () => {
                 <p className="mb-8 max-w-xl text-sm md:text-[15px] leading-relaxed text-slate-500">
                   Logistics involves the efficient planning, management, and
                   coordination of the movement of goods, services, and
-                  information. Share your requirements and our team will reach
-                  you shortly.
+                  information.
                 </p>
 
+                {/* FORM */}
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* hidden field for location from Select */}
-                  <input
-                    type="hidden"
-                    name="Location"
-                    value={selectedLocation}
-                  />
+                  <input type="hidden" name="Location" value={selectedLocation} />
 
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-1.5">
@@ -159,9 +156,10 @@ const Contact: React.FC = () => {
                         name="First Name"
                         placeholder="John"
                         required
-                        className="h-11 rounded-none border-slate-200 bg-slate-50/80 text-sm focus:border-slate-300 focus:ring-0"
+                        className="h-11 rounded-none border-slate-200 bg-slate-50/80"
                       />
                     </div>
+
                     <div className="space-y-1.5">
                       <label className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
                         Last Name
@@ -169,7 +167,7 @@ const Contact: React.FC = () => {
                       <Input
                         name="Last Name"
                         placeholder="Doe"
-                        className="h-11 rounded-none border-slate-200 bg-slate-50/80 text-sm focus:border-slate-300 focus:ring-0"
+                        className="h-11 rounded-none border-slate-200 bg-slate-50/80"
                       />
                     </div>
                   </div>
@@ -184,9 +182,10 @@ const Contact: React.FC = () => {
                         name="Email"
                         placeholder="you@example.com"
                         required
-                        className="h-11 rounded-none border-slate-200 bg-slate-50/80 text-sm focus:border-slate-300 focus:ring-0"
+                        className="h-11 rounded-none border-slate-200 bg-slate-50/80"
                       />
                     </div>
+
                     <div className="space-y-1.5">
                       <label className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
                         Phone Number
@@ -194,7 +193,7 @@ const Contact: React.FC = () => {
                       <Input
                         name="Phone"
                         placeholder="+65 0000 0000"
-                        className="h-11 rounded-none border-slate-200 bg-slate-50/80 text-sm focus:border-slate-300 focus:ring-0"
+                        className="h-11 rounded-none border-slate-200 bg-slate-50/80"
                       />
                     </div>
                   </div>
@@ -207,13 +206,13 @@ const Contact: React.FC = () => {
                       value={selectedLocation}
                       onValueChange={setSelectedLocation}
                     >
-                      <SelectTrigger className="h-11 rounded-none border-slate-200 bg-slate-50/80 text-sm focus:border-slate-300 focus:ring-0">
+                      <SelectTrigger className="h-11 rounded-none border-slate-200 bg-slate-50/80">
                         <SelectValue placeholder="Select location" />
                       </SelectTrigger>
                       <SelectContent>
-                        {locationNames.map((loc) => (
-                          <SelectItem key={loc} value={loc}>
-                            {loc}
+                        {locationNames.map((name) => (
+                          <SelectItem key={name} value={name}>
+                            {name}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -228,7 +227,7 @@ const Contact: React.FC = () => {
                       name="Message"
                       placeholder="Write your message here..."
                       required
-                      className="min-h-[120px] rounded-none border-slate-200 bg-slate-50/80 text-sm focus:border-slate-300 focus:ring-0"
+                      className="min-h-[120px] rounded-none border-slate-200 bg-slate-50/80"
                     />
                   </div>
 
@@ -242,9 +241,9 @@ const Contact: React.FC = () => {
                 </form>
               </div>
 
-              {/* RIGHT: CONTACT INFO */}
+              {/* RIGHT – CONTACT INFO */}
               <div className="relative bg-slate-50/80 p-8 md:p-10">
-                <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 flex items-center gap-2">
+                <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                   <span
                     className="inline-block rounded-full px-3 py-1 text-[11px]"
                     style={{ backgroundColor: "#FFF2F3", color: BRAND_RED }}
@@ -263,29 +262,21 @@ const Contact: React.FC = () => {
                   </span>
                 </h2>
 
-                <p className="mb-8 text-sm md:text-[15px] leading-relaxed text-slate-500">
-                  Our logistics experts are ready to support your freight,
-                  warehousing, and supply chain needs across Asia, Europe, and
-                  the US. Reach us anytime using the details below.
-                </p>
+                <div className="space-y-6">
 
-                <div className="space-y-5">
                   {/* Phone */}
                   <div className="flex items-start gap-4">
                     <div
                       className="flex h-11 w-11 items-center justify-center rounded-md"
                       style={{ backgroundColor: "#FFE7EA" }}
                     >
-                      <Phone
-                        className="h-5 w-5"
-                        style={{ color: BRAND_RED }}
-                      />
+                      <Phone className="h-5 w-5" style={{ color: BRAND_RED }} />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      <p className="text-xs uppercase text-slate-500 tracking-[0.14em]">
                         Have Any Question?
                       </p>
-                      <p className="mt-1 text-sm md:text-base font-semibold text-slate-900">
+                      <p className="mt-1 text-base font-semibold text-slate-900">
                         +65 0000 0000
                       </p>
                     </div>
@@ -297,16 +288,13 @@ const Contact: React.FC = () => {
                       className="flex h-11 w-11 items-center justify-center rounded-md"
                       style={{ backgroundColor: "#FFE7EA" }}
                     >
-                      <Mail
-                        className="h-5 w-5"
-                        style={{ color: BRAND_RED }}
-                      />
+                      <Mail className="h-5 w-5" style={{ color: BRAND_RED }} />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      <p className="text-xs uppercase text-slate-500 tracking-[0.14em]">
                         Write Us Email
                       </p>
-                      <p className="mt-1 text-sm md:text-base font-semibold text-slate-900">
+                      <p className="mt-1 text-base font-semibold text-slate-900">
                         info@haixun.co
                       </p>
                     </div>
@@ -318,16 +306,13 @@ const Contact: React.FC = () => {
                       className="flex h-11 w-11 items-center justify-center rounded-md"
                       style={{ backgroundColor: "#FFE7EA" }}
                     >
-                      <MapPin
-                        className="h-5 w-5"
-                        style={{ color: BRAND_RED }}
-                      />
+                      <MapPin className="h-5 w-5" style={{ color: BRAND_RED }} />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      <p className="text-xs uppercase text-slate-500 tracking-[0.14em]">
                         Headquarters
                       </p>
-                      <p className="mt-1 text-sm md:text-base font-semibold text-slate-900">
+                      <p className="mt-1 text-base font-semibold text-slate-900">
                         123 Global Trade Center,
                         <br />
                         Singapore.
@@ -337,9 +322,8 @@ const Contact: React.FC = () => {
                 </div>
 
                 <p className="mt-10 text-xs text-slate-400">
-                  For country-specific contacts, our regional teams in
-                  Singapore, Sri Lanka, Myanmar, Bangladesh, Pakistan, the UK,
-                  and the USA are available 24/7 to assist you.
+                  Our regional teams in Singapore, Sri Lanka, Myanmar,
+                  Bangladesh, Pakistan, UK, and USA are available 24/7.
                 </p>
               </div>
             </div>
