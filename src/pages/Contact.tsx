@@ -256,7 +256,7 @@ const Contact: React.FC = () => {
                         <p className="text-sm font-semibold text-slate-900">
                           Have any question?
                         </p>
-                        <p className="text-sm text-slate-700">+65 0000 0000</p>
+                        <p className="text-sm text-slate-700">+86 75582222447</p>
                       </div>
                     </div>
 
@@ -269,7 +269,7 @@ const Contact: React.FC = () => {
                         <p className="text-sm font-semibold text-slate-900">
                           Write us email
                         </p>
-                        <p className="text-sm text-slate-700">info@haixun.co</p>
+                        <p className="text-sm text-slate-700"> helen@haixun.co</p>
                       </div>
                     </div>
 
