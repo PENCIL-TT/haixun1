@@ -4,13 +4,6 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
@@ -20,6 +13,8 @@ import {
   MapPin,
   Truck,
   Headset,
+  User,
+  MessageCircle,
 } from "lucide-react";
 
 const BRAND_RED = "#BC0018";
@@ -130,7 +125,7 @@ const Contact: React.FC = () => {
                 {/* LEFT – FORM SIDE */}
                 <div className="px-4 sm:px-8 pb-10">
                   {/* small red label with icon */}
-                  <button className="group inline-flex items-center gap-2 text-[13px] font-semibold text-[#{BRAND_RED}] text-red-600 mb-2">
+                  <button className="group inline-flex items-center gap-2 text-[13px] font-semibold text-red-600 mb-2">
                     <span className="text-[13px] text-red-600 underline decoration-red-600">
                       Send Us Mail
                     </span>
@@ -159,40 +154,62 @@ const Contact: React.FC = () => {
                     <input type="hidden" name="Location" value={selectedLocation} />
 
                     <div className="grid gap-4 md:grid-cols-2">
-                      <Input
-                        name="First Name"
-                        placeholder="First Name"
-                        required
-                        className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0"
-                      />
-                      <Input
-                        name="Last Name"
-                        placeholder="Last Name"
-                        className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0"
-                      />
+                      {/* First Name with icon */}
+                      <div className="relative">
+                        <User className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                        <Input
+                          name="First Name"
+                          placeholder="First Name"
+                          required
+                          className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0 pl-10"
+                        />
+                      </div>
+
+                      {/* Last Name with icon */}
+                      <div className="relative">
+                        <User className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                        <Input
+                          name="Last Name"
+                          placeholder="Last Name"
+                          className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0 pl-10"
+                        />
+                      </div>
                     </div>
 
                     <div className="grid gap-4 md:grid-cols-2">
-                      <Input
-                        type="email"
-                        name="Email"
-                        placeholder="Email"
-                        required
-                        className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0"
-                      />
-                      <Input
-                        name="Phone"
-                        placeholder="Phone Number"
-                        className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0"
-                      />
+                      {/* Email with icon */}
+                      <div className="relative">
+                        <Mail className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                        <Input
+                          type="email"
+                          name="Email"
+                          placeholder="Email"
+                          required
+                          className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0 pl-10"
+                        />
+                      </div>
+
+                      {/* Phone with icon */}
+                      <div className="relative">
+                        <Phone className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                        <Input
+                          name="Phone"
+                          placeholder="Phone Number"
+                          className="h-12 rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0 pl-10"
+                        />
+                      </div>
                     </div>
 
-                    <Textarea
-                      name="Message"
-                      placeholder="Message"
-                      required
-                      className="min-h-[150px] rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0"
-                    />
+                    {/* Message with icon */}
+                    <div className="relative">
+                      <MessageCircle className="pointer-events-none absolute left-3 top-4 h-4 w-4 text-slate-400" />
+                      <Textarea
+                        name="Message"
+                        placeholder="Message"
+                        required
+                        className="min-h-[150px] rounded-none border border-transparent bg-[#f8f4ee] text-sm text-slate-800 placeholder:text-slate-400 focus:border-[#f0e6da] focus:ring-0 pl-10 pt-3"
+                      />
+                    </div>
 
                     <Button
                       type="submit"
@@ -266,14 +283,16 @@ const Contact: React.FC = () => {
                           Headquarters
                         </p>
                         <p className="text-sm text-slate-700">
-                          123 Global Trade Center,
+                          13C02, Block A, Zhaoxin Huijin Plaza 3085 Shennan East
+                          Road,
                           <br />
-                          Singapore.
+                          Luohu, Shenzhen.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
+                {/* END RIGHT */}
               </div>
             </div>
           </div>
