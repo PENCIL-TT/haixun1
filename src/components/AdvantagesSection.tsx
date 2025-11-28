@@ -33,12 +33,22 @@ export default function AdvantagesSection() {
   return (
     <section className="py-20 bg-white relative overflow-hidden">
 
-      {/* LEFT FLOATING DECOR SHAPE - NEW IMAGE */}
+      {/* LEFT-BOTTOM FLOATING DECOR SHAPE */}
       <motion.img
         src="/shape-02.webp"
         alt=""
-        className="absolute left-10 top-10 w-24 md:w-36 opacity-90 pointer-events-none select-none"
-        animate={{ y: [0, -20, 0] }}
+        className="
+          absolute 
+          left-0 
+          bottom-0 
+          w-[25%] 
+          md:w-[22%] 
+          lg:w-[18%]
+          opacity-90 
+          pointer-events-none 
+          select-none
+        "
+        animate={{ y: [0, -15, 0] }}
         transition={{
           duration: 5,
           repeat: Infinity,
@@ -46,7 +56,7 @@ export default function AdvantagesSection() {
         }}
       />
 
-      {/* RIGHT FLOATING DECOR SHAPE (existing) */}
+      {/* RIGHT FLOATING DECOR SHAPE */}
       <motion.img
         src="/about-shape-1.png"
         alt=""
@@ -60,7 +70,7 @@ export default function AdvantagesSection() {
       />
 
       <div className="container mx-auto px-4">
-        
+
         {/* SECTION TITLE */}
         <ScrollAnimation className="text-center mb-16 relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold text-[#9B111E] mb-4">
@@ -102,6 +112,7 @@ export default function AdvantagesSection() {
                     <h3 className="text-2xl font-bold text-[#9B111E] mb-4">
                       {t(advantage.titleKey)}
                     </h3>
+
                     <p className="text-gray-600 text-base leading-relaxed mb-2">
                       {t(advantage.descriptionKey)}
                     </p>
@@ -114,6 +125,7 @@ export default function AdvantagesSection() {
                   >
                     <Icon className="w-12 h-12 text-white" strokeWidth={1.5} />
                   </div>
+
                 </div>
               </ScrollAnimation>
             );
