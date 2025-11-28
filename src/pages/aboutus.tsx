@@ -38,24 +38,21 @@ const AboutUs: React.FC = () => {
       <Navigation />
 
       <main className="flex-grow pt-20">
-
         {/* ======================= ABOUT SECTION ======================= */}
         <section className="py-24 relative overflow-hidden">
-
           {/* FULL BACKGROUND IMAGE */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/map-pattern.png')" }}
           />
 
-          {/* WHITE SOFT OVERLAY (same soft look as screenshot) */}
+          {/* WHITE SOFT OVERLAY */}
           <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px]" />
 
           {/* MAIN CONTENT */}
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-              {/* LEFT IMAGE – SMALLER & CENTERED */}
+              {/* LEFT IMAGE – BIGGER & CENTERED */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -63,19 +60,18 @@ const AboutUs: React.FC = () => {
                 viewport={{ once: true }}
                 className="w-full flex justify-center"
               >
-                <div className="relative w-[260px] sm:w-[320px] md:w-[380px] mx-auto">
-
+                <div className="relative w-[380px] sm:w-[480px] md:w-[560px] mx-auto">
                   {/* Glow behind card */}
                   <div
-                    className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-rose-100/80 via-white to-transparent blur-2xl -z-10"
+                    className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-rose-100/80 via-white to-transparent blur-3xl -z-10"
                     aria-hidden="true"
                   />
 
                   {/* Top icon badge - centered */}
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20">
-                    <div className="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center">
-                      <div className="w-11 h-11 rounded-full bg-rose-50 flex items-center justify-center">
-                        <span className="text-xl" style={{ color: RUBY_RED }}>
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20">
+                    <div className="w-20 h-20 rounded-full bg-white shadow-2xl flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full bg-rose-50 flex items-center justify-center">
+                        <span className="text-2xl" style={{ color: RUBY_RED }}>
                           ⛴
                         </span>
                       </div>
@@ -83,25 +79,26 @@ const AboutUs: React.FC = () => {
                   </div>
 
                   {/* Bottom years badge - centered */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20">
+                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20">
                     <div
-                      className="px-5 py-2 rounded-2xl text-white shadow-xl text-center"
+                      className="px-7 py-3 rounded-2xl text-white shadow-2xl text-center"
                       style={{ backgroundColor: RUBY_RED }}
                     >
-                      <span className="text-xl font-bold leading-none block">9+</span>
-                      <span className="text-xs opacity-90 block mt-1">Years of Growth</span>
+                      <span className="text-2xl font-bold leading-none block">9+</span>
+                      <span className="text-sm opacity-90 block mt-1">
+                        Years of Growth
+                      </span>
                     </div>
                   </div>
 
                   {/* Main image */}
-                  <div className="rounded-[30px] overflow-hidden shadow-[0_24px_60px_rgba(15,23,42,0.18)] bg-slate-100">
+                  <div className="rounded-[36px] overflow-hidden shadow-[0_30px_70px_rgba(15,23,42,0.22)] bg-slate-100">
                     <img
                       src="/Dubai.jpg"
                       alt="Haixun Global operations"
-                      className="w-full h-[280px] sm:h-[320px] md:h-[350px] object-cover"
+                      className="w-full h-[360px] sm:h-[420px] md:h-[480px] object-cover"
                     />
                   </div>
-
                 </div>
               </motion.div>
 
