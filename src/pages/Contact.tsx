@@ -73,8 +73,11 @@ const Contact: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-white relative">
       <Navigation />
 
-      {/* MAP DIRECTLY BELOW HEADER */}
-      <section className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden">
+      {/* ⭐ WHITE SPACE ABOVE MAP (TOP GAP) */}
+      <div className="h-10 md:h-16 bg-white"></div>
+
+      {/* ⭐ MAP DIRECTLY BELOW HEADER */}
+      <section className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden bg-white">
         <iframe
           title="Haixun Global Shenzhen Map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.9747126781313!2d114.11695999999999!3d22.54262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403f5bf0884ff7b%3A0xda2e416692e764e2!2sZhaoxin%20Huijin%20Plaza!5e0!3m2!1sen!2sin!4v1764335462682!5m2!1sen!2sin"
@@ -112,21 +115,19 @@ const Contact: React.FC = () => {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="relative grid gap-10 rounded-2xl bg-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] lg:grid-cols-[1.5fr,1fr] overflow-hidden">
+              
               {/* BACKGROUND WORLD MAP */}
               <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[url('/world-map-light.png')] bg-cover bg-center" />
 
               {/* LEFT SIDE - FORM */}
               <div className="relative border-r border-slate-100 p-8 md:p-10">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-2">
-                  <span
-                    className="bg-[#FFF2F3] px-3 py-1 rounded-full text-[11px]"
-                    style={{ color: BRAND_RED }}
-                  >
-                    Send Us Mail
-                  </span>
-                </div>
+                <span
+                  className="bg-[#FFF2F3] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] rounded-full text-[#BC0018]"
+                >
+                  Send Us Mail
+                </span>
 
-                <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-3 leading-snug">
+                <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-3 leading-snug">
                   Feel Free To{" "}
                   <span
                     className="underline decoration-4 underline-offset-4"
@@ -137,9 +138,8 @@ const Contact: React.FC = () => {
                 </h2>
 
                 <p className="text-sm text-slate-500 mb-8 max-w-xl">
-                  Logistics involves the efficient planning, management, and
-                  coordination of the movement of goods, services, and
-                  information.
+                  Logistics involves the efficient planning, management and
+                  coordination of the movement of goods.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -227,6 +227,7 @@ const Contact: React.FC = () => {
                 </h2>
 
                 <div className="space-y-6">
+                  {/* Phone */}
                   <div className="flex items-start gap-4">
                     <div className="h-11 w-11 flex items-center justify-center rounded-md bg-[#FFE7EA]">
                       <Phone className="text-[#BC0018] h-5 w-5" />
@@ -241,6 +242,7 @@ const Contact: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start gap-4">
                     <div className="h-11 w-11 flex items-center justify-center rounded-md bg-[#FFE7EA]">
                       <Mail className="text-[#BC0018] h-5 w-5" />
@@ -255,6 +257,7 @@ const Contact: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Address */}
                   <div className="flex items-start gap-4">
                     <div className="h-11 w-11 flex items-center justify-center rounded-md bg-[#FFE7EA]">
                       <MapPin className="text-[#BC0018] h-5 w-5" />
@@ -273,7 +276,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <p className="text-xs text-slate-400 mt-10">
-                  Regional teams available 24/7 in all countries.
+                  Our regional teams are available 24/7.
                 </p>
               </div>
             </div>
