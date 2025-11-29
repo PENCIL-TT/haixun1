@@ -26,15 +26,70 @@ export default function HaixunServicesSection() {
   const { t } = useTranslation();
 
   const services: Service[] = [
-    { icon: Boxes, image: "/lcl.png", titleKey: "services.lcl.title", descriptionKey: "services.lcl.description", link: "/services/lcl" },
-    { icon: Ship, image: "/fcl.png", titleKey: "services.fcl.title", descriptionKey: "services.fcl.description", link: "/services/fcl" },
-    { icon: WarehouseIcon, image: "/warehouse.png", titleKey: "services.warehouse.title", descriptionKey: "services.warehouse.description", link: "/services/warehousing" },
-    { icon: Package, image: "/projectlogistics.png", titleKey: "services.project.title", descriptionKey: "services.project.description", link: "/services/project-cargo" },
-    { icon: Plane, image: "/airfreight.png", titleKey: "services.air.title", descriptionKey: "services.air.description", link: "/services/air-freight" },
-    { icon: FileCheck, image: "/customclearance.png", titleKey: "services.customs.title", descriptionKey: "services.customs.description", link: "/services/customs" },
-    { icon: ArrowDownToLine, image: "/Aircargo.png", titleKey: "services.import.title", descriptionKey: "services.import.description", link: "/services/import" },
-    { icon: Boxes, image: "/consoldation.png", titleKey: "services.consolidation.title", descriptionKey: "services.consolidation.description", link: "/services/consolidation" },
-    { icon: Container, image: "/oog.png", titleKey: "services.oog.title", descriptionKey: "services.oog.description", link: "/services/oog" },
+    {
+      icon: Boxes,
+      image: "/lcl.png",
+      titleKey: "services.lcl.title",
+      descriptionKey: "services.lcl.description",
+      link: "/services/lcl",
+    },
+    {
+      icon: Ship,
+      image: "/fcl.png",
+      titleKey: "services.fcl.title",
+      descriptionKey: "services.fcl.description",
+      link: "/services/fcl",
+    },
+    {
+      icon: WarehouseIcon,
+      image: "/warehouse.png",
+      titleKey: "services.warehouse.title",
+      descriptionKey: "services.warehouse.description",
+      link: "/services/warehousing",
+    },
+    {
+      icon: Package,
+      image: "/projectlogistics.png",
+      titleKey: "services.project.title",
+      descriptionKey: "services.project.description",
+      link: "/services/project-cargo",
+    },
+    {
+      icon: Plane,
+      image: "/airfreight.png",
+      titleKey: "services.air.title",
+      descriptionKey: "services.air.description",
+      link: "/services/air-freight",
+    },
+    {
+      icon: FileCheck,
+      image: "/customclearance.png",
+      titleKey: "services.customs.title",
+      descriptionKey: "services.customs.description",
+      link: "/services/customs",
+    },
+    {
+      icon: ArrowDownToLine,
+      image: "/Aircargo.png",
+      titleKey: "services.import.title",
+      descriptionKey: "services.import.description",
+      link: "/services/import",
+    },
+    {
+      icon: Boxes,
+      image: "/consoldation.png",
+      titleKey: "services.consolidation.title",
+      descriptionKey: "services.consolidation.description",
+      link: "/services/consolidation",
+    },
+    {
+      icon: Container,
+      image: "/oog.png",
+      titleKey: "services.oog.title",
+      descriptionKey: "services.oog.description",
+      // UPDATED LINK TO MATCH NEW OOG SHIPMENTS PAGE
+      link: "/services/oog-shipments",
+    },
   ];
 
   return (
@@ -45,7 +100,6 @@ export default function HaixunServicesSection() {
       }}
     >
       <div className="container mx-auto px-4">
-        
         {/* Section Header */}
         <ScrollAnimation className="text-center mb-16">
           <p className="text-sm font-semibold tracking-[0.25em] uppercase text-red-300 mb-3">
