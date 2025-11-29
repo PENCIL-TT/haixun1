@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import ContactMapContainer from '@/components/ContactMapContainer';
-import ContactSidebar from '@/components/sidebar';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import ContactMapContainer from "@/components/ContactMapContainer";
+import ContactSidebar from "@/components/ContactSidebar"; // NOTE: updated import
+import { useIsMobile } from "@/hooks/use-mobile";
+import { motion } from "framer-motion";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -13,7 +13,7 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }, [pathname]);
 
@@ -43,58 +43,61 @@ const GlobalPresence = () => {
       <Navigation />
 
       {/* White blank space BELOW header */}
-      <div className={`${isMobile ? "h-[110px]" : "h-[150px]"}`}></div>
+      <div className={isMobile ? "h-[110px]" : "h-[150px]"}></div>
 
-      {/* Mobile Fixed Title */}
+      {/* Mobile fixed title */}
       {isMobile && (
         <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-amber-500 to-amber-400 p-3 text-white text-center shadow-md">
           <h1 className="text-lg font-bold">Global Presence</h1>
         </div>
       )}
 
-      {/* MAIN CONTENT SECTION */}
+      {/* Main content */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`flex flex-1 relative overflow-hidden mx-0 
-        ${isMobile ? "pt-[10px] pb-10" : "pt-[20px] pb-10"}`}
+        className={`flex flex-1 relative overflow-hidden mx-0 ${
+          isMobile ? "pt-[10px] pb-10" : "pt-[20px] pb-10"
+        }`}
       >
-        {/* MAP SECTION BELOW HEADER */}
+        {/* Map Section */}
         {(!isMobile || (isMobile && showMap)) && (
           <motion.main
-            initial={isMobile ? { x: '100%' } : { opacity: 0 }}
+            initial={isMobile ? { x: "100%" } : { opacity: 0 }}
             animate={isMobile ? { x: 0 } : { opacity: 1 }}
-            exit={isMobile ? { x: '100%' } : { opacity: 0 }}
+            exit={isMobile ? { x: "100%" } : { opacity: 0 }}
             transition={{
-              type: 'spring',
+              type: "spring",
               stiffness: 300,
-              damping: 30
+              damping: 30,
             }}
-            className={`transition-all duration-300 ease-in-out 
-            ${isMobile ? 'w-full' : 'w-[60%]'}`}
+            className={`transition-all duration-300 ease-in-out ${
+              isMobile ? "w-full" : "w-[60%]"
+            }`}
           >
             <ContactMapContainer />
           </motion.main>
         )}
 
-        {/* SIDEBAR */}
+        {/* Sidebar Section */}
         {(!isMobile || (isMobile && !showMap)) && (
           <motion.div
-            initial={isMobile ? { x: '-100%' } : { opacity: 0 }}
+            initial={isMobile ? { x: "-100%" } : { opacity: 0 }}
             animate={isMobile ? { x: 0 } : { opacity: 1 }}
-            exit={isMobile ? { x: '-100%' } : { opacity: 0 }}
+            exit={isMobile ? { x: "-100%" } : { opacity: 0 }}
             transition={{
-              type: 'spring',
+              type: "spring",
               stiffness: 300,
-              damping: 30
+              damping: 30,
             }}
-            className={`transition-all duration-300 ease-in-out 
-            ${isMobile ? 'w-full pt-12' : 'w-[35%]'}`}
+            className={`transition-all duration-300 ease-in-out ${
+              isMobile ? "w-full pt-12" : "w-[35%]"
+            }`}
           >
-            <ContactSidebar 
-              isOpen={isSidebarOpen} 
-              onClose={() => setIsSidebarOpen(false)} 
+            <ContactSidebar
+              isOpen={isSidebarOpen}
+              onClose={() => setIsSidebarOpen(false)}
             />
           </motion.div>
         )}
@@ -106,3 +109,4 @@ const GlobalPresence = () => {
 };
 
 export default GlobalPresence;
+
