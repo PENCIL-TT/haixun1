@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
@@ -16,7 +16,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-const ScrollToTop = () => {
+const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -24,7 +24,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-const OOGShipments = () => {
+const OOGShipments: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
 
@@ -32,8 +32,10 @@ const OOGShipments = () => {
   const currentCountry = detected ?? { code: "SG", name: "Singapore" };
 
   const getNavLink = (basePath: string) => {
+    // Keep Singapore as root-level routes; others with country prefix
     if (currentCountry.code === "SG") return basePath;
-    return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
+    const countrySlug = currentCountry.name.toLowerCase().replace(/\s+/g, "-");
+    return `/${countrySlug}${basePath}`;
   };
 
   const servicesNav = [
@@ -93,7 +95,7 @@ const OOGShipments = () => {
       <Navigation />
 
       <main className="flex-grow pt-20">
-        {/* BREADCRUMB HERO – SAME STYLE AS OTHER SERVICE PAGES */}
+        {/* BREADCRUMB HERO */}
         <section
           className="relative h-56 md:h-64 flex items-center justify-center overflow-hidden border-b border-slate-200"
           style={{
@@ -156,7 +158,7 @@ const OOGShipments = () => {
                 </div>
                 <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
 
-                <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
+                <nav className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
                   {servicesNav.map((item) => {
                     const to = getNavLink(item.path);
                     const isActive =
@@ -177,7 +179,7 @@ const OOGShipments = () => {
                       </Link>
                     );
                   })}
-                </div>
+                </nav>
               </aside>
 
               {/* RIGHT CONTENT */}
@@ -220,17 +222,17 @@ const OOGShipments = () => {
                       )}
                     </p>
                     <p>
-                      We offer end-to-end coordination covering loading, lashing, survey,
-                      ocean freight, and domestic movements. With a combination of specialized
-                      handling equipment, experienced operations teams, and strong carrier
-                      relationships, we ensure that every piece of cargo is moved with precision
-                      and care.
+                      We offer end-to-end coordination covering loading, lashing,
+                      survey, ocean freight, and domestic movements. With a
+                      combination of specialized handling equipment, experienced
+                      operations teams, and strong carrier relationships, we ensure
+                      that every piece of cargo is moved with precision and care.
                     </p>
                     <p>
-                      Whether it is project machinery, industrial equipment, or over-dimensional
-                      structures, our OOG and inter-island services are built to deliver
-                      reliability, safety, and schedule integrity for both import and export
-                      requirements.
+                      Whether it is project machinery, industrial equipment, or
+                      over-dimensional structures, our OOG and inter-island services
+                      are built to deliver reliability, safety, and schedule
+                      integrity for both import and export requirements.
                     </p>
                   </div>
                 </section>
@@ -306,8 +308,9 @@ const OOGShipments = () => {
                     Need Support for OOG & Inter Island Movements?
                   </h2>
                   <p className="text-lg md:text-xl text-[#BC0018] mb-10">
-                    Talk to our operations team for a tailored OOG solution with complete
-                    loading, lashing, survey, and port-to-door coordination.
+                    Talk to our operations team for a tailored OOG solution with
+                    complete loading, lashing, survey, and port-to-door
+                    coordination.
                   </p>
 
                   <Link
