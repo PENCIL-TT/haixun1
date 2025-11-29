@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ContactMapContainer from '@/components/ContactMapContainer';
-import ContactSidebar from '@/components/ContactSidebar';
+import ContactSidebar from '@/components/sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
 
