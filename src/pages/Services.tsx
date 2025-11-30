@@ -21,7 +21,7 @@ import Footer from "@/components/Footer";
 type ScrollAnimationProps = {
   children: ReactNode;
   className?: string;
-  delay?: number; 
+  delay?: number;
 };
 
 function ScrollAnimation({ children, className, delay = 0 }: ScrollAnimationProps) {
@@ -67,7 +67,6 @@ export default function HaixunServicesSection() {
 
       <main className="flex-grow">
         <section className="relative py-20 overflow-hidden min-h-screen bg-white">
-
           {/* RIGHT BOTTOM SHAPE DECOR */}
           <img
             src="/shape-03.webp"
@@ -86,6 +85,17 @@ export default function HaixunServicesSection() {
           />
 
           <div className="container mx-auto px-4 relative z-10">
+            {/* BREADCRUMB */}
+            <nav className="mb-8 text-sm text-slate-500 flex items-center gap-2">
+              <Link to="/" className="font-medium hover:text-[#BC0018]">
+                Home
+              </Link>
+              <span className="text-slate-400">/</span>
+              <span className="text-slate-700 font-semibold">
+                Services
+              </span>
+            </nav>
+
             {/* Section Header */}
             <ScrollAnimation className="text-center mb-16">
               <p className="text-sm font-semibold tracking-[0.25em] uppercase text-red-600 mb-3">
