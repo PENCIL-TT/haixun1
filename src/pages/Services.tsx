@@ -1,3 +1,4 @@
+import React, { type ReactNode } from "react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -13,8 +14,26 @@ import {
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-// IMPORTANT: fixed import path here
-import ScrollAnimation from "@/components/home/ScrollAnimation";
+// LOCAL ScrollAnimation – avoids missing import error
+type ScrollAnimationProps = {
+  children: ReactNode;
+  className?: string;
+  delay?: number; // in ms like your previous usage
+};
+
+function ScrollAnimation({ children, className, delay = 0 }: ScrollAnimationProps) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: delay / 1000 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 type Service = {
   icon: LucideIcon;
