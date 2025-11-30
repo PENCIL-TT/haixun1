@@ -24,8 +24,6 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-const BRAND_RED = "#BC0018";
-
 const Services: React.FC = () => {
   const location = useLocation();
   const detected = getCurrentCountryFromPath(location.pathname);
@@ -45,28 +43,30 @@ const Services: React.FC = () => {
 
         {/* ================= HERO SECTION ================= */}
         <section className="relative overflow-hidden">
-          <img
-            src="/lovable-uploads/gp.jpg"
-            alt="Services"
-            className="absolute inset-0 w-full h-full object-cover opacity-25"
-          />
 
-          <div className="container mx-auto px-4 py-20 relative z-10 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl md:text-6xl font-bold text-black"
-            >
-              Our Logistics Services
-            </motion.h1>
+          {/* HERO IMAGE BLOCK */}
+          <div className="relative w-full h-[420px] md:h-[520px]">
+            <img
+              src="/lovable-uploads/gp.jpg"
+              alt="Services"
+              className="absolute inset-0 w-full h-full object-cover opacity-40"
+            />
 
-            <div className="w-20 h-1 bg-[#BC0018] mx-auto mt-4"></div>
+            {/* TITLE OVER IMAGE */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+              <h1 className="text-4xl md:text-6xl font-bold text-black drop-shadow-md">
+                Our Logistics Services
+              </h1>
+            </div>
+          </div>
 
-            <p className="text-lg md:text-xl text-black mt-6 max-w-3xl mx-auto">
+          {/* SUBTITLE BELOW IMAGE */}
+          <div className="container mx-auto px-4 py-10 text-center">
+            <p className="text-lg md:text-xl text-black max-w-3xl mx-auto">
               Comprehensive end-to-end global logistics solutions tailored to your business needs
             </p>
           </div>
+
         </section>
 
         {/* ================= SERVICES SECTION (ALL 9) ================= */}
@@ -78,7 +78,7 @@ const Services: React.FC = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
 
-            {/* ----------- SERVICE CARD COMPONENT ----------- */}
+            {/* ---- SERVICE CARDS ---- */}
             {[
               {
                 title: "LCL Services",
