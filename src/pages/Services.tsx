@@ -1,227 +1,181 @@
-import React, { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import type { LucideIcon } from "lucide-react";
 import {
   Ship,
-  Truck,
   Boxes,
-  Plane,
-  FileText,
+  Warehouse as WarehouseIcon,
   Package,
-  ClipboardList,
-  ArrowRight,
+  Plane,
+  FileCheck,
   ArrowDownToLine,
+  Container,
 } from "lucide-react";
-import { getCurrentCountryFromPath } from "@/services/countryDetection";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import ScrollAnimation from "./ScrollAnimation";
 
-const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pathname]);
-  return null;
+type Service = {
+  icon: LucideIcon;
+  image: string;
+  titleKey: string;
+  descriptionKey: string;
+  link: string;
 };
 
-const BRAND_RED = "#BC0018";
+export default function HaixunServicesSection() {
+  const { t } = useTranslation();
 
-const Services: React.FC = () => {
-  const location = useLocation();
-  const detected = getCurrentCountryFromPath(location.pathname);
-  const currentCountry = detected ?? { code: "SG", name: "Singapore" };
-
-  const getNavLink = (basePath: string) => {
-    if (currentCountry.code === "SG") return basePath;
-    return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
-  };
+  const services: Service[] = [
+    {
+      icon: Boxes,
+      image: "/lcl.png",                      // 1
+      titleKey: "services.lcl.title",
+      descriptionKey: "services.lcl.description",
+      link: "/services/lcl",
+    },
+    {
+      icon: Ship,
+      image: "/fcl.png",                      // 2
+      titleKey: "services.fcl.title",
+      descriptionKey: "services.fcl.description",
+      link: "/services/fcl",
+    },
+    {
+      icon: WarehouseIcon,
+      image: "/warehouse.png",                // 3
+      titleKey: "services.warehouse.title",
+      descriptionKey: "services.warehouse.description",
+      link: "/services/warehousing",
+    },
+    {
+      icon: Package,
+      image: "/projectlogistics.png",         // 4
+      titleKey: "services.project.title",
+      descriptionKey: "services.project.description",
+      link: "/services/project-cargo",
+    },
+    {
+      icon: Plane,
+      image: "/airfreight.png",               // 5
+      titleKey: "services.air.title",
+      descriptionKey: "services.air.description",
+      link: "/services/air-freight",
+    },
+    {
+      icon: FileCheck,
+      image: "/customclearance.png",          // 6
+      titleKey: "services.customs.title",
+      descriptionKey: "services.customs.description",
+      link: "/services/customs",
+    },
+    {
+      icon: ArrowDownToLine,
+      image: "/Aircargo.png",                 // 7
+      titleKey: "services.import.title",
+      descriptionKey: "services.import.description",
+      link: "/services/import",
+    },
+    {
+      icon: Boxes,
+      image: "/consoldation.png",             // 8
+      titleKey: "services.consolidation.title",
+      descriptionKey: "services.consolidation.description",
+      link: "/services/consolidation",
+    },
+    {
+      icon: Container,
+      image: "/oog.png",                      // 9
+      titleKey: "services.oog.title",
+      descriptionKey: "services.oog.description",
+      link: "/services/oog-shipments",
+    },
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <ScrollToTop />
-      <Navigation />
+    <section
+      className="relative py-20 overflow-hidden min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/service-bg02.jpg')",
+      }}
+    >
+      <div className="container mx-auto px-4">
+        
+        {/* Section Header */}
+        <ScrollAnimation className="text-center mb-16">
+          <p className="text-sm font-semibold tracking-[0.25em] uppercase text-red-300 mb-3">
+            {t("services.overline", "What We Do")}
+          </p>
 
-      <main className="flex-grow pt-20">
-        {/* ================= HERO SECTION ================= */}
-        <section className="relative h-[220px] md:h-[260px] flex items-center overflow-hidden bg-white">
-          <img
-            src="/servicepagehero.jpg"
-            alt="Services"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          <h2 className="font-extrabold text-white text-4xl md:text-5xl mb-3 leading-tight">
+            {t("services.title")}
+          </h2>
 
-          <div className="container mx-auto px-4 relative z-10 text-center">
-            {/* Breadcrumb */}
-            <div className="flex justify-center items-center gap-2 text-lg font-medium">
-              <Link to="/" className="text-black hover:text-[#BC0018] transition">
-                Home
-              </Link>
+          <p className="text-lg text-slate-200 max-w-2xl mx-auto">
+            {t("services.subtitle")}
+          </p>
+        </ScrollAnimation>
 
-              <span className="text-[#BC0018]">›</span>
+        {/* Cards */}
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            const numberLabel = String(index + 1).padStart(2, "0");
 
-              <Link
-                to={getNavLink("/services")}
-                className="text-black hover:text-[#BC0018] transition"
-              >
-                Services
-              </Link>
+            return (
+              <ScrollAnimation key={service.titleKey} delay={index * 60}>
+                <Link to={service.link} aria-label={t(service.titleKey)}>
+                  <motion.article
+                    whileHover={{ y: -10 }}
+                    transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                    className="bg-white rounded-[26px] shadow-[0_18px_50px_rgba(15,23,42,0.35)] overflow-hidden flex flex-col h-full cursor-pointer"
+                  >
+                    {/* Image */}
+                    <div className="relative">
+                      <img
+                        src={service.image}
+                        alt={t(service.titleKey)}
+                        className="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+                        loading="lazy"
+                      />
 
-              <span className="text-[#BC0018]">›</span>
-
-              <span className="font-semibold text-black">Services</span>
-            </div>
-
-            {/* TITLE */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl md:text-5xl font-bold text-black mt-4"
-            >
-              Services
-            </motion.h1>
-          </div>
-        </section>
-
-        {/* ================= SERVICES SECTION ================= */}
-        <section className="relative py-20 bg-white overflow-hidden">
-          {/* RIGHT-SIDE DECOR IMAGE */}
-          <img
-            src="/shape-03.webp"
-            alt="Decor"
-            className="
-              absolute 
-              right-0 
-              top-1/2 
-              -translate-y-1/2
-              w-60 
-              md:w-80
-              opacity-80
-              pointer-events-none 
-              select-none
-              z-0
-            "
-          />
-
-          <div className="relative z-10 max-w-7xl mx-auto px-4 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "LCL Services",
-                desc: "HAIXUN operates own consolidation service on major trade routes.",
-                icon: Ship,
-                img: "/service-images/lcl.jpg",
-                link: "/services/lcl",
-              },
-              {
-                title: "FCL Services",
-                desc: "Fleet of containers including special equipment for flexible FCL solutions.",
-                icon: Ship,
-                img: "/service-images/fcl.jpg",
-                link: "/services/fcl",
-              },
-              {
-                title: "Warehouse Management",
-                desc: "Facilities for warehousing, cold storage, and special commodities.",
-                icon: Boxes,
-                img: "/service-images/warehouse.jpg",
-                link: "/services/warehousing",
-              },
-              {
-                title: "Project Logistics",
-                desc: "End-to-end handling of project cargo across critical geographies.",
-                icon: Truck,
-                img: "/service-images/project.jpg",
-                link: "/services/project-cargo",
-              },
-              {
-                title: "Air Shipments",
-                desc: "Custom sea–air and air–sea solutions for time-critical shipments.",
-                icon: Plane,
-                img: "/service-images/air.jpg",
-                link: "/services/air-freight",
-              },
-              {
-                title: "Customs Declaration & Insurance",
-                desc: "Complete compliance and documentation support.",
-                icon: FileText,
-                img: "/service-images/customs.jpg",
-                link: "/services/customs-clearance",
-              },
-              {
-                title: "Import Services",
-                desc: "End-to-end import solutions for smooth cargo movement.",
-                icon: ArrowDownToLine,
-                img: "/service-images/import.jpg",
-                link: "/services/import",
-              },
-              {
-                title: "OOG Shipments",
-                desc: "Oversized cargo handling including lashing and survey coordination.",
-                icon: Package,
-                img: "/service-images/oog.jpg",
-                link: "/services/oog-shipments",
-              },
-              {
-                title: "LCL Consolidation",
-                desc: "Efficiently combining multiple small shipments into one container.",
-                icon: ClipboardList,
-                img: "/service-images/consolidation.jpg",
-                link: "/services/consolidation",
-              },
-            ].map((item, index) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={index}
-                  className="group rounded-3xl bg-white border border-slate-200 px-8 py-10 shadow-sm 
-                    transition-all duration-300 flex flex-col justify-between
-                    hover:-translate-y-2 hover:shadow-xl hover:bg-[#BC0018] hover:border-[#BC0018]"
-                >
-                  <div>
-                    {/* ICON */}
-                    <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center mb-6 group-hover:bg-white transition">
-                      <Icon className="w-8 h-8 text-[#BC0018]" />
+                      {/* Floating Icon */}
+                      <div className="absolute left-6 -bottom-7">
+                        <div className="w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
+                          <Icon className="w-5 h-5 text-[#BC0018]" />
+                        </div>
+                      </div>
                     </div>
 
-                    {/* IMAGE */}
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="w-full h-40 object-cover rounded-xl mb-5 shadow-sm"
-                    />
+                    {/* Content */}
+                    <div className="px-8 pt-12 pb-8 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-900 mb-2">
+                          {t(service.titleKey)}
+                        </h3>
 
-                    {/* TITLE */}
-                    <h3 className="text-xl font-semibold text-slate-900 group-hover:text-white">
-                      {item.title}
-                    </h3>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                          {t(service.descriptionKey)}
+                        </p>
+                      </div>
 
-                    {/* DESCRIPTION */}
-                    <p className="text-sm text-slate-600 mt-3 group-hover:text-white">
-                      {item.desc}
-                    </p>
-                  </div>
+                      <div className="mt-8 flex items-end justify-between">
+                        <span className="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-[#BC0018]">
+                          {t("services.readMore")}
+                          <ArrowDownToLine className="w-4 h-4 ml-2" />
+                        </span>
 
-                  {/* BUTTON */}
-                  <Link
-                    to={getNavLink(item.link)}
-                    className="mt-6 inline-flex items-center"
-                  >
-                    <span className="text-xs font-semibold tracking-wide px-4 py-2 rounded-md bg-white group-hover:text-[#BC0018]">
-                      READ MORE
-                    </span>
-                    <ArrowRight className="w-4 h-4 ml-2 text-[#BC0018] group-hover:text-white" />
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
+                        <span className="text-4xl font-semibold text-slate-200">
+                          {numberLabel}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.article>
+                </Link>
+              </ScrollAnimation>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default Services;
+}
