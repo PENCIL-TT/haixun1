@@ -7,15 +7,6 @@ import { getCurrentCountryFromPath } from "@/services/countryDetection";
 import { Cuboid, Package, TrendingDown, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -36,19 +27,18 @@ const Consolidation = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
+  // MATCH UPDATED SERVICE PAGES (LCL / FCL / WAREHOUSING / PROJECT / AIR / IMPORT / OOG)
   const servicesNav = [
     { label: "See All Services", path: "/services" },
     { label: "LCL Services", path: "/services/lcl" },
-    { label: "CFS Services", path: "/services/cfs" },
-    { label: "Sea Freight", path: "/services/sea-freight" },
-    { label: "Air Freight", path: "/services/air-freight" },
+    { label: "FCL Services", path: "/services/fcl" },
     { label: "Warehousing", path: "/services/warehousing" },
     { label: "Project Cargo", path: "/services/project-cargo" },
+    { label: "Air Freight", path: "/services/air-freight" },
     { label: "Customs Clearance", path: "/services/customs-clearance" },
+    { label: "Import Services", path: "/services/import" },
     { label: "Consolidation", path: "/services/consolidation" },
-    { label: "Liquid Cargo", path: "/services/liquid-cargo" },
-    { label: "Third Party Logistics", path: "/services/third-party-logistics" },
-    { label: "Liner Agency", path: "/services/liner-agency" },
+    { label: "OOG Shipments", path: "/services/oog-shipments" },
   ];
 
   const pathname = location.pathname;
@@ -76,54 +66,29 @@ const Consolidation = () => {
       <ScrollToTop />
       <Navigation />
 
-      <main className="flex-grow pt-20">
-        {/* BREADCRUMB HERO – SAME STYLE AS OTHER SERVICE PAGES */}
-        <section
-          className="relative h-56 md:h-64 flex items-center justify-center overflow-hidden border-b border-slate-200"
-          style={{
-            backgroundImage: "url('/counter-bg.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px] z-0" />
+      {/* SAME WHITE GAP UNDER NAV AS OTHER SERVICE PAGES */}
+      <div className="h-[90px] w-full bg-white" />
 
-          <div className="relative text-center scale-[1.1] md:scale-[1.25] z-10">
-            <Breadcrumb>
-              <BreadcrumbList className="flex items-center justify-center gap-2 md:gap-3">
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    asChild
-                    className="text-[#BC0018] text-lg md:text-xl font-semibold hover:text-black"
-                  >
-                    <Link to={getNavLink("/")}>Home</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
+      <main className="flex-grow">
+        {/* HERO – MATCH AIR FREIGHT STYLE (IMAGE + DARK GRADIENT + TITLE) */}
+        <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
+          <img
+            src="/counter-bg.webp"
+            alt="Consolidation Hero"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-                <BreadcrumbSeparator>
-                  <span className="text-xl md:text-2xl text-slate-600">›</span>
-                </BreadcrumbSeparator>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    asChild
-                    className="text-[#BC0018] text-lg md:text-xl font-semibold hover:text-black"
-                  >
-                    <Link to={getNavLink("/services")}>Services</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
+          <div className="container mx-auto px-4 relative z-10">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
+              Consolidation
+            </h1>
 
-                <BreadcrumbSeparator>
-                  <span className="text-xl md:text-2xl text-slate-600">›</span>
-                </BreadcrumbSeparator>
-
-                <BreadcrumbItem>
-                  <BreadcrumbPage className="text-black font-extrabold text-3xl md:text-4xl">
-                    Consolidation
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <p className="text-white text-lg mt-3 max-w-xl">
+              Reliable cargo consolidation solutions that optimise container
+              utilisation and lower freight costs across key trade lanes.
+            </p>
           </div>
         </section>
 
@@ -131,7 +96,7 @@ const Consolidation = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT SIDEBAR */}
+              {/* LEFT SIDEBAR – SAME STYLE AS AIR FREIGHT / IMPORT */}
               <aside className="space-y-10">
                 <div>
                   <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
@@ -199,15 +164,15 @@ const Consolidation = () => {
                   <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
                     <p>{t("services.consolidation.fullDescription")}</p>
                     <p>
-                      Our consolidation services enable businesses to optimize their shipping
-                      costs while maintaining delivery efficiency. We manage the entire movement
-                      from pickup to final delivery, ensuring cargo is handled securely and
-                      efficiently at every stage.
+                      Our consolidation services enable businesses to optimize their
+                      shipping costs while maintaining delivery efficiency. We manage
+                      the entire movement from pickup to final delivery, ensuring
+                      cargo is handled securely and efficiently at every stage.
                     </p>
                     <p>
                       By combining multiple shipments into a single container, we help
-                      businesses benefit from better freight rates, reduced handling, and more
-                      predictable transit schedules.
+                      businesses benefit from better freight rates, reduced handling,
+                      and more predictable transit schedules.
                     </p>
                   </div>
                 </section>
@@ -245,14 +210,14 @@ const Consolidation = () => {
                   </div>
                 </section>
 
-                {/* CTA – CONSISTENT WITH OTHER SERVICE PAGES */}
+                {/* CTA – SAME PATTERN AS OTHER SERVICE PAGES */}
                 <section className="py-12 bg-white text-center">
                   <h2 className="text-3xl md:text-4xl font-extrabold text-[#BC0018] mb-4">
                     Ready to Consolidate Your Shipments?
                   </h2>
                   <p className="text-lg md:text-xl text-[#BC0018] mb-10">
-                    Contact us today to get competitive rates and efficient consolidation
-                    solutions.
+                    Contact us today to get competitive rates and efficient
+                    consolidation solutions.
                   </p>
 
                   <Link
