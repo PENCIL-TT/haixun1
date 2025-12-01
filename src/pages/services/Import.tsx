@@ -23,6 +23,20 @@ const ImportServices = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
+  // MATCH AIR FREIGHT / OTHER SERVICE PAGES
+  const servicesNav = [
+    { label: "See All Services", path: "/services" },
+    { label: "LCL Services", path: "/services/lcl" },
+    { label: "FCL Services", path: "/services/fcl" },
+    { label: "Warehousing", path: "/services/warehousing" },
+    { label: "Project Cargo", path: "/services/project-cargo" },
+    { label: "Air Freight", path: "/services/air-freight" },
+    { label: "Customs Clearance", path: "/services/customs-clearance" },
+    { label: "Import Services", path: "/services/import" },
+    { label: "Consolidation", path: "/services/consolidation" },
+    { label: "OOG Shipments", path: "/services/oog-shipments" },
+  ];
+
   const pathname = location.pathname;
 
   return (
@@ -54,13 +68,41 @@ const ImportServices = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
+              {/* LEFT SIDEBAR (MATCH AIR FREIGHT STYLE) */}
+              <aside className="space-y-10">
+                <div>
+                  <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
+                    OUR SERVICES
+                  </h2>
+                  <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
 
-              {/* EMPTY SIDEBAR (NO ENGLISH CONTENT) */}
-              <aside></aside>
+                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
+                    {servicesNav.map((item) => {
+                      const to = getNavLink(item.path);
+                      const isActive =
+                        pathname === to ||
+                        (item.path !== "/services" && pathname.startsWith(to));
 
-              {/* CONTENT RIGHT SIDE */}
+                      return (
+                        <Link
+                          key={item.path}
+                          to={to}
+                          className={`block px-6 py-3 text-sm font-medium transition-colors ${
+                            isActive
+                              ? "bg-[#BC0018] text-white"
+                              : "text-slate-600 hover:bg-slate-100"
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </aside>
+
+              {/* CONTENT RIGHT SIDE – CHINESE ONLY */}
               <div className="space-y-12">
-
                 {/* IMAGE */}
                 <div className="rounded-md overflow-hidden shadow-lg">
                   <img
@@ -78,7 +120,6 @@ const ImportServices = () => {
                   <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
 
                   <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700 mt-5">
-
                     <p>总用地面积：5220㎡</p>
                     <p>总建筑面积：44525㎡</p>
                     <p>容积率：7.08</p>
@@ -92,9 +133,6 @@ const ImportServices = () => {
                     </p>
                   </div>
                 </section>
-
-                {/* REMOVE CTA, REMOVE VALUE — ALL ENGLISH REMOVED */}
-
               </div>
             </div>
           </div>
