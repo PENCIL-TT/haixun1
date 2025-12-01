@@ -24,7 +24,7 @@ const Warehousing = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
-  // MATCHED TO LCL / FCL / SERVICES PAGE
+  // MATCHED TO OTHER SERVICE PAGES
   const servicesNav = [
     { label: "See All Services", path: "/services" },
     { label: "LCL Services", path: "/services/lcl" },
@@ -45,44 +45,22 @@ const Warehousing = () => {
       <ScrollToTop />
       <Navigation />
 
-      {/* WHITE BLANK SPACE BELOW NAV (SAME AS OTHER SERVICE PAGES) */}
+      {/* WHITE SPACE LIKE OTHER PAGES */}
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO SECTION – SAME STYLE AS SERVICES / LCL / FCL */}
+        {/* HERO SECTION WITHOUT BREADCRUMB */}
         <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
           <img
-            src="/warehouse hero.jpg"
+            src="/servicepagehero.jpg"
             alt="Warehousing Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* STRONG RIGHT-SIDE GRADIENT */}
+          {/* DARK GRADIENT */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
           <div className="container mx-auto px-4 relative z-10">
-            {/* BREADCRUMB LIKE SERVICES PAGE */}
-            <nav className="mb-4 text-sm text-white flex items-center gap-2">
-              <Link
-                to={getNavLink("/")}
-                className="font-medium hover:text-red-500"
-              >
-                Home
-              </Link>
-              <span className="text-red-500">/</span>
-              <Link
-                to={getNavLink("/services")}
-                className="font-medium hover:text-red-500"
-              >
-                Services
-              </Link>
-              <span className="text-red-500">/</span>
-              <span className="text-red-500 font-semibold">
-                Warehousing
-              </span>
-            </nav>
-
-            {/* HERO TITLE */}
             <h1 className="text-4xl md:text-5xl font-extrabold text-white">
               Warehousing
             </h1>
@@ -98,7 +76,7 @@ const Warehousing = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT COLUMN: SERVICES NAV */}
+              {/* LEFT SIDEBAR — SERVICES NAV */}
               <aside className="space-y-10">
                 <div>
                   <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
@@ -131,7 +109,7 @@ const Warehousing = () => {
                 </div>
               </aside>
 
-              {/* RIGHT COLUMN */}
+              {/* RIGHT COLUMN CONTENT */}
               <div className="space-y-12">
                 {/* HERO IMAGE */}
                 <motion.div
@@ -151,14 +129,12 @@ const Warehousing = () => {
 
                 {/* DESCRIPTION */}
                 <section>
-                  <div className="mb-6">
-                    <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
-                      Warehousing Solutions
-                    </h2>
-                    <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
-                  </div>
+                  <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
+                    Warehousing Solutions
+                  </h2>
+                  <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
 
-                  <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
+                  <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700 mt-5">
                     <p>
                       Haixun is fully equipped and can handle the warehousing of various
                       commodities, including cold storage.
@@ -166,11 +142,8 @@ const Warehousing = () => {
                     <p>
                       Warehouse management is a crucial component of the supply chain. Its
                       primary purpose is to control the movement and storage of materials
-                      within a region and to process related transactions, including
-                      transportation, receiving, storage, and picking. By understanding the
-                      processes within the supply chain, your warehouse can become an
-                      accelerator—not a roadblock—for improving profitability and customer
-                      satisfaction.
+                      within a region and process related transactions such as transportation,
+                      receiving, storage, and picking.
                     </p>
                     <p>
                       Warehouse Management (WM) handles inventory receipts, supply movement,
@@ -182,14 +155,12 @@ const Warehousing = () => {
 
                 {/* VALUE SECTION */}
                 <section>
-                  <div className="mb-6">
-                    <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
-                      Value We Deliver
-                    </h2>
-                    <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
-                  </div>
+                  <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
+                    Value We Deliver
+                  </h2>
+                  <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
 
-                  <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 md:p-8">
+                  <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 md:p-8 mt-5">
                     <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
                       <p>
                         Efficient warehouse management provides a cutting-edge solution for
@@ -197,17 +168,16 @@ const Warehousing = () => {
                       </p>
                       <p>
                         We identify customer needs and assist in fulfilling them in the best
-                        way possible.
+                        possible way.
                       </p>
                       <p>
                         Haixun has expertise in packing and unpacking, consolidating goods,
-                        and arranging delivery to all respective parties—ensuring complete
-                        customer satisfaction.
+                        and arranging delivery to all respective parties.
                       </p>
                       <p>
                         With strong domestic and global networks, Haixun identifies the right
-                        warehouse type based on cost-effectiveness, storage requirements,
-                        product specificity, and proximity.
+                        warehouse type based on cost, storage needs, product sensitivity, and
+                        proximity.
                       </p>
                     </div>
                   </div>
