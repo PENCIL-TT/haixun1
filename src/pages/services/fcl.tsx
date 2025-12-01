@@ -32,7 +32,7 @@ const FCL = () => {
     { label: "Warehousing", path: "/services/warehousing" },
     { label: "Project Cargo", path: "/services/project-cargo" },
     { label: "Air Freight", path: "/services/air-freight" },
-    { label: "Customs Clearance", path: "/services/customs" },
+    { label: "Customs Clearance", path: "/services/customs-clearance" },
     { label: "Import Services", path: "/services/import" },
     { label: "Consolidation", path: "/services/consolidation" },
     { label: "OOG Shipments", path: "/services/oog-shipments" },
