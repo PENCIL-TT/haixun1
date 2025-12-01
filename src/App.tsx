@@ -50,7 +50,9 @@ import LinerAgency from "@/pages/services/LinerAgency";
 import LCL from "@/pages/services/LCL";
 import CFS from "@/pages/services/fcl";
 import OOGShipments from "@/pages/services/OOGShipments";
-import ImportServices from "@/pages/services/Import"; // <-- NEW IMPORT
+
+// FIXED IMPORT
+import ImportServices from "@/pages/services/Import";
 
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
@@ -73,7 +75,7 @@ import AdminSystemSettings from "@/pages/admin/SystemSettings";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5,
       retry: 1,
     },
   },
@@ -85,7 +87,7 @@ type ServiceRoute = {
   component: React.ComponentType;
 };
 
-// All services
+// All services – FIXED IMPORT
 const serviceRoutes: ServiceRoute[] = [
   { path: "sea-freight", component: SeaFreight },
   { path: "air-freight", component: AirFreight },
@@ -99,7 +101,7 @@ const serviceRoutes: ServiceRoute[] = [
   { path: "lcl", component: LCL },
   { path: "fcl", component: CFS },
   { path: "oog-shipments", component: OOGShipments },
-  { path: "import", component: Import }, // <-- NEW IMPORT SERVICE ROUTE
+  { path: "import", component: ImportServices }, // FIXED
 ];
 
 // Country prefixes
@@ -114,6 +116,7 @@ const App: React.FC = () => {
           <Meta />
           <div className="App">
             <Routes>
+              
               {/* Home routes */}
               <Route path="/" element={<Index />} />
               <Route path="/home" element={<Index />} />
@@ -134,8 +137,6 @@ const App: React.FC = () => {
               <Route path="/blogs" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogDetail />} />
               <Route path="/news" element={<NewsOverviewPage />} />
-              {/* Optional news detail page */}
-              {/* <Route path="/news/:slug" element={<NewsDetailPage />} /> */}
               <Route path="/projects" element={<Projects />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
@@ -164,13 +165,14 @@ const App: React.FC = () => {
                 </React.Fragment>
               ))}
 
-              {/* Service detail pages for global and each country */}
+              {/* Service detail pages for global + each country */}
               {serviceRoutes.map(({ path, component: Component }) => (
                 <React.Fragment key={path}>
+
                   {/* Global route */}
                   <Route path={`/services/${path}`} element={<Component />} />
 
-                  {/* Country-specific routes */}
+                  {/* Country-specific */}
                   {countries.map((country) => (
                     <Route
                       key={`${country}-${path}`}
@@ -178,10 +180,11 @@ const App: React.FC = () => {
                       element={<Component />}
                     />
                   ))}
+
                 </React.Fragment>
               ))}
 
-              {/* Auth routes */}
+              {/* Auth */}
               <Route path="/login" element={<AdminLogin />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -222,8 +225,9 @@ const App: React.FC = () => {
                 <Route path="blog/edit/:id?" element={<BlogEditor />} />
               </Route>
 
-              {/* 404 Not Found */}
+              {/* 404 */}
               <Route path="*" element={<NotFound />} />
+
             </Routes>
           </div>
           <Toaster />
