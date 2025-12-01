@@ -49,10 +49,10 @@ const Warehousing = () => {
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO SECTION WITHOUT BREADCRUMB */}
+        {/* HERO SECTION */}
         <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
           <img
-            src="/warehouse hero.jpg"
+            src="/servicepagehero.jpg"
             alt="Warehousing Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -61,7 +61,8 @@ const Warehousing = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
           <div className="container mx-auto px-4 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white">
+            {/* TITLE IN RED */}
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
               Warehousing
             </h1>
 
