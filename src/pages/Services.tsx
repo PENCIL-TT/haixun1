@@ -65,7 +65,7 @@ export default function HaixunServicesSection() {
     <div className="min-h-screen flex flex-col bg-white relative">
       <Navigation />
 
-      {/* ========== WHITE BLANK SPACE BELOW NAVIGATION ========== */}
+      {/* WHITE SPACE BELOW NAV */}
       <div className="h-[90px] w-full bg-white"></div>
 
       <main className="flex-grow">
@@ -83,15 +83,13 @@ export default function HaixunServicesSection() {
 
           <div className="container mx-auto px-4 relative z-10">
             
-            {/* Breadcrumb */}
+            {/* BREADCRUMB UPDATED TO RED */}
             <nav className="mb-4 text-sm text-white flex items-center gap-2">
-              <Link to="/" className="font-medium hover:text-yellow-300">
+              <Link to="/" className="font-medium hover:text-red-500">
                 Home
               </Link>
               <span>/</span>
-              <span className="text-yellow-300 font-semibold">
-                Services
-              </span>
+              <span className="text-red-500 font-semibold">Services</span>
             </nav>
 
             {/* HERO TITLE */}
