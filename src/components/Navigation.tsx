@@ -28,12 +28,11 @@ function FlagIcon({
   return (
     <img
       src={src}
-      alt="" /* alt intentionally empty so no text shows */
-      aria-hidden="true" /* decorative */
+      alt=""
+      aria-hidden="true"
       className={className}
       draggable={false}
       onError={(e) => {
-        // If missing, hide image (no text fallback ever rendered)
         (e.currentTarget as HTMLImageElement).style.display = "none";
       }}
     />
@@ -86,15 +85,32 @@ const Navigation = () => {
     return `/${currentCountry.name.toLowerCase().replace(" ", "-")}${basePath}`;
   };
 
-  const isCompanyLinkActive = () =>
-    isActive(getNavLink("/about-us")) ||
-    isActive(getNavLink("/gallery")) ||
-    isActive(getNavLink("/career"));
-
   const SOCIALS = [
     { name: "LinkedIn", href: "https://www.linkedin.com/company/amassmiddleeast/", Icon: FaLinkedinIn },
     { name: "Facebook", href: "https://www.facebook.com/Amassmiddleeast?mibextid=ZbWKwL", Icon: FaFacebookF },
   ];
+
+  // Desktop class helper (with red underline + red text for active)
+  const getDesktopNavClass = (targetPath: string) => {
+    const active = isActive(targetPath);
+    const base =
+      "nav-link relative inline-flex items-center font-medium text-base xl:text-lg transition-colors";
+    if (active) {
+      return `${base} active-nav text-[#BC0018]`;
+    }
+    return `${base} ${isScrolled ? "text-gray-900" : "text-[#BC0018]"}`;
+  };
+
+  // Mobile class helper (you can keep underline here as well)
+  const getMobileNavClass = (targetPath: string) => {
+    const active = isActive(targetPath);
+    const base =
+      "nav-link relative font-medium py-2 text-lg transition-colors";
+    if (active) {
+      return `${base} active-nav text-[#BC0018]`;
+    }
+    return `${base} text-gray-900`;
+  };
 
   return (
     <header
@@ -118,34 +134,24 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             {/* 1. Home */}
-            <Link
-              to="/"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
+            <Link to="/" className={getDesktopNavClass("/")}>
               {t("nav.home")}
             </Link>
 
             {/* 2. About Us */}
-            <Link
-              to="/about-us"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/about-us") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
+            <Link to="/about-us" className={getDesktopNavClass("/about-us")}>
               {t("nav.about")}
             </Link>
 
             {/* 3. Our Services */}
             <DropdownMenu>
               <DropdownMenuTrigger
-                className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors flex items-center gap-1 ${
+                className={`nav-link relative inline-flex items-center gap-1 font-medium text-base xl:text-lg transition-colors ${
                   location.pathname.includes("/services")
-                    ? "text-red-600"
+                    ? "active-nav text-[#BC0018]"
                     : isScrolled
                     ? "text-gray-900"
-                    : "text-red-600"
+                    : "text-[#BC0018]"
                 }`}
               >
                 {t("nav.services")} <ChevronDown className="w-4 h-4" />
@@ -197,7 +203,10 @@ const Navigation = () => {
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild>
-                  <Link to="/services/customs-clearance" className="w-full cursor-pointer hover:bg-gray-100">
+                  <Link
+                    to="/services/customs-clearance"
+                    className="w-full cursor-pointer hover:bg-gray-100"
+                  >
                     {t("services.customs.title")}
                   </Link>
                 </DropdownMenuItem>
@@ -213,52 +222,26 @@ const Navigation = () => {
                     {t("services.liquidCargo.title")}
                   </Link>
                 </DropdownMenuItem>
-
-                {/* Removed:
-                  - /services/sea-freight (Ocean Freight)
-                  - /services/third-party-logistics (3PL)
-                  - /services/liner-agency (Liner Agency)
-                */}
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* 4. Advantage */}
-            <Link
-              to="/advantages"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/advantages") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
+            <Link to="/advantages" className={getDesktopNavClass("/advantages")}>
               {t("nav.advantage")}
             </Link>
 
             {/* 5. Global Presence */}
-            <Link
-              to="/global-presence"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/global-presence") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
+            <Link to="/global-presence" className={getDesktopNavClass("/global-presence")}>
               {t("nav.globalPresence")}
             </Link>
 
             {/* 6. News */}
-            <Link
-              to="/blog"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/blog") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
+            <Link to="/blog" className={getDesktopNavClass("/blog")}>
               {t("nav.news")}
             </Link>
 
             {/* 7. Contact Us */}
-            <Link
-              to="/contact"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/contact") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
+            <Link to="/contact" className={getDesktopNavClass("/contact")}>
               {t("nav.contact")}
             </Link>
 
@@ -274,9 +257,9 @@ const Navigation = () => {
               aria-label="Toggle Menu"
             >
               {isMenuOpen ? (
-                <X className={isScrolled ? "text-gray-900" : "text-red-600"} size={24} />
+                <X className={isScrolled ? "text-gray-900" : "text-[#BC0018]"} size={24} />
               ) : (
-                <Menu className={isScrolled ? "text-gray-900" : "text-red-600"} size={24} />
+                <Menu className={isScrolled ? "text-gray-900" : "text-[#BC0018]"} size={24} />
               )}
             </button>
           </div>
@@ -291,9 +274,7 @@ const Navigation = () => {
               {/* 1. Home */}
               <Link
                 to="/"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/") ? "text-red-600" : "text-gray-900"
-                }`}
+                className={getMobileNavClass("/")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.home")}
@@ -302,9 +283,7 @@ const Navigation = () => {
               {/* 2. About Us */}
               <Link
                 to="/about-us"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/about-us") ? "text-red-600" : "text-gray-900"
-                }`}
+                className={getMobileNavClass("/about-us")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.about")}
@@ -314,7 +293,7 @@ const Navigation = () => {
               <div className="flex flex-col">
                 <button
                   onClick={() => setIsCompanyDropdownOpen(!isCompanyDropdownOpen)}
-                  className="flex items-center justify-between font-medium py-2 text-lg hover:text-red-600 transition-colors text-gray-900"
+                  className="nav-link relative flex items-center justify-between font-medium py-2 text-lg transition-colors text-gray-900"
                 >
                   {t("nav.services")}
                   <ChevronDown
@@ -327,7 +306,7 @@ const Navigation = () => {
                   <div className="flex flex-col pl-4 space-y-2 mt-2">
                     <Link
                       to="/services"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.allServices")}
@@ -335,7 +314,7 @@ const Navigation = () => {
 
                     <Link
                       to="/services/lcl"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.lcl.title")}
@@ -344,7 +323,7 @@ const Navigation = () => {
                     {/* CFS -> FCL CHANGE (MOBILE) */}
                     <Link
                       to="/services/fcl"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.fcl.title")}
@@ -353,7 +332,7 @@ const Navigation = () => {
                     {/* Air Freight (MOBILE) */}
                     <Link
                       to="/services/air-freight"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.air.title")}
@@ -362,7 +341,7 @@ const Navigation = () => {
                     {/* Import Services (MOBILE) */}
                     <Link
                       to="/services/import-services"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.import.title")}
@@ -370,7 +349,7 @@ const Navigation = () => {
 
                     <Link
                       to="/services/warehousing"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.warehouse.title")}
@@ -378,7 +357,7 @@ const Navigation = () => {
 
                     <Link
                       to="/services/project-cargo"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.projectCargo.title")}
@@ -386,7 +365,7 @@ const Navigation = () => {
 
                     <Link
                       to="/services/customs-clearance"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.customs.title")}
@@ -394,7 +373,7 @@ const Navigation = () => {
 
                     <Link
                       to="/services/consolidation"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.consolidation.title")}
@@ -402,7 +381,7 @@ const Navigation = () => {
 
                     <Link
                       to="/services/liquid-cargo"
-                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      className="py-2 text-base hover:text-[#BC0018] transition-colors text-gray-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {t("services.liquidCargo.title")}
@@ -414,9 +393,7 @@ const Navigation = () => {
               {/* 4. Advantage */}
               <Link
                 to="/advantages"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/advantages") ? "text-red-600" : "text-gray-900"
-                }`}
+                className={getMobileNavClass("/advantages")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.advantage")}
@@ -425,9 +402,7 @@ const Navigation = () => {
               {/* 5. Global Presence */}
               <Link
                 to="/global-presence"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/global-presence") ? "text-red-600" : "text-gray-900"
-                }`}
+                className={getMobileNavClass("/global-presence")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.globalPresence")}
@@ -436,9 +411,7 @@ const Navigation = () => {
               {/* 6. News */}
               <Link
                 to="/blog"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/blog") ? "text-red-600" : "text-gray-900"
-                }`}
+                className={getMobileNavClass("/blog")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.news")}
@@ -447,9 +420,7 @@ const Navigation = () => {
               {/* 7. Contact Us */}
               <Link
                 to="/contact"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/contact") ? "text-red-600" : "text-gray-900"
-                }`}
+                className={getMobileNavClass("/contact")}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.contact")}
