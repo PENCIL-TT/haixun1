@@ -15,17 +15,25 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
-function FlagIcon({ code, className = "h-5 w-7 object-contain rounded-[2px]" }) {
+/** Small flag component that never shows raw text like '/lk.svg' */
+function FlagIcon({
+  code,
+  className = "h-5 w-7 object-contain rounded-[2px]",
+}: {
+  code: string;
+  className?: string;
+}) {
   const iso = (code || "").toLowerCase();
   const src = `/${iso}.svg`;
   return (
     <img
       src={src}
-      alt=""
-      aria-hidden="true"
+      alt="" /* alt intentionally empty so no text shows */
+      aria-hidden="true" /* decorative */
       className={className}
       draggable={false}
       onError={(e) => {
+        // If missing, hide image (no text fallback ever rendered)
         (e.currentTarget as HTMLImageElement).style.display = "none";
       }}
     />
@@ -41,8 +49,10 @@ const Navigation = () => {
   const location = useLocation();
   const { user } = useAuth();
 
+  // We use the URL to decide the current country flag
   const currentCountry = getCurrentCountryFromPath(location.pathname);
 
+  // Detect country by IP for flag display
   useEffect(() => {
     const detect = async () => {
       try {
@@ -60,6 +70,7 @@ const Navigation = () => {
     detect();
   }, []);
 
+  // Handle scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -70,6 +81,21 @@ const Navigation = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const getNavLink = (basePath: string) => {
+    if (currentCountry.code === "SG") return basePath;
+    return `/${currentCountry.name.toLowerCase().replace(" ", "-")}${basePath}`;
+  };
+
+  const isCompanyLinkActive = () =>
+    isActive(getNavLink("/about-us")) ||
+    isActive(getNavLink("/gallery")) ||
+    isActive(getNavLink("/career"));
+
+  const SOCIALS = [
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/amassmiddleeast/", Icon: FaLinkedinIn },
+    { name: "Facebook", href: "https://www.facebook.com/Amassmiddleeast?mibextid=ZbWKwL", Icon: FaFacebookF },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
@@ -78,31 +104,31 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-3 sm:px-4 md:px-6 py-2 sm:py-4 lg:py-[18px]">
         <div className="flex justify-between items-center">
-          
           {/* Logo */}
-          <Link to="/">
-            <img
-              src="/haixun-logo.svg"
-              alt="Haixun Global Co., Ltd"
-              className="h-8 sm:h-12 lg:h-14 w-auto object-contain"
-            />
-          </Link>
+          <div className="flex items-center">
+            <Link to="/">
+              <img
+                src="/haixun-logo.svg"
+                alt="Haixun Global Co., Ltd"
+                className="h-8 sm:h-12 lg:h-14 w-auto object-contain"
+              />
+            </Link>
+          </div>
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             <Link
               to="/"
-              className={`nav-link font-medium text-base xl:text-lg transition-colors ${
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
                 isActive("/") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
               }`}
             >
               {t("nav.home")}
             </Link>
 
-            {/* Services Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger
-                className={`nav-link font-medium text-base xl:text-lg flex items-center gap-1 transition-colors ${
+                className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors flex items-center gap-1 ${
                   location.pathname.includes("/services")
                     ? "text-red-600"
                     : isScrolled
@@ -112,76 +138,81 @@ const Navigation = () => {
               >
                 {t("nav.services")} <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-
               <DropdownMenuContent className="w-64 bg-white border-gray-200 shadow-lg z-[100]">
-
-                {/* All Services */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services" className="hover:bg-gray-100">
+                  <Link to="/services" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.allServices")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* LCL */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services/lcl" className="hover:bg-gray-100">
+                  <Link to="/services/lcl" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.lcl.title")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* FCL */}
+                {/* CFS -> FCL CHANGE */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services/fcl" className="hover:bg-gray-100">
+                  <Link to="/services/fcl" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.fcl.title")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* Warehousing */}
+                {/* Air Freight */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services/warehousing" className="hover:bg-gray-100">
+                  <Link to="/services/air-freight" className="w-full cursor-pointer hover:bg-gray-100">
+                    {t("services.air.title")}
+                  </Link>
+                </DropdownMenuItem>
+
+                {/* Import Services */}
+                <DropdownMenuItem asChild>
+                  <Link to="/services/import-services" className="w-full cursor-pointer hover:bg-gray-100">
+                    {t("services.import.title")}
+                  </Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild>
+                  <Link to="/services/warehousing" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.warehouse.title")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* Project Cargo */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services/project-cargo" className="hover:bg-gray-100">
+                  <Link to="/services/project-cargo" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.projectCargo.title")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* Customs */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services/customs-clearance" className="hover:bg-gray-100">
+                  <Link to="/services/customs-clearance" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.customs.title")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* Consolidation */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services/consolidation" className="hover:bg-gray-100">
+                  <Link to="/services/consolidation" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.consolidation.title")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* Liquid Cargo */}
                 <DropdownMenuItem asChild>
-                  <Link to="/services/liquid-cargo" className="hover:bg-gray-100">
+                  <Link to="/services/liquid-cargo" className="w-full cursor-pointer hover:bg-gray-100">
                     {t("services.liquidCargo.title")}
                   </Link>
                 </DropdownMenuItem>
 
-                {/* REMOVED:
-                    Ocean Freight
-                    3PL Services (Third-Party Logistics)
-                    Liner Agency 
+                {/* Removed:
+                  - /services/sea-freight (Ocean Freight)
+                  - /services/third-party-logistics (3PL)
+                  - /services/liner-agency (Liner Agency)
                 */}
               </DropdownMenuContent>
             </DropdownMenu>
 
             <Link
               to="/about-us"
-              className={`nav-link font-medium text-base xl:text-lg transition-colors ${
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
                 isActive("/about-us") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
               }`}
             >
@@ -190,7 +221,7 @@ const Navigation = () => {
 
             <Link
               to="/blog"
-              className={`nav-link font-medium text-base xl:text-lg transition-colors ${
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
                 isActive("/blog") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
               }`}
             >
@@ -199,7 +230,7 @@ const Navigation = () => {
 
             <Link
               to="/advantages"
-              className={`nav-link font-medium text-base xl:text-lg transition-colors ${
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
                 isActive("/advantages") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
               }`}
             >
@@ -208,7 +239,7 @@ const Navigation = () => {
 
             <Link
               to="/global-presence"
-              className={`nav-link font-medium text-base xl:text-lg transition-colors ${
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
                 isActive("/global-presence") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
               }`}
             >
@@ -217,7 +248,7 @@ const Navigation = () => {
 
             <Link
               to="/contact"
-              className={`nav-link font-medium text-base xl:text-lg transition-colors ${
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
                 isActive("/contact") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
               }`}
             >
@@ -228,28 +259,30 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2"
-          >
-            {isMenuOpen ? (
-              <X className={isScrolled ? "text-gray-900" : "text-red-600"} size={24} />
-            ) : (
-              <Menu className={isScrolled ? "text-gray-900" : "text-red-600"} size={24} />
-            )}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2"
+              aria-label="Toggle Menu"
+            >
+              {isMenuOpen ? (
+                <X className={isScrolled ? "text-gray-900" : "text-red-600"} size={24} />
+              ) : (
+                <Menu className={isScrolled ? "text-gray-900" : "text-red-600"} size={24} />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white shadow-md py-4 border-t">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white py-4 shadow-md animate-fade-in border-t max-h-[calc(100vh-80px)] overflow-y-auto">
           <div className="container mx-auto px-4">
             <nav className="flex flex-col space-y-4">
-
               <Link
                 to="/"
-                className={`text-lg font-medium ${
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
                   isActive("/") ? "text-red-600" : "text-gray-900"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
@@ -257,11 +290,11 @@ const Navigation = () => {
                 {t("nav.home")}
               </Link>
 
-              {/* Mobile Services */}
+              {/* Services Collapsible */}
               <div className="flex flex-col">
                 <button
                   onClick={() => setIsCompanyDropdownOpen(!isCompanyDropdownOpen)}
-                  className="flex justify-between items-center text-lg font-medium text-gray-900"
+                  className="flex items-center justify-between font-medium py-2 text-lg hover:text-red-600 transition-colors text-gray-900"
                 >
                   {t("nav.services")}
                   <ChevronDown
@@ -270,64 +303,147 @@ const Navigation = () => {
                     }`}
                   />
                 </button>
-
                 {isCompanyDropdownOpen && (
-                  <div className="pl-4 mt-2 flex flex-col space-y-2">
-
-                    <Link to="/services" onClick={() => setIsMenuOpen(false)}>
+                  <div className="flex flex-col pl-4 space-y-2 mt-2">
+                    <Link
+                      to="/services"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.allServices")}
                     </Link>
 
-                    <Link to="/services/lcl" onClick={() => setIsMenuOpen(false)}>
+                    <Link
+                      to="/services/lcl"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.lcl.title")}
                     </Link>
 
-                    <Link to="/services/fcl" onClick={() => setIsMenuOpen(false)}>
+                    {/* CFS -> FCL CHANGE (MOBILE) */}
+                    <Link
+                      to="/services/fcl"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.fcl.title")}
                     </Link>
 
-                    <Link to="/services/warehousing" onClick={() => setIsMenuOpen(false)}>
+                    {/* Air Freight (MOBILE) */}
+                    <Link
+                      to="/services/air-freight"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t("services.air.title")}
+                    </Link>
+
+                    {/* Import Services (MOBILE) */}
+                    <Link
+                      to="/services/import-services"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t("services.import.title")}
+                    </Link>
+
+                    <Link
+                      to="/services/warehousing"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.warehouse.title")}
                     </Link>
 
-                    <Link to="/services/project-cargo" onClick={() => setIsMenuOpen(false)}>
+                    <Link
+                      to="/services/project-cargo"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.projectCargo.title")}
                     </Link>
 
-                    <Link to="/services/customs-clearance" onClick={() => setIsMenuOpen(false)}>
+                    <Link
+                      to="/services/customs-clearance"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.customs.title")}
                     </Link>
 
-                    <Link to="/services/consolidation" onClick={() => setIsMenuOpen(false)}>
+                    <Link
+                      to="/services/consolidation"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.consolidation.title")}
                     </Link>
 
-                    <Link to="/services/liquid-cargo" onClick={() => setIsMenuOpen(false)}>
+                    <Link
+                      to="/services/liquid-cargo"
+                      className="py-2 text-base hover:text-red-600 transition-colors text-gray-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {t("services.liquidCargo.title")}
                     </Link>
 
-                    {/* REMOVED the 3 unwanted items in mobile also */}
+                    {/* Removed in mobile as well:
+                      - /services/sea-freight
+                      - /services/third-party-logistics
+                      - /services/liner-agency
+                    */}
                   </div>
                 )}
               </div>
 
-              <Link to="/about-us" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                to="/about-us"
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
+                  isActive("/about-us") ? "text-red-600" : "text-gray-900"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.about")}
               </Link>
 
-              <Link to="/blog" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                to="/blog"
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
+                  isActive("/blog") ? "text-red-600" : "text-gray-900"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.news")}
               </Link>
 
-              <Link to="/advantages" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                to="/advantages"
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
+                  isActive("/advantages") ? "text-red-600" : "text-gray-900"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.advantage")}
               </Link>
 
-              <Link to="/global-presence" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                to="/global-presence"
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
+                  isActive("/global-presence") ? "text-red-600" : "text-gray-900"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.globalPresence")}
               </Link>
 
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                to="/contact"
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
+                  isActive("/contact") ? "text-red-600" : "text-gray-900"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.contact")}
               </Link>
 
