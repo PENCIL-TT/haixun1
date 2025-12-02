@@ -17,7 +17,7 @@ const services: ServiceCard[] = [{
   title: "LCL",
   description: "Amass Freight, Dubai is one of the leading logistics providers in the region providing Less-Than Container load (LCL) for the ultimate convenience of our customers to help in transporting their products to any location required.",
   slug: "lcl",
-  image: "/lcl1.JPG",
+  image: "/lcl-realistic.jpg",
   delay: 0,
   Icon: Boxes,
   tag: "Less-Than Container Load"
@@ -26,7 +26,7 @@ const services: ServiceCard[] = [{
   title: "CFS",
   description: "Take full advantage of our state-of-the-art CFS, which is equipped with the latest equipment, technology and staffed by experienced professionals at every level. Our warehouses are designed to handle your cargo efficiently across all regions.",
   slug: "cfs",
-  image: "/container.jpg",
+  image: "/cfs-realistic.jpg",
   delay: 120,
   Icon: Building2,
   tag: "Container Freight Station"

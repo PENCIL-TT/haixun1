@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Users, UserCircle, SearchCode, Ship, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 const HeroSection: React.FC = () => {
+  const { t } = useTranslation();
   const portalLinks = useMemo(() => [{
     icon: <Users className="w-5 h-5" />,
     title: "Consolmate",
@@ -93,17 +95,16 @@ const HeroSection: React.FC = () => {
         <h1 style={{
         color: '#FFFFFF'
       }} className="text-3xl sm:text-5xl font-extrabold leading-tight drop-shadow-md text-slate-50 md:text-4xl">
-          Welcome to Haixun
+          {t("hero.title")}
         </h1>
         <p style={{
         color: '#CFC9CA'
       }} className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed md:text-lg">
-          Haixun Global Co., Ltd. headquartered in Shenzhen, China. Its business scope covers the sea, land and air
-          transportation agency business of global LCL, FCL, bulk cargo, etc...
+          {t("hero.subtitle")}
         </p>
         <div className="mt-7 flex items-start">
           <a href="#about" className="inline-flex items-center justify-center rounded-xl bg-white/95 px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/30 hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/80">
-            Read More
+            {t("hero.contactUs")}
           </a>
         </div>
       </div>

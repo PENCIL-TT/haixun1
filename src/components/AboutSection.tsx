@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Globe2, ShieldCheck, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const AboutSection: React.FC = () => {
+  const { t } = useTranslation();
   const ACCENT = "#BC0018";
 
   return (
@@ -83,22 +85,19 @@ const AboutSection: React.FC = () => {
             className="uppercase tracking-wide font-extrabold text-3xl"
             style={{ color: ACCENT }}
           >
-            ABOUT US
+            {t("about.whoWeAre")}
           </p>
 
           <p className="mt-5 text-gray-700 max-w-xl">
-            <strong>Haixun Global Shenzhen</strong> leverages over 30 years of
-            expertise in logistics, including sea, land, air transportation,
-            customs declaration, warehousing, and distribution. The Group has
-            expanded its network to regions such as{" "}
-            <strong>China, India, Malaysia, the UAE</strong>, and beyond.
+            {t("about.paragraph1")}
           </p>
 
           <p className="mt-5 text-gray-700 max-w-xl">
-            Established in <strong>2019</strong>, Haixun Global Shenzhen
-            upholds the Group’s commitment to integrity, customer satisfaction,
-            and rapid response, ensuring a reliable and customer-focused service
-            experience in China.
+            {t("about.paragraph2")}
+          </p>
+
+          <p className="mt-5 text-gray-700 max-w-xl">
+            {t("about.paragraph3")}
           </p>
 
           <div className="mt-8 space-y-7">

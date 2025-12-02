@@ -1,14 +1,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactMapContainer from "@/components/ContactMapContainer";
 import ContactSidebar from "@/components/ContactSidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Globe, MapPin } from "lucide-react";
-import SEO from "@/components/SEO";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -59,14 +58,8 @@ const Global = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <SEO
-        title="Moltech Global Presence"
-        description=""
-        keywords=""
-        url=""
-      />
       <ScrollToTop />
-      <Header />
+      <Navigation />
 
       <main className="flex-1">
         <div className="relative flex flex-col md:flex-row w-full pt-20 md:pt-28">

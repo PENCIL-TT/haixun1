@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Mail, ArrowRight, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type Office = {
   name: string;
@@ -14,6 +15,7 @@ type Office = {
 };
 
 const Footer = () => {
+  const { t } = useTranslation();
   const location = useLocation();
 
   const keyAddresses: { country: string; offices: Office[] }[] = [
@@ -104,12 +106,10 @@ const Footer = () => {
             </div>
 
             <h3 className="text-lg font-semibold mb-2 text-white">
-              Haixun Global Co., Ltd
+              {t("footer.company")}
             </h3>
             <p className="text-sm md:text-base max-w-xs text-left leading-relaxed mb-4 text-white/90">
-              Leveraging over 30 years of expertise in logistics, including sea,
-              land, air transportation, customs declaration, warehousing, and
-              distribution.
+              {t("footer.description")}
             </p>
           </motion.div>
 
@@ -122,15 +122,15 @@ const Footer = () => {
             transition={{ delay: 0.2 }}
             className="flex flex-col items-start md:items-end lg:items-start lg:pl-10"
           >
-            <h3 className="font-bold text-xl text-white mb-4">Useful Links</h3>
+            <h3 className="font-bold text-xl text-white mb-4">{t("footer.usefulLinks")}</h3>
             <div className="flex flex-col gap-3">
               {[
-                { name: "Home", path: "/" },
-                { name: "Our Services", path: "/services" },
-                { name: "About Us", path: "/about-us" },
-                { name: "News", path: "/blog" },
-                { name: "Advantage", path: "/advantages" },
-                { name: "Contact Us", path: "/contact" },
+                { name: t("nav.home"), path: "/" },
+                { name: t("nav.services"), path: "/services" },
+                { name: t("nav.about"), path: "/about-us" },
+                { name: t("nav.news"), path: "/blog" },
+                { name: t("nav.advantage"), path: "/advantages" },
+                { name: t("nav.contact"), path: "/contact" },
               ].map((link, index) => (
                 <Link
                   key={index}
@@ -154,7 +154,7 @@ const Footer = () => {
             className="lg:pl-10"
           >
             <div className="flex items-center justify-between w-full mb-4">
-              <h3 className="font-bold text-xl text-white">Contact Us</h3>
+              <h3 className="font-bold text-xl text-white">{t("footer.contactUs")}</h3>
               <button
                 onClick={() => setIdx((i) => (i + 1) % offices.length)}
                 onMouseDown={() => setPaused(true)}
@@ -233,7 +233,7 @@ const Footer = () => {
 
         {/* Bottom Line */}
         <div className="text-center text-white/80 mt-12 pt-8 border-t border-white/20 text-sm">
-          &copy; {new Date().getFullYear()} Haixun Global Co., Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()} {t("footer.company")}. {t("footer.rights")}
         </div>
       </div>
     </footer>
