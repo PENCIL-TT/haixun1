@@ -24,7 +24,7 @@ const FCL = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
-  // MATCHED TO LCL / SERVICES PAGE STYLE
+  // MATCHED TO LCL / AIR FREIGHT / SERVICES PAGE STYLE
   const servicesNav = [
     { label: "See All Services", path: "/services" },
     { label: "LCL Services", path: "/services/lcl" },
@@ -45,11 +45,11 @@ const FCL = () => {
       <ScrollToTop />
       <Navigation />
 
-      {/* WHITE BLANK SPACE BELOW NAV (MATCH SERVICES / LCL PAGES) */}
+      {/* WHITE BLANK SPACE BELOW NAV (MATCH SERVICES / LCL / AIR FREIGHT PAGES) */}
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO SECTION – SAME STYLE AS SERVICES / LCL */}
+        {/* HERO SECTION – SAME STYLE AS LCL / AIR FREIGHT */}
         <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
           <img
             src="/servicepagehero.jpg"
@@ -61,34 +61,14 @@ const FCL = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
           <div className="container mx-auto px-4 relative z-10">
-            {/* BREADCRUMB LIKE SERVICES PAGE */}
-            <nav className="mb-4 text-sm text-white flex items-center gap-2">
-              <Link
-                to={getNavLink("/")}
-                className="font-medium hover:text-red-500"
-              >
-                Home
-              </Link>
-              <span className="text-red-500">/</span>
-              <Link
-                to={getNavLink("/services")}
-                className="font-medium hover:text-red-500"
-              >
-                Services
-              </Link>
-              <span className="text-red-500">/</span>
-              <span className="text-red-500 font-semibold">
-                FCL Services
-              </span>
-            </nav>
-
-            {/* HERO TITLE */}
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white">
+            {/* NO BREADCRUMB – MATCH AIR FREIGHT / UPDATED LCL STYLE */}
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
               FCL Services
             </h1>
 
             <p className="text-white text-lg mt-3 max-w-xl">
-              Reliable Full Container Load solutions for time-critical and high-volume cargo across global routes.
+              Reliable Full Container Load solutions for time-critical and high-volume
+              cargo across global routes.
             </p>
           </div>
         </section>
@@ -97,34 +77,36 @@ const FCL = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT COLUMN – SERVICES NAV */}
+              {/* LEFT SIDEBAR – SAME STYLE AS AIR FREIGHT / UPDATED LCL */}
               <aside className="space-y-10">
-                <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
-                  OUR SERVICES
-                </h2>
-                <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
+                <div>
+                  <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
+                    OUR SERVICES
+                  </h2>
+                  <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
 
-                <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
-                  {servicesNav.map((item) => {
-                    const to = getNavLink(item.path);
-                    const isActive =
-                      pathname === to ||
-                      (item.path !== "/services" && pathname.startsWith(to));
+                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
+                    {servicesNav.map((item) => {
+                      const to = getNavLink(item.path);
+                      const isActive =
+                        pathname === to ||
+                        (item.path !== "/services" && pathname.startsWith(to));
 
-                    return (
-                      <Link
-                        key={item.path}
-                        to={to}
-                        className={`block px-6 py-3 text-sm font-medium transition-colors ${
-                          isActive
-                            ? "bg-[#BC0018] text-white"
-                            : "text-slate-600 hover:bg-slate-100"
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    );
-                  })}
+                      return (
+                        <Link
+                          key={item.path}
+                          to={to}
+                          className={`block px-6 py-3 text-sm font-medium transition-colors ${
+                            isActive
+                              ? "bg-[#BC0018] text-white"
+                              : "text-slate-600 hover:bg-slate-100"
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               </aside>
 
@@ -155,24 +137,27 @@ const FCL = () => {
 
                   <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700 mt-5">
                     <p>
-                      Full Container Load (FCL) shipping is ideal for customers who need an entire
-                      container exclusively for their cargo. It offers maximum security, dedicated
-                      space, and faster handling at ports.
+                      Full Container Load (FCL) shipping is ideal for customers who need an
+                      entire container exclusively for their cargo. It offers maximum
+                      security, dedicated space, and faster handling at ports.
                     </p>
 
                     <p>
-                      With strong carrier relationships and optimized routing, we provide FCL
-                      coverage across all major global trade lanes with competitive transit times.
+                      With strong carrier relationships and optimized routing, we provide
+                      FCL coverage across all major global trade lanes with competitive
+                      transit times.
                     </p>
 
                     <p>
-                      We handle a wide range of container types such as 20ft, 40ft, 40ft High Cube,
-                      reefer units, flat racks, and open tops to match your cargo profile.
+                      We handle a wide range of container types such as 20ft, 40ft, 40ft
+                      High Cube, reefer units, flat racks, and open tops to match your
+                      cargo profile.
                     </p>
 
                     <p>
-                      Our experienced operations team manages stuffing, documentation, customs
-                      processes, and final delivery to ensure seamless end-to-end execution.
+                      Our experienced operations team manages stuffing, documentation,
+                      customs processes, and final delivery to ensure seamless end-to-end
+                      execution.
                     </p>
                   </div>
                 </section>
@@ -184,7 +169,8 @@ const FCL = () => {
                   </h2>
 
                   <p className="text-lg md:text-xl text-[#BC0018] mb-10">
-                    Contact us today for reliable FCL capacity and competitive global rates.
+                    Contact us today for reliable FCL capacity and competitive global
+                    rates.
                   </p>
 
                   <Link
