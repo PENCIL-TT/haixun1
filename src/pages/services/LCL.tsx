@@ -45,11 +45,11 @@ const LCL = () => {
       <ScrollToTop />
       <Navigation />
 
-      {/* WHITE BLANK SPACE BELOW NAV (MATCH SERVICES PAGE) */}
+      {/* WHITE BLANK SPACE BELOW NAV (MATCH SERVICES / AIR FREIGHT PAGE) */}
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO SECTION MATCHING SERVICES PAGE STYLE */}
+        {/* HERO SECTION – STYLE ALIGNED WITH AIR FREIGHT */}
         <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
           <img
             src="/servicepagehero.jpg"
@@ -57,38 +57,17 @@ const LCL = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* STRONG RIGHT-SIDE GRADIENT (SAME STYLE) */}
+          {/* DARK RIGHT-SIDE GRADIENT */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
           <div className="container mx-auto px-4 relative z-10">
-            {/* BREADCRUMB LIKE SERVICES PAGE, WITH LCL LEVEL */}
-            <nav className="mb-4 text-sm text-white flex items-center gap-2">
-              <Link
-                to={getNavLink("/")}
-                className="font-medium hover:text-red-500"
-              >
-                Home
-              </Link>
-              <span className="text-red-500">/</span>
-              <Link
-                to={getNavLink("/services")}
-                className="font-medium hover:text-red-500"
-              >
-                Services
-              </Link>
-              <span className="text-red-500">/</span>
-              <span className="text-red-500 font-semibold">
-                LCL Services
-              </span>
-            </nav>
-
-            {/* HERO TITLE + SUBTEXT */}
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
               LCL Services
             </h1>
 
             <p className="text-white text-lg mt-3 max-w-xl">
-              Flexible Less-Than-Container Load solutions tailored for your partial shipments with global coverage and reliable schedules.
+              Flexible Less-Than-Container Load solutions tailored for your partial
+              shipments with global coverage and reliable schedules.
             </p>
           </div>
         </section>
@@ -97,7 +76,7 @@ const LCL = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT COLUMN – SERVICES NAV */}
+              {/* LEFT SIDEBAR – MATCH AIR FREIGHT STYLE */}
               <aside className="space-y-10">
                 <div>
                   <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
