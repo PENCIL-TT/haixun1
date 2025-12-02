@@ -49,27 +49,35 @@ const Warehousing = () => {
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO SECTION */}
-        <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
+        {/* HERO SECTION – CENTERED LIKE LCL / FCL */}
+        <section className="relative h-[300px] md:h-[360px] w-full overflow-hidden flex items-center justify-center">
           <img
             src="/warehouse hero.jpg"
             alt="Warehousing Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* DARK GRADIENT */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          {/* DARK GRADIENT (MATCH STYLE) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            {/* TITLE IN RED */}
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
-              Warehousing
-            </h1>
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="inline-block max-w-3xl"
+            >
+              <h1 className="text-4xl md:text-5xl font-extrabold text-white">
+                Warehousing
+              </h1>
+              <div className="w-24 h-[3px] bg-[#BC0018] mx-auto mt-3" />
 
-            <p className="text-white text-lg mt-3 max-w-xl">
-              End-to-end warehousing and distribution solutions designed to support your
-              regional and global supply chain.
-            </p>
+              {/* TAGLINE BELOW TITLE */}
+              <p className="mt-4 text-base md:text-lg text-gray-200 leading-relaxed">
+                End-to-end warehousing and distribution solutions designed to support your
+                regional and global supply chain.
+              </p>
+            </motion.div>
           </div>
         </section>
 
@@ -112,7 +120,7 @@ const Warehousing = () => {
 
               {/* RIGHT COLUMN CONTENT */}
               <div className="space-y-12">
-                {/* HERO IMAGE */}
+                {/* TOP IMAGE */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -128,78 +136,57 @@ const Warehousing = () => {
                   />
                 </motion.div>
 
-                {/* DESCRIPTION */}
+                {/* DESCRIPTION – REPLACED WITH NEW CONTENT */}
                 <section>
-                  <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
-                    Warehousing Solutions
-                  </h2>
-                  <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
+                  <div className="mb-6">
+                    <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
+                      Description
+                    </h2>
+                    <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
+                  </div>
 
                   <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700 mt-5">
                     <p>
-                      Haixun is fully equipped and can handle the warehousing of various
-                      commodities, including cold storage.
+                      HAIXUN is well equipped to handle the warehousing of various
+                      commodities including cold storage.
                     </p>
                     <p>
-                      Warehouse management is a crucial component of the supply chain. Its
-                      primary purpose is to control the movement and storage of materials
-                      within a region and process related transactions such as transportation,
-                      receiving, storage, and picking.
+                      Warehouse management is a key part of the supply chain and primarily
+                      aims to control the movement and storage of materials within a
+                      warehouse and process the associated transactions including shipping,
+                      receiving, put away and picking. With visibility into processes that
+                      precede and follow the supply chain link, your warehouse will become
+                      an accelerator and not a road block to drive greater profitability and
+                      customer satisfaction.
                     </p>
                     <p>
-                      Warehouse Management (WM) handles inventory receipts, supply movement,
-                      container storage, and demand management as part of the overall supply
-                      chain workflow.
+                      The objective of WM is to handle the receipts of stock and manage
+                      supplies. WM today is part of supply chain management and also demand
+                      management. It also covers container storage, loading and unloading.
+                    </p>
+                    <p>
+                      An efficient WM gives a cutting edge to retail chain distribution.
+                    </p>
+                    <p>
+                      The company identifies the customer needs and assists to handle in the
+                      best possible manner.
+                    </p>
+                    <p>
+                      The company has expertise in handling vanning and devanning of
+                      consolidation cargo and arranges to distribute/deliver to respective
+                      parties from the warehouse which delivers full satisfaction to its
+                      customers.
+                    </p>
+                    <p>
+                      With its network in domestic and global market, HX can identify the
+                      right kind of warehouse depending on customer’s requirement based on
+                      cost effective, storage specific, commodity specific and proximity
+                      specific needs.
                     </p>
                   </div>
                 </section>
 
-                {/* VALUE SECTION */}
-                <section>
-                  <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
-                    Value We Deliver
-                  </h2>
-                  <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
-
-                  <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 md:p-8 mt-5">
-                    <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
-                      <p>
-                        Efficient warehouse management provides a cutting-edge solution for
-                        retail chain distribution.
-                      </p>
-                      <p>
-                        We identify customer needs and assist in fulfilling them in the best
-                        possible way.
-                      </p>
-                      <p>
-                        Haixun has expertise in packing and unpacking, consolidating goods,
-                        and arranging delivery to all respective parties.
-                      </p>
-                      <p>
-                        With strong domestic and global networks, Haixun identifies the right
-                        warehouse type based on cost, storage needs, product sensitivity, and
-                        proximity.
-                      </p>
-                    </div>
-                  </div>
-                </section>
-
-                {/* CTA */}
-                <section className="py-12 bg-white text-center">
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#BC0018] mb-4">
-                    Need Warehouse Management Support?
-                  </h2>
-                  <p className="text-lg md:text-xl text-[#BC0018] mb-10">
-                    Contact us today to discuss your warehousing and distribution requirements.
-                  </p>
-
-                  <Link
-                    to={getNavLink("/contact")}
-                    className="inline-block bg-[#BC0018] hover:bg-[#a30014] text-white font-semibold text-lg px-10 py-4 rounded-lg transition-all"
-                  >
-                    Contact Us
-                  </Link>
-                </section>
+                {/* CTA REMOVED – TO MATCH LCL / FCL STYLE */}
               </div>
             </div>
           </div>
