@@ -1,178 +1,201 @@
-import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { type ReactNode } from "react";
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import {
+  Ship,
+  Boxes,
+  Warehouse as WarehouseIcon,
+  Package,
+  Plane,
+  FileCheck,
+  ArrowDownToLine,
+  Container,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { getCurrentCountryFromPath } from "@/services/countryDetection";
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pathname]);
-  return null;
+/* Local Scroll Animation */
+type ScrollAnimationProps = {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
 };
 
-const LCL = () => {
-  const location = useLocation();
+function ScrollAnimation({ children, className, delay = 0 }: ScrollAnimationProps) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: delay / 1000 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
-  const detected = getCurrentCountryFromPath(location.pathname);
-  const currentCountry = detected ?? { code: "SG", name: "Singapore" };
+type Service = {
+  icon: LucideIcon;
+  image: string;
+  titleKey: string;
+  descriptionKey: string;
+  link: string;
+};
 
-  const getNavLink = (basePath: string) => {
-    if (currentCountry.code === "SG") return basePath;
-    return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
-  };
+export default function HaixunServicesSection() {
+  const { t } = useTranslation();
 
-  // SIDE NAV – MATCHES OTHER SERVICE PAGES
-  const servicesNav = [
-    { label: "See All Services", path: "/services" },
-    { label: "LCL Services", path: "/services/lcl" },
-    { label: "FCL Services", path: "/services/fcl" },
-    { label: "Warehousing", path: "/services/warehousing" },
-    { label: "Project Cargo", path: "/services/project-cargo" },
-    { label: "Air Freight", path: "/services/air-freight" },
-    { label: "Customs Clearance", path: "/services/customs-clearance" },
-    { label: "Import Services", path: "/services/import" },
-    { label: "Consolidation", path: "/services/consolidation" },
-    { label: "OOG Shipments", path: "/services/oog-shipments" },
+  const services: Service[] = [
+    { icon: Boxes, image: "/lcl.png", titleKey: "services.lcl.title", descriptionKey: "services.lcl.description", link: "/services/lcl" },
+    { icon: Ship, image: "/fcl.png", titleKey: "services.fcl.title", descriptionKey: "services.fcl.description", link: "/services/fcl" },
+    { icon: WarehouseIcon, image: "/warehouse.png", titleKey: "services.warehouse.title", descriptionKey: "services.warehouse.description", link: "/services/warehousing" },
+    { icon: Package, image: "/projectlogistics.png", titleKey: "services.project.title", descriptionKey: "services.project.description", link: "/services/project-cargo" },
+    { icon: Plane, image: "/airfreight.png", titleKey: "services.air.title", descriptionKey: "services.air.description", link: "/services/air-freight" },
+    { icon: FileCheck, image: "/customclearance.png", titleKey: "services.customs.title", descriptionKey: "services.customs.description", link: "/services/customs-clearance" },
+    { icon: ArrowDownToLine, image: "/Aircargo.png", titleKey: "services.import.title", descriptionKey: "services.import.description", link: "/services/import" },
+    { icon: Boxes, image: "/consoldation.png", titleKey: "services.consolidation.title", descriptionKey: "services.consolidation.description", link: "/services/consolidation" },
+    { icon: Container, image: "/oog.png", titleKey: "services.oog.title", descriptionKey: "services.oog.description", link: "/services/oog-shipments" },
   ];
 
-  const pathname = location.pathname;
-
   return (
-    <div className="bg-white text-gray-900 min-h-screen flex flex-col">
-      <ScrollToTop />
+    <div className="min-h-screen flex flex-col bg-white relative">
       <Navigation />
 
-      {/* WHITE BLANK SPACE BELOW NAV */}
-      <div className="h-[90px] w-full bg-white" />
+      {/* WHITE SPACE BELOW NAV */}
+      <div className="h-[90px] w-full bg-white"></div>
 
       <main className="flex-grow">
-        {/* HERO SECTION – MATCHES PROVIDED SCREENSHOT STYLE */}
+
+        {/* ================= HERO SECTION ================= */}
         <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
           <img
             src="/servicepagehero.jpg"
-            alt="LCL Hero"
+            alt="Services Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* LEFT-SIDE DARK GRADIENT */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent" />
+          {/* ADDING LEFT-SIDE GRADIENT */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 
           <div className="container mx-auto px-4 relative z-10">
-            {/* NO BREADCRUMB HERE */}
 
-            {/* TITLE IN RED */}
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
-              Services
+            {/* BREADCRUMB – MATCH FCL PAGE */}
+            <nav className="mb-4 text-sm text-white flex items-center gap-2">
+              <Link
+                to="/"
+                className="font-medium hover:text-red-500 transition-colors"
+              >
+                Home
+              </Link>
+
+              <span className="text-red-500">/</span>
+
+              <span className="text-red-500 font-semibold">
+                Services
+              </span>
+            </nav>
+
+            {/* HERO TITLE */}
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white">
+              Our Services
             </h1>
-        {/* MAIN CONTENT */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT SIDEBAR – SAME AS AIR FREIGHT / FCL */}
-              <aside className="space-y-10">
-                <div>
-                  <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
-                    OUR SERVICES
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
+          </div>
+        </section>
 
-                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
-                    {servicesNav.map((item) => {
-                      const to = getNavLink(item.path);
-                      const isActive =
-                        pathname === to ||
-                        (item.path !== "/services" && pathname.startsWith(to));
+        {/* ================= SERVICES SECTION ================= */}
+        <section className="relative py-20 overflow-hidden bg-white">
 
-                      return (
-                        <Link
-                          key={item.path}
-                          to={to}
-                          className={`block px-6 py-3 text-sm font-medium transition-colors ${
-                            isActive
-                              ? "bg-[#BC0018] text-white"
-                              : "text-slate-600 hover:bg-slate-100"
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </aside>
+          {/* RIGHT BOTTOM SHAPE */}
+          <img
+            src="/shape-03.webp"
+            className="absolute bottom-0 right-0 w-72 md:w-96 opacity-100 pointer-events-none select-none z-0"
+            alt="Decor Shape"
+          />
 
-              {/* RIGHT COLUMN – CONTENT */}
-              <div className="space-y-12">
-                {/* TOP IMAGE */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="rounded-md overflow-hidden shadow-lg"
-                >
-                  <img
-                    src="/lcl1.JPG"
-                    alt="LCL Road & Ocean Freight"
-                    className="w-full h-[340px] md:h-[380px] object-cover"
-                    loading="lazy"
-                  />
-                </motion.div>
+          <div className="container mx-auto px-4 relative z-10">
 
-                {/* DESCRIPTION */}
-                <section>
-                  <div className="mb-6">
-                    <h2 className="text-xl md:text-2xl font-extrabold tracking-wide text-gray-900 uppercase">
-                      Description
-                    </h2>
-                    <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
-                  </div>
+            {/* Section Header */}
+            <ScrollAnimation className="text-center mb-16">
+              <p className="text-sm font-semibold tracking-[0.25em] uppercase text-red-600 mb-3">
+                {t("services.overline", "What We Do")}
+              </p>
 
-                  <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
-                    <p>
-                      Amass Freight, Dubai provides Less-Than-Container Load (LCL) services
-                      designed for customers who do not have enough cargo to fill a full
-                      container but require reliable shipping.
-                    </p>
-                    <p>
-                      Our extensive global consolidation network helps customers move
-                      smaller shipments more economically by combining multiple consignments
-                      into one container, reducing freight cost while maintaining service
-                      reliability.
-                    </p>
-                    <p>
-                      Our operations team manages receiving, stuffing, documentation, and
-                      delivery at destination, ensuring safety, transparency, and efficiency
-                      at every step of the supply chain.
-                    </p>
-                    <p>
-                      With predictable transit schedules, frequent departures, and
-                      transparent pricing, our LCL solutions provide unmatched flexibility
-                      for businesses of all sizes.
-                    </p>
-                  </div>
-                </section>
+              <h2 className="font-extrabold text-slate-900 text-4xl md:text-5xl mb-3 leading-tight">
+                {t("services.title")}
+              </h2>
 
-                {/* CTA */}
-                <section className="py-12 bg-white text-center">
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#BC0018] mb-4">
-                    Ready to Ship with LCL?
-                  </h2>
-                  <p className="text-lg md:text-xl text-[#BC0018] mb-10">
-                    Contact us today for competitive rates and dependable LCL shipping.
-                  </p>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                {t(
+                  "services.subtitle",
+                  "Comprehensive end-to-end global logistics solutions tailored to your business needs."
+                )}
+              </p>
+            </ScrollAnimation>
 
-                  <Link
-                    to={getNavLink("/contact")}
-                    className="inline-block bg-[#BC0018] hover:bg-[#a30014] text-white font-semibold text-lg px-10 py-4 rounded-lg transition-all"
-                  >
-                    Contact Us
-                  </Link>
-                </section>
-              </div>
+            {/* Service Cards */}
+            <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                const numberLabel = String(index + 1).padStart(2, "0");
+
+                return (
+                  <ScrollAnimation key={service.titleKey} delay={index * 60}>
+                    <Link to={service.link} aria-label={t(service.titleKey)}>
+                      <motion.article
+                        whileHover={{ y: -10 }}
+                        transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                        className="bg-white rounded-[26px] shadow-lg overflow-hidden flex flex-col h-full cursor-pointer"
+                      >
+
+                        {/* Service Image */}
+                        <div className="relative">
+                          <img
+                            src={service.image}
+                            alt={t(service.titleKey)}
+                            className="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+                          />
+
+                          {/* Icon Badge */}
+                          <div className="absolute left-6 -bottom-7">
+                            <div className="w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
+                              <Icon className="w-5 h-5 text-[#BC0018]" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="px-8 pt-12 pb-8 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-lg font-bold text-slate-900 mb-2">
+                              {t(service.titleKey)}
+                            </h3>
+
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                              {t(service.descriptionKey)}
+                            </p>
+                          </div>
+
+                          {/* Bottom */}
+                          <div className="mt-8 flex items-end justify-between">
+                            <span className="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-[#BC0018]">
+                              {t("services.readMore")}
+                              <ArrowDownToLine className="w-4 h-4 ml-2" />
+                            </span>
+
+                            <span className="text-4xl font-semibold text-slate-300">
+                              {numberLabel}
+                            </span>
+                          </div>
+                        </div>
+                      </motion.article>
+                    </Link>
+                  </ScrollAnimation>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -181,6 +204,4 @@ const LCL = () => {
       <Footer />
     </div>
   );
-};
-
-export default LCL;
+}
