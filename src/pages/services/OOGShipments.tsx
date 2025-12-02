@@ -63,25 +63,32 @@ const OOGShipments: React.FC = () => {
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO – image + gradient, same style as Air Freight / Consolidation */}
-        <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
+        {/* HERO – centered like other updated service pages */}
+        <section className="relative h-[300px] md:h-[360px] w-full overflow-hidden flex items-center justify-center">
           <img
             src="/counter-bg.webp"
             alt="OOG Shipments Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
-              OOG Shipments
-            </h1>
-
-            <p className="text-white text-lg mt-3 max-w-xl">
-              OOG Shipments - Inter Island Movements with reliable, coordinated
-              handling for over-dimensional cargo.
-            </p>
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="inline-block max-w-3xl"
+            >
+              <h1 className="text-4xl md:text-5xl font-extrabold text-white">
+                OOG Shipments
+              </h1>
+              <div className="w-24 h-[3px] bg-[#BC0018] mx-auto mt-3" />
+              <p className="text-base md:text-lg text-gray-200 mt-4 leading-relaxed">
+                OOG Shipments - Inter Island Movements with reliable, coordinated
+                handling for over-dimensional cargo.
+              </p>
+            </motion.div>
           </div>
         </section>
 
@@ -139,7 +146,7 @@ const OOGShipments: React.FC = () => {
                   />
                 </motion.div>
 
-                {/* OOG SHIPMENTS DESCRIPTION – new content */}
+                {/* OOG SHIPMENTS DESCRIPTION */}
                 <section>
                   <div className="mb-6 flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#BC0018]/10">
@@ -155,15 +162,15 @@ const OOGShipments: React.FC = () => {
 
                   <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
                     <p>
-                      Our OOG (Out-of-Gauge) shipment service provides dedicated
-                      handling for cargo that exceeds standard container
-                      dimensions, offering reliable inter-island movements to
-                      main ports with full operational coordination.
+                      Our OOG (Out-of-Gauge) shipment service provides dedicated handling
+                      for cargo that exceeds standard container dimensions, offering
+                      reliable inter-island movements to main ports with full operational
+                      coordination.
                     </p>
                   </div>
                 </section>
 
-                {/* SERVICES OFFERED – new list content */}
+                {/* SERVICES OFFERED */}
                 <section>
                   <div className="mb-6">
                     <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
@@ -195,24 +202,7 @@ const OOGShipments: React.FC = () => {
                   </div>
                 </section>
 
-                {/* CTA */}
-                <section className="py-12 bg-white text-center">
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#BC0018] mb-4">
-                    Need Support for OOG & Inter Island Movements?
-                  </h2>
-                  <p className="text-lg md:text-xl text-[#BC0018] mb-10">
-                    Talk to our operations team for a tailored OOG solution with
-                    complete loading, lashing, survey, and port-to-door
-                    coordination.
-                  </p>
-
-                  <Link
-                    to={getNavLink("/contact")}
-                    className="inline-block bg-[#BC0018] hover:bg-[#a30014] text-white font-semibold text-lg px-10 py-4 rounded-lg transition-all"
-                  >
-                    Contact Us
-                  </Link>
-                </section>
+                {/* CTA REMOVED TO MATCH OTHER UPDATED PAGES */}
               </div>
             </div>
           </div>
