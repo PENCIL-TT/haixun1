@@ -27,7 +27,7 @@ const Consolidation = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
-  // MATCH UPDATED SERVICE PAGES (LCL / FCL / WAREHOUSING / PROJECT / AIR / IMPORT / OOG)
+  // MATCH UPDATED SERVICE PAGES
   const servicesNav = [
     { label: "See All Services", path: "/services" },
     { label: "LCL Services", path: "/services/lcl" },
@@ -70,25 +70,32 @@ const Consolidation = () => {
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO – MATCH AIR FREIGHT STYLE (IMAGE + DARK GRADIENT + TITLE) */}
-        <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
+        {/* HERO – CENTERED LIKE OTHER UPDATED SERVICE PAGES */}
+        <section className="relative h-[300px] md:h-[360px] w-full overflow-hidden flex items-center justify-center">
           <img
             src="/counter-bg.webp"
             alt="Consolidation Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
-              Consolidation
-            </h1>
-
-            <p className="text-white text-lg mt-3 max-w-xl">
-              Reliable cargo consolidation solutions that optimise container
-              utilisation and lower freight costs across key trade lanes.
-            </p>
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="inline-block max-w-3xl"
+            >
+              <h1 className="text-4xl md:text-5xl font-extrabold text-white">
+                Consolidation
+              </h1>
+              <div className="w-24 h-[3px] bg-[#BC0018] mx-auto mt-3" />
+              <p className="mt-4 text-base md:text-lg text-gray-200 leading-relaxed">
+                Reliable cargo consolidation solutions that optimise container utilisation
+                and lower freight costs across key trade lanes.
+              </p>
+            </motion.div>
           </div>
         </section>
 
@@ -96,7 +103,7 @@ const Consolidation = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT SIDEBAR – SAME STYLE AS AIR FREIGHT / IMPORT */}
+              {/* LEFT SIDEBAR – SAME STYLE AS OTHER SERVICE PAGES */}
               <aside className="space-y-10">
                 <div>
                   <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
@@ -165,14 +172,14 @@ const Consolidation = () => {
                     <p>{t("services.consolidation.fullDescription")}</p>
                     <p>
                       Our consolidation services enable businesses to optimize their
-                      shipping costs while maintaining delivery efficiency. We manage
-                      the entire movement from pickup to final delivery, ensuring
-                      cargo is handled securely and efficiently at every stage.
+                      shipping costs while maintaining delivery efficiency. We manage the
+                      entire movement from pickup to final delivery, ensuring cargo is
+                      handled securely and efficiently at every stage.
                     </p>
                     <p>
                       By combining multiple shipments into a single container, we help
-                      businesses benefit from better freight rates, reduced handling,
-                      and more predictable transit schedules.
+                      businesses benefit from better freight rates, reduced handling, and
+                      more predictable transit schedules.
                     </p>
                   </div>
                 </section>
@@ -210,23 +217,7 @@ const Consolidation = () => {
                   </div>
                 </section>
 
-                {/* CTA – SAME PATTERN AS OTHER SERVICE PAGES */}
-                <section className="py-12 bg-white text-center">
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#BC0018] mb-4">
-                    Ready to Consolidate Your Shipments?
-                  </h2>
-                  <p className="text-lg md:text-xl text-[#BC0018] mb-10">
-                    Contact us today to get competitive rates and efficient
-                    consolidation solutions.
-                  </p>
-
-                  <Link
-                    to={getNavLink("/contact")}
-                    className="inline-block bg-[#BC0018] hover:bg-[#a30014] text-white font-semibold text-lg px-10 py-4 rounded-lg transition-all"
-                  >
-                    Contact Us
-                  </Link>
-                </section>
+                {/* CTA REMOVED TO MATCH OTHER UPDATED PAGES */}
               </div>
             </div>
           </div>
