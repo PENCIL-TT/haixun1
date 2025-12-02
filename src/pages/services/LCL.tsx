@@ -50,46 +50,32 @@ const LCL = () => {
 
       <main className="flex-grow">
         {/* HERO SECTION WITH BREADCRUMB */}
-        <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
+        <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center justify-center">
           <img
             src="/servicepagehero.jpg"
             alt="LCL Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* DARK RIGHT-SIDE GRADIENT */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          {/* EXTENDED DARK GRADIENT */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            {/* BREADCRUMB WITH DISSOLVE ANIMATION */}
-            <motion.nav
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="flex items-center space-x-2 text-sm mb-4"
+              className="text-4xl md:text-5xl font-extrabold text-white"
             >
-              <Link
-                to={getNavLink("/")}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                Home
-              </Link>
-              <span className="text-white/60">›</span>
-              <Link
-                to={getNavLink("/services")}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                Services
-              </Link>
-              <span className="text-white/60">›</span>
-              <span className="text-white font-medium">LCL Services</span>
-            </motion.nav>
-
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
               LCL Services
-            </h1>
+            </motion.h1>
+          </div>
+        </section>
 
-            <p className="text-white text-lg mt-3 max-w-xl">
+        {/* DESCRIPTION BELOW HERO */}
+        <section className="py-8 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-base md:text-lg leading-relaxed text-gray-700 text-center max-w-4xl mx-auto">
               Flexible Less-Than-Container Load solutions tailored for your partial
               shipments with global coverage and reliable schedules.
             </p>
