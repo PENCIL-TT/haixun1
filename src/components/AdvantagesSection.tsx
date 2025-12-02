@@ -11,22 +11,19 @@ export default function AdvantagesSection() {
       icon: Truck,
       titleKey: "advantages.transportation.title",
       descriptionKey: "advantages.transportation.description",
-      image:
-        "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&q=80",
+      image: "/advantage-transportation.jpg",
     },
     {
       icon: Ship,
       titleKey: "advantages.logistics.title",
       descriptionKey: "advantages.logistics.description",
-      image:
-        "https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=800&q=80",
+      image: "/advantage-logistics.jpg",
     },
     {
       icon: Users,
       titleKey: "advantages.team.title",
       descriptionKey: "advantages.team.description",
-      image:
-        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+      image: "/advantage-team.jpg",
     },
   ];
 

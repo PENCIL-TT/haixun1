@@ -26,7 +26,7 @@ const Advantages = () => {
         {/* ===== HERO SECTION (MATCHES LCL/SERVICES) ===== */}
         <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
           <img
-            src="/servicepagehero.jpg"
+            src="/advantages-hero.jpg"
             alt="Advantages Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
