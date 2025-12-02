@@ -117,6 +117,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
+            {/* 1. Home */}
             <Link
               to="/"
               className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
@@ -126,6 +127,17 @@ const Navigation = () => {
               {t("nav.home")}
             </Link>
 
+            {/* 2. About Us */}
+            <Link
+              to="/about-us"
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
+                isActive("/about-us") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
+              }`}
+            >
+              {t("nav.about")}
+            </Link>
+
+            {/* 3. Our Services */}
             <DropdownMenu>
               <DropdownMenuTrigger
                 className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors flex items-center gap-1 ${
@@ -210,24 +222,7 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link
-              to="/about-us"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/about-us") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
-              {t("nav.about")}
-            </Link>
-
-            <Link
-              to="/blog"
-              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
-                isActive("/blog") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
-              }`}
-            >
-              {t("nav.news")}
-            </Link>
-
+            {/* 4. Advantage */}
             <Link
               to="/advantages"
               className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
@@ -237,6 +232,7 @@ const Navigation = () => {
               {t("nav.advantage")}
             </Link>
 
+            {/* 5. Global Presence */}
             <Link
               to="/global-presence"
               className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
@@ -246,6 +242,17 @@ const Navigation = () => {
               {t("nav.globalPresence")}
             </Link>
 
+            {/* 6. News */}
+            <Link
+              to="/blog"
+              className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
+                isActive("/blog") ? "text-red-600" : isScrolled ? "text-gray-900" : "text-red-600"
+              }`}
+            >
+              {t("nav.news")}
+            </Link>
+
+            {/* 7. Contact Us */}
             <Link
               to="/contact"
               className={`nav-link font-medium text-base xl:text-lg hover:text-red-600 transition-colors ${
@@ -255,6 +262,7 @@ const Navigation = () => {
               {t("nav.contact")}
             </Link>
 
+            {/* 8. Language Switcher */}
             <LanguageSwitcher />
           </div>
 
@@ -280,6 +288,7 @@ const Navigation = () => {
         <div className="lg:hidden absolute top-full left-0 right-0 bg-white py-4 shadow-md animate-fade-in border-t max-h-[calc(100vh-80px)] overflow-y-auto">
           <div className="container mx-auto px-4">
             <nav className="flex flex-col space-y-4">
+              {/* 1. Home */}
               <Link
                 to="/"
                 className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
@@ -290,7 +299,18 @@ const Navigation = () => {
                 {t("nav.home")}
               </Link>
 
-              {/* Services Collapsible */}
+              {/* 2. About Us */}
+              <Link
+                to="/about-us"
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
+                  isActive("/about-us") ? "text-red-600" : "text-gray-900"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t("nav.about")}
+              </Link>
+
+              {/* 3. Our Services (collapsible) */}
               <div className="flex flex-col">
                 <button
                   onClick={() => setIsCompanyDropdownOpen(!isCompanyDropdownOpen)}
@@ -387,36 +407,11 @@ const Navigation = () => {
                     >
                       {t("services.liquidCargo.title")}
                     </Link>
-
-                    {/* Removed in mobile as well:
-                      - /services/sea-freight
-                      - /services/third-party-logistics
-                      - /services/liner-agency
-                    */}
                   </div>
                 )}
               </div>
 
-              <Link
-                to="/about-us"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/about-us") ? "text-red-600" : "text-gray-900"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t("nav.about")}
-              </Link>
-
-              <Link
-                to="/blog"
-                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
-                  isActive("/blog") ? "text-red-600" : "text-gray-900"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t("nav.news")}
-              </Link>
-
+              {/* 4. Advantage */}
               <Link
                 to="/advantages"
                 className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
@@ -427,6 +422,7 @@ const Navigation = () => {
                 {t("nav.advantage")}
               </Link>
 
+              {/* 5. Global Presence */}
               <Link
                 to="/global-presence"
                 className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
@@ -437,6 +433,18 @@ const Navigation = () => {
                 {t("nav.globalPresence")}
               </Link>
 
+              {/* 6. News */}
+              <Link
+                to="/blog"
+                className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
+                  isActive("/blog") ? "text-red-600" : "text-gray-900"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t("nav.news")}
+              </Link>
+
+              {/* 7. Contact Us */}
               <Link
                 to="/contact"
                 className={`font-medium py-2 text-lg hover:text-red-600 transition-colors ${
@@ -447,6 +455,7 @@ const Navigation = () => {
                 {t("nav.contact")}
               </Link>
 
+              {/* 8. Language Switcher */}
               <LanguageSwitcher />
             </nav>
           </div>
