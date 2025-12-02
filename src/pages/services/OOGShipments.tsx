@@ -66,7 +66,7 @@ const OOGShipments: React.FC = () => {
         {/* HERO – centered like other updated service pages */}
         <section className="relative h-[300px] md:h-[360px] w-full overflow-hidden flex items-center justify-center">
           <img
-            src="/counter-bg.webp"
+            src="/oggshipmentshero.jpg"
             alt="OOG Shipments Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -139,7 +139,7 @@ const OOGShipments: React.FC = () => {
                   className="rounded-md overflow-hidden shadow-lg"
                 >
                   <img
-                    src="/oog-shipments.png"
+                    src="/oogbanner.jpg"
                     alt="OOG Shipments - Inter Island Movements"
                     className="w-full h-[340px] md:h-[380px] object-cover"
                     loading="lazy"
