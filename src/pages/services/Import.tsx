@@ -23,7 +23,7 @@ const ImportServices = () => {
     return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
   };
 
-  // MATCH AIR FREIGHT / OTHER SERVICE PAGES
+  // MATCH OTHER SERVICE PAGES
   const servicesNav = [
     { label: "See All Services", path: "/services" },
     { label: "LCL Services", path: "/services/lcl" },
@@ -47,20 +47,21 @@ const ImportServices = () => {
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO */}
-        <section className="relative h-[260px] md:h-[320px] w-full overflow-hidden flex items-center">
+        {/* HERO – CENTERED LIKE OTHER UPDATED PAGES */}
+        <section className="relative h-[300px] md:h-[360px] w-full overflow-hidden flex items-center justify-center">
           <img
             src="/importhero.jpg"
             alt="Import Services Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#BC0018]">
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white">
               Import
             </h1>
+            <div className="w-24 h-[3px] bg-[#BC0018] mx-auto mt-3" />
           </div>
         </section>
 
@@ -68,7 +69,7 @@ const ImportServices = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT SIDEBAR (MATCH AIR FREIGHT STYLE) */}
+              {/* LEFT SIDEBAR */}
               <aside className="space-y-10">
                 <div>
                   <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
@@ -101,7 +102,7 @@ const ImportServices = () => {
                 </div>
               </aside>
 
-              {/* CONTENT RIGHT SIDE – CHINESE ONLY */}
+              {/* RIGHT SIDE – CHINESE CONTENT ONLY */}
               <div className="space-y-12">
                 {/* IMAGE */}
                 <div className="rounded-md overflow-hidden shadow-lg">
@@ -112,7 +113,7 @@ const ImportServices = () => {
                   />
                 </div>
 
-                {/* CHINESE CONTENT ONLY */}
+                {/* CHINESE CONTENT */}
                 <section>
                   <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
                     Import
