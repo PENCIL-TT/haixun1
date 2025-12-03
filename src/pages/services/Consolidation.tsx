@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { getCurrentCountryFromPath } from "@/services/countryDetection";
+import ServiceSidebar from "@/components/ServiceSidebar";
 import { Cuboid, Package, TrendingDown, Globe } from "lucide-react";
 
 const ScrollToTop = () => {
@@ -15,47 +16,23 @@ const ScrollToTop = () => {
 };
 
 const Consolidation = () => {
-  const location = useLocation();
-
-  const detected = getCurrentCountryFromPath(location.pathname);
-  const currentCountry = detected ?? { code: "SG", name: "Singapore" };
-
-  const getNavLink = (basePath: string) => {
-    if (currentCountry.code === "SG") return basePath;
-    return `/${currentCountry.name.toLowerCase().replace(/\s+/g, "-")}${basePath}`;
-  };
-
-  // MATCH UPDATED SERVICE PAGES
-  const servicesNav = [
-    { label: "See All Services", path: "/services" },
-    { label: "LCL Services", path: "/services/lcl" },
-    { label: "FCL Services", path: "/services/fcl" },
-    { label: "Warehousing", path: "/services/warehousing" },
-    { label: "Project Cargo", path: "/services/project-cargo" },
-    { label: "Air Freight", path: "/services/air-freight" },
-    { label: "Customs Clearance", path: "/services/customs-clearance" },
-    { label: "Import Services", path: "/services/import" },
-    { label: "Consolidation", path: "/services/consolidation" },
-    { label: "OOG Shipments", path: "/services/oog-shipments" },
-  ];
-
-  const pathname = location.pathname;
+  const { t } = useTranslation();
 
   const benefits = [
     {
       icon: TrendingDown,
-      title: "Cost Savings",
-      description: "Reduce freight costs by sharing container space",
+      titleKey: "services.consolidation.costSavings",
+      descKey: "services.consolidation.costSavingsDesc",
     },
     {
       icon: Package,
-      title: "Flexible Shipping",
-      description: "Ship smaller quantities without waiting for full container",
+      titleKey: "services.consolidation.flexibleShipping",
+      descKey: "services.consolidation.flexibleShippingDesc",
     },
     {
       icon: Globe,
-      title: "Global Reach",
-      description: "Direct consolidation to major global destinations",
+      titleKey: "services.consolidation.globalReach",
+      descKey: "services.consolidation.globalReachDesc",
     },
   ];
 
@@ -64,18 +41,16 @@ const Consolidation = () => {
       <ScrollToTop />
       <Navigation />
 
-      {/* SAME WHITE GAP UNDER NAV AS OTHER SERVICE PAGES */}
       <div className="h-[90px] w-full bg-white" />
 
       <main className="flex-grow">
-        {/* HERO – CENTERED LIKE OTHER UPDATED SERVICE PAGES */}
+        {/* HERO */}
         <section className="relative h-[300px] md:h-[360px] w-full overflow-hidden flex items-center justify-center">
           <img
             src="/counter-bg.webp"
             alt="Consolidation Hero"
             className="absolute inset-0 w-full h-full object-cover"
           />
-
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
 
           <div className="container mx-auto px-4 relative z-10 text-center">
@@ -86,12 +61,11 @@ const Consolidation = () => {
               className="inline-block max-w-3xl"
             >
               <h1 className="text-4xl md:text-5xl font-extrabold text-white">
-                Consolidation
+                {t("services.consolidation.title")}
               </h1>
               <div className="w-24 h-[3px] bg-[#BC0018] mx-auto mt-3" />
               <p className="mt-4 text-base md:text-lg text-gray-200 leading-relaxed">
-                Reliable cargo consolidation solutions that optimise container utilisation
-                and lower freight costs across key trade lanes.
+                {t("services.consolidation.heroTagline")}
               </p>
             </motion.div>
           </div>
@@ -101,42 +75,9 @@ const Consolidation = () => {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 md:grid-cols-[260px,1fr] items-start">
-              {/* LEFT SIDEBAR – SAME STYLE AS OTHER SERVICE PAGES */}
-              <aside className="space-y-10">
-                <div>
-                  <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
-                    OUR SERVICES
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
+              <ServiceSidebar />
 
-                  <div className="border border-slate-200 rounded-md overflow-hidden bg-slate-50">
-                    {servicesNav.map((item) => {
-                      const to = getNavLink(item.path);
-                      const isActive =
-                        pathname === to ||
-                        (item.path !== "/services" && pathname.startsWith(to));
-
-                      return (
-                        <Link
-                          key={item.path}
-                          to={to}
-                          className={`block px-6 py-3 text-sm font-medium transition-colors ${
-                            isActive
-                              ? "bg-[#BC0018] text-white"
-                              : "text-slate-600 hover:bg-slate-100"
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </aside>
-
-              {/* RIGHT CONTENT */}
               <div className="space-y-12">
-                {/* TOP IMAGE */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +93,6 @@ const Consolidation = () => {
                   />
                 </motion.div>
 
-                {/* CONSOLIDATION DESCRIPTION – UPDATED CONTENT */}
                 <section>
                   <div className="mb-6 flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#BC0018]/10">
@@ -160,7 +100,7 @@ const Consolidation = () => {
                     </div>
                     <div>
                       <h2 className="text-xl md:text-2xl font-extrabold tracking-wide text-gray-900 uppercase">
-                        Cargo Consolidation
+                        {t("services.consolidation.sectionTitle")}
                       </h2>
                       <div className="mt-1 w-16 h-[2px] bg-[#BC0018]" />
                     </div>
@@ -169,11 +109,9 @@ const Consolidation = () => {
                   <div className="space-y-6 text-sm md:text-base leading-relaxed text-gray-700">
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">
-                        LCL Consolidation
+                        {t("services.consolidation.lclConsolidation")}
                       </h3>
-                      <p className="mb-1">
-                        Export - Direct Consol to Nava Sheva Connecting:
-                      </p>
+                      <p className="mb-1">{t("services.consolidation.exportDirect")}</p>
                       <ul className="list-disc list-inside space-y-1">
                         <li>ICD PPG</li>
                         <li>ICD Ludhiana</li>
@@ -184,7 +122,7 @@ const Consolidation = () => {
 
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">
-                        Export - Direct Consol
+                        {t("services.consolidation.exportDirectList")}
                       </h3>
                       <ul className="list-disc list-inside space-y-1">
                         <li>Singapore</li>
@@ -195,7 +133,7 @@ const Consolidation = () => {
 
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">
-                        Export Consol Via Singapore Hub to
+                        {t("services.consolidation.exportViaHub")}
                       </h3>
                       <ul className="list-disc list-inside space-y-1">
                         <li>India, Middle East</li>
@@ -207,7 +145,7 @@ const Consolidation = () => {
 
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">
-                        Import Consolidation – Via Singapore Hub
+                        {t("services.consolidation.importViaHub")}
                       </h3>
                       <ul className="list-disc list-inside space-y-1">
                         <li>Asia, Middle East</li>
@@ -217,7 +155,7 @@ const Consolidation = () => {
 
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">
-                        Facilities
+                        {t("services.consolidation.facilities")}
                       </h3>
                       <ul className="list-disc list-inside space-y-1">
                         <li>LCL Consolidation / Deconsolidation Warehouse</li>
@@ -231,7 +169,7 @@ const Consolidation = () => {
                 <section>
                   <div className="mb-6">
                     <h2 className="text-xl md:text-2xl font-extrabold uppercase text-gray-900">
-                      Benefits of Consolidation
+                      {t("services.consolidation.benefitsTitle")}
                     </h2>
                     <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
                   </div>
@@ -239,7 +177,7 @@ const Consolidation = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {benefits.map((benefit, index) => (
                       <motion.div
-                        key={benefit.title}
+                        key={benefit.titleKey}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.15 * index }}
@@ -250,17 +188,15 @@ const Consolidation = () => {
                           <benefit.icon className="w-6 h-6 text-[#BC0018]" />
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2">
-                          {benefit.title}
+                          {t(benefit.titleKey)}
                         </h3>
                         <p className="text-sm text-gray-600 leading-relaxed">
-                          {benefit.description}
+                          {t(benefit.descKey)}
                         </p>
                       </motion.div>
                     ))}
                   </div>
                 </section>
-
-                {/* CTA REMOVED TO MATCH OTHER UPDATED PAGES */}
               </div>
             </div>
           </div>
