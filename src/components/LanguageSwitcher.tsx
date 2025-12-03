@@ -8,16 +8,20 @@ export default function LanguageSwitcher() {
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'zh' : 'en';
     i18n.changeLanguage(newLang);
+    // Language change is automatically persisted via i18n config
   };
 
   return (
     <Button
       onClick={toggleLanguage}
-      className="bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-md flex items-center gap-2"
+      className="bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-md flex items-center gap-2 border border-gray-300"
       variant="outline"
+      size="sm"
     >
       <Globe className="w-4 h-4" />
-      {i18n.language === 'en' ? '中文' : 'EN'}
+      <span className="font-medium">
+        {i18n.language === 'en' ? '中文' : 'EN'}
+      </span>
     </Button>
   );
 }
