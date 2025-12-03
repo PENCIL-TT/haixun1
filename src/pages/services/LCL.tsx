@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { getCurrentCountryFromPath } from "@/services/countryDetection";
@@ -14,6 +15,7 @@ const ScrollToTop = () => {
 };
 
 const LCL = () => {
+  const { t } = useTranslation();
   const location = useLocation();
 
   const detected = getCurrentCountryFromPath(location.pathname);
@@ -25,16 +27,16 @@ const LCL = () => {
   };
 
   const servicesNav = [
-    { label: "See All Services", path: "/services" },
-    { label: "LCL Services", path: "/services/lcl" },
-    { label: "FCL Services", path: "/services/fcl" },
-    { label: "Warehousing", path: "/services/warehousing" },
-    { label: "Project Cargo", path: "/services/project-cargo" },
-    { label: "Air Freight", path: "/services/air-freight" },
-    { label: "Customs Clearance", path: "/services/customs-clearance" },
-    { label: "Import Services", path: "/services/import" },
-    { label: "Consolidation", path: "/services/consolidation" },
-    { label: "OOG Shipments", path: "/services/oog-shipments" },
+    { labelKey: "services.seeAllServices", path: "/services" },
+    { labelKey: "services.lcl.title", path: "/services/lcl" },
+    { labelKey: "services.fcl.title", path: "/services/fcl" },
+    { labelKey: "services.warehouse.title", path: "/services/warehousing" },
+    { labelKey: "services.projectCargo.title", path: "/services/project-cargo" },
+    { labelKey: "services.air.title", path: "/services/air-freight" },
+    { labelKey: "services.customs.title", path: "/services/customs-clearance" },
+    { labelKey: "services.import.title", path: "/services/import" },
+    { labelKey: "services.consolidation.title", path: "/services/consolidation" },
+    { labelKey: "services.oog.title", path: "/services/oog-shipments" },
   ];
 
   const pathname = location.pathname;
@@ -65,20 +67,16 @@ const LCL = () => {
               className="inline-block max-w-3xl"
             >
               <h1 className="text-4xl md:text-5xl font-extrabold text-white">
-                LCL Services
+                {t("services.lcl.title")}
               </h1>
               <div className="w-24 h-[3px] bg-[#BC0018] mx-auto mt-3" />
 
-              {/* MOVED TAGLINE INSIDE HERO */}
               <p className="mt-4 text-base md:text-lg text-gray-200 leading-relaxed">
-                Flexible Less-Than-Container Load solutions tailored for your partial
-                shipments with global coverage and reliable schedules.
+                {t("services.lcl.heroTagline")}
               </p>
             </motion.div>
           </div>
         </section>
-
-        {/* DESCRIPTION REMOVED FROM HERE */}
 
         {/* CONTENT SECTION */}
         <section className="py-16 bg-white">
@@ -88,7 +86,7 @@ const LCL = () => {
               <aside className="space-y-10">
                 <div>
                   <h2 className="text-sm font-semibold tracking-[0.15em] text-gray-900 mb-2 uppercase">
-                    OUR SERVICES
+                    {t("services.ourServices")}
                   </h2>
                   <div className="w-12 h-[2px] bg-[#BC0018] mb-5" />
 
@@ -109,7 +107,7 @@ const LCL = () => {
                               : "text-slate-600 hover:bg-slate-100"
                           }`}
                         >
-                          {item.label}
+                          {t(item.labelKey)}
                         </Link>
                       );
                     })}
@@ -139,39 +137,18 @@ const LCL = () => {
                 <section>
                   <div className="mb-6">
                     <h2 className="text-xl md:text-2xl font-extrabold tracking-wide text-gray-900 uppercase">
-                      Description
+                      {t("services.description")}
                     </h2>
                     <div className="mt-2 w-16 h-[2px] bg-[#BC0018]" />
                   </div>
 
                   <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
-                    <p>
-                      Amass Freight, Dubai provides Less-Than-Container Load (LCL) services
-                      designed for customers who do not have enough cargo to fill a full
-                      container but require reliable shipping.
-                    </p>
-
-                    <p>
-                      Our extensive global consolidation network helps customers move
-                      smaller shipments more economically by combining multiple consignments
-                      into one container.
-                    </p>
-
-                    <p>
-                      Our operations team manages receiving, stuffing, documentation, and
-                      delivery at destination, ensuring safety, transparency, and
-                      efficiency.
-                    </p>
-
-                    <p>
-                      With predictable transit schedules, frequent departures, and
-                      transparent pricing, our LCL solutions provide unmatched flexibility
-                      for businesses of all sizes.
-                    </p>
+                    <p>{t("services.lcl.content1")}</p>
+                    <p>{t("services.lcl.content2")}</p>
+                    <p>{t("services.lcl.content3")}</p>
+                    <p>{t("services.lcl.content4")}</p>
                   </div>
                 </section>
-
-                {/* CTA REMOVED */}
               </div>
             </div>
           </div>
