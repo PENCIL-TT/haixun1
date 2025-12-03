@@ -173,8 +173,9 @@ const Navigation = () => {
                 <Link to="/services/consolidation">{t("services.consolidation.title")}</Link>
               </DropdownMenuItem>
 
+              {/* ▶️ REPLACED LIQUID CARGO WITH OOG SHIPMENTS */}
               <DropdownMenuItem asChild>
-                <Link to="/services/liquid-cargo">{t("services.liquidCargo.title")}</Link>
+                <Link to="/services/oog-shipments">OOG Shipments</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -216,7 +217,6 @@ const Navigation = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-white shadow-md border-t">
           <nav className="flex flex-col px-6 py-4 space-y-4">
-
             <Link to="/" className={mobileClass("/")} onClick={() => setIsMenuOpen(false)}>
               {t("nav.home")}
             </Link>
@@ -269,8 +269,10 @@ const Navigation = () => {
                 <Link to="/services/consolidation" onClick={() => setIsMenuOpen(false)}>
                   {t("services.consolidation.title")}
                 </Link>
-                <Link to="/services/liquid-cargo" onClick={() => setIsMenuOpen(false)}>
-                  {t("services.liquidCargo.title")}
+
+                {/* ▶️ MOBILE: OOG SHIPMENTS */}
+                <Link to="/services/oog-shipments" onClick={() => setIsMenuOpen(false)}>
+                  OOG Shipments
                 </Link>
               </div>
             )}
