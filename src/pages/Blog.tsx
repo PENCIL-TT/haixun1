@@ -1,24 +1,38 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, Clock, User, ArrowRight, Edit } from "lucide-react";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import { CalendarIcon, Clock, User, ArrowRight } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
+import { useTranslation } from "react-i18next";
+
 const ScrollToTop = () => {
-  const {
-    pathname
-  } = useLocation();
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   }, [pathname]);
   return null;
 };
+
 interface Article {
   id: string;
   title: string;
@@ -28,87 +42,125 @@ interface Article {
   featured_image?: string;
   published_at: string;
 }
+
 const itemsPerPage = 6;
+
 const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
+
   useEffect(() => {
     fetchArticles();
   }, []);
+
   const fetchArticles = async () => {
     setLoading(true);
     try {
-      const {
-        data,
-        error
-      } = await supabase.from('articles').select('*').order('published_at', {
-        ascending: false
-      });
+      const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .order("published_at", {
+          ascending: false,
+        });
+
       if (error) {
-        console.error('Error fetching from Supabase:', error);
+        console.error("Error fetching from Supabase:", error);
         setArticles([]);
       } else {
         setArticles(data || []);
       }
     } catch (error) {
-      console.error('Unexpected error:', error);
+      console.error("Unexpected error:", error);
       setArticles([]);
     }
     setLoading(false);
   };
+
   const totalPages = Math.ceil(articles.length / itemsPerPage);
-  const currentPosts = articles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const currentPosts = articles.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
   };
+
   const getImageUrl = (article: Article) => {
-    return article.featured_image || "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+    return (
+      article.featured_image ||
+      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    );
   };
+
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    return new Date(dateString).toLocaleDateString(
+      i18n.language === "zh" ? "zh-CN" : "en-US",
+      {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }
+    );
   };
+
   const getReadTime = (content: string) => {
     const wordsPerMinute = 200;
-    const wordCount = content.split(' ').length;
+    const wordCount = content.split(" ").length;
     const minutes = Math.ceil(wordCount / wordsPerMinute);
-    return `${minutes} min read`;
+    return `${minutes} ${t("blog.minRead")}`;
   };
-  return <div className="min-h-screen bg-background">
+
+  return (
+    <div className="min-h-screen bg-background">
       <ScrollToTop />
       <Navigation />
       <div className="container mx-auto px-4 py-12 pt-24">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground mt-14">Our Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground mt-14">
+            {t("blog.title")}
+          </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Stay updated with the latest insights, trends, and innovations in global logistics and supply chain management.
+            {t("blog.subtitle")}
           </p>
-          
         </div>
 
-        {loading ? <div className="text-center py-12">
+        {loading ? (
+          <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading articles...</p>
-          </div> : articles.length === 0 ? <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4">No articles published yet.</p>
+            <p className="text-muted-foreground">{t("blog.loading")}</p>
+          </div>
+        ) : articles.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground mb-4">
+              {t("blog.noArticles")}
+            </p>
             <Link to="/blog-editor">
               <Button className="bg-red-600 hover:bg-red-700 text-white">
-                Create First Article
+                {t("blog.emptyCta")}
               </Button>
             </Link>
-          </div> : <>
+          </div>
+        ) : (
+          <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {currentPosts.map(article => <Card key={article.id} className="flex flex-col h-full hover:shadow-lg transition-all duration-300 group">
+              {currentPosts.map((article) => (
+                <Card
+                  key={article.id}
+                  className="flex flex-col h-full hover:shadow-lg transition-all duration-300 group"
+                >
                   <div className="h-48 overflow-hidden rounded-t-lg relative">
-                    <img src={getImageUrl(article)} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <img
+                      src={getImageUrl(article)}
+                      alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                     <div className="absolute top-4 left-4">
                       <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-                        Article
+                        {t("blog.article")}
                       </span>
                     </div>
                   </div>
@@ -128,7 +180,9 @@ const Blog = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
-                    <p className="text-muted-foreground mb-4 line-clamp-3">{article.excerpt}</p>
+                    <p className="text-muted-foreground mb-4 line-clamp-3">
+                      {article.excerpt}
+                    </p>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <User className="w-4 h-4 mr-2" />
                       <span>OECL Team</span>
@@ -136,35 +190,57 @@ const Blog = () => {
                   </CardContent>
                   <CardFooter>
                     <Button variant="outline" className="w-full group" asChild>
-                      <Link to={`/blog/${article.slug}`} className="flex items-center justify-center gap-2">
-                        Read More
+                      <Link
+                        to={`/blog/${article.slug}`}
+                        className="flex items-center justify-center gap-2"
+                      >
+                        {t("blog.readMore")}
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </Button>
                   </CardFooter>
-                </Card>)}
+                </Card>
+              ))}
             </div>
 
-            {totalPages > 1 && <Pagination>
+            {totalPages > 1 && (
+              <Pagination>
                 <PaginationContent>
-                  {currentPage > 1 && <PaginationItem>
-                      <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
-                    </PaginationItem>}
+                  {currentPage > 1 && (
+                    <PaginationItem>
+                      <PaginationPrevious
+                        onClick={() => handlePageChange(currentPage - 1)}
+                      />
+                    </PaginationItem>
+                  )}
 
-                  {[...Array(totalPages)].map((_, i) => <PaginationItem key={i}>
-                      <PaginationLink isActive={currentPage === i + 1} onClick={() => handlePageChange(i + 1)}>
+                  {[...Array(totalPages)].map((_, i) => (
+                    <PaginationItem key={i}>
+                      <PaginationLink
+                        isActive={currentPage === i + 1}
+                        onClick={() => handlePageChange(i + 1)}
+                      >
                         {i + 1}
                       </PaginationLink>
-                    </PaginationItem>)}
+                    </PaginationItem>
+                  ))}
 
-                  {currentPage < totalPages && <PaginationItem>
-                      <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
-                    </PaginationItem>}
+                  {currentPage < totalPages && (
+                    <PaginationItem>
+                      <PaginationNext
+                        onClick={() => handlePageChange(currentPage + 1)}
+                      />
+                    </PaginationItem>
+                  )}
                 </PaginationContent>
-              </Pagination>}
-          </>}
+              </Pagination>
+            )}
+          </>
+        )}
       </div>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Blog;
