@@ -28,7 +28,6 @@ const Footer = () => {
             "13C02, Block A,\nZhaoxin Huijin Plaza 3085 Shennan East Road,\nLuohu, Shenzhen.",
           phone: "+86 75582222447",
           fax: "+86 75582192854",
-          email: "helen@haixun.co",
           map: "",
         },
       ],
